@@ -1,0 +1,57 @@
+{
+  // VS Code Tasks configuration for FillSync
+  // Usage: Press Ctrl+Shift+P → "Tasks: Run Task" → "🚀 Start FillSync (Both Servers)"
+  "version": "2.0.0",
+  "tasks": [
+    {
+      // Task 1: Start the Node.js backend server on port 5000
+      "label": "Start Backend (Port 5000)",
+      "type": "shell",
+      "command": "node server.js",
+      "options": {
+        "cwd": "${workspaceFolder}/users/backend"
+      },
+      "group": "build",
+      "isBackground": true,
+      "problemMatcher": [],
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "panel": "dedicated",
+        "label": "Backend Server"
+      }
+    },
+    {
+      // Task 2: Start the Vite + React frontend dev server on port 5173
+      "label": "Start Frontend (Port 5173)",
+      "type": "shell",
+      "command": "npx.cmd vite --port 5173",
+      "options": {
+        "cwd": "${workspaceFolder}/users/frontend"
+      },
+      "group": "build",
+      "isBackground": true,
+      "problemMatcher": [],
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "panel": "dedicated",
+        "label": "Frontend Vite"
+      }
+    },
+    {
+      // Compound Task: Runs BOTH servers at the same time with one command
+      "label": "🚀 Start FillSync (Both Servers)",
+      "dependsOn": [
+        "Start Backend (Port 5000)",
+        "Start Frontend (Port 5173)"
+      ],
+      "dependsOrder": "parallel",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": []
+    }
+  ]
+}

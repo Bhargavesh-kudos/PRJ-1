@@ -1,0 +1,1502 @@
+<!DOCTYPE html>
+<!-- saved from url=(0042)https://magjac.com/graphviz-visual-editor/ -->
+<html lang="en" dir="ltr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style id="ace_searchbox">
+
+/* ------------------------------------------------------------------------------------------
+ * Editor Search Form
+ * --------------------------------------------------------------------------------------- */
+.ace_search {
+    background-color: #ddd;
+    color: #666;
+    border: 1px solid #cbcbcb;
+    border-top: 0 none;
+    overflow: hidden;
+    margin: 0;
+    padding: 4px 6px 0 4px;
+    position: absolute;
+    top: 0;
+    z-index: 99;
+    white-space: normal;
+}
+.ace_search.left {
+    border-left: 0 none;
+    border-radius: 0px 0px 5px 0px;
+    left: 0;
+}
+.ace_search.right {
+    border-radius: 0px 0px 0px 5px;
+    border-right: 0 none;
+    right: 0;
+}
+
+.ace_search_form, .ace_replace_form {
+    margin: 0 20px 4px 0;
+    overflow: hidden;
+    line-height: 1.9;
+}
+.ace_replace_form {
+    margin-right: 0;
+}
+.ace_search_form.ace_nomatch {
+    outline: 1px solid red;
+}
+
+.ace_search_field {
+    border-radius: 3px 0 0 3px;
+    background-color: white;
+    color: black;
+    border: 1px solid #cbcbcb;
+    border-right: 0 none;
+    outline: 0;
+    padding: 0;
+    font-size: inherit;
+    margin: 0;
+    line-height: inherit;
+    padding: 0 6px;
+    min-width: 17em;
+    vertical-align: top;
+    min-height: 1.8em;
+    box-sizing: content-box;
+}
+.ace_searchbtn {
+    border: 1px solid #cbcbcb;
+    line-height: inherit;
+    display: inline-block;
+    padding: 0 6px;
+    background: #fff;
+    border-right: 0 none;
+    border-left: 1px solid #dcdcdc;
+    cursor: pointer;
+    margin: 0;
+    position: relative;
+    color: #666;
+}
+.ace_searchbtn:last-child {
+    border-radius: 0 3px 3px 0;
+    border-right: 1px solid #cbcbcb;
+}
+.ace_searchbtn:disabled {
+    background: none;
+    cursor: default;
+}
+.ace_searchbtn:hover {
+    background-color: #eef1f6;
+}
+.ace_searchbtn.prev, .ace_searchbtn.next {
+     padding: 0px 0.7em
+}
+.ace_searchbtn.prev:after, .ace_searchbtn.next:after {
+     content: "";
+     border: solid 2px #888;
+     width: 0.5em;
+     height: 0.5em;
+     border-width:  2px 0 0 2px;
+     display:inline-block;
+     transform: rotate(-45deg);
+}
+.ace_searchbtn.next:after {
+     border-width: 0 2px 2px 0 ;
+}
+.ace_searchbtn_close {
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAcCAYAAABRVo5BAAAAZ0lEQVR42u2SUQrAMAhDvazn8OjZBilCkYVVxiis8H4CT0VrAJb4WHT3C5xU2a2IQZXJjiQIRMdkEoJ5Q2yMqpfDIo+XY4k6h+YXOyKqTIj5REaxloNAd0xiKmAtsTHqW8sR2W5f7gCu5nWFUpVjZwAAAABJRU5ErkJggg==) no-repeat 50% 0;
+    border-radius: 50%;
+    border: 0 none;
+    color: #656565;
+    cursor: pointer;
+    font: 16px/16px Arial;
+    padding: 0;
+    height: 14px;
+    width: 14px;
+    top: 9px;
+    right: 7px;
+    position: absolute;
+}
+.ace_searchbtn_close:hover {
+    background-color: #656565;
+    background-position: 50% 100%;
+    color: white;
+}
+
+.ace_button {
+    margin-left: 2px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    overflow: hidden;
+    opacity: 0.7;
+    border: 1px solid rgba(100,100,100,0.23);
+    padding: 1px;
+    box-sizing:    border-box!important;
+    color: black;
+}
+
+.ace_button:hover {
+    background-color: #eee;
+    opacity:1;
+}
+.ace_button:active {
+    background-color: #ddd;
+}
+
+.ace_button.checked {
+    border-color: #3399ff;
+    opacity:1;
+}
+
+.ace_search_options{
+    margin-bottom: 3px;
+    text-align: right;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    clear: both;
+}
+
+.ace_search_counter {
+    float: left;
+    font-family: arial;
+    padding: 0 8px;
+}
+/*# sourceURL=ace/css/ace_searchbox */</style><style id="ace-github">/* CSS style content from github's default pygments highlighter template.
+   Cursor and selection styles from textmate.css. */
+.ace-github .ace_gutter {
+  background: #e8e8e8;
+  color: #AAA;
+}
+
+.ace-github  {
+  background: #fff;
+  color: #000;
+}
+
+.ace-github .ace_keyword {
+  font-weight: bold;
+}
+
+.ace-github .ace_string {
+  color: #D14;
+}
+
+.ace-github .ace_variable.ace_class {
+  color: teal;
+}
+
+.ace-github .ace_constant.ace_numeric {
+  color: #099;
+}
+
+.ace-github .ace_constant.ace_buildin {
+  color: #0086B3;
+}
+
+.ace-github .ace_support.ace_function {
+  color: #0086B3;
+}
+
+.ace-github .ace_comment {
+  color: #998;
+  font-style: italic;
+}
+
+.ace-github .ace_variable.ace_language  {
+  color: #0086B3;
+}
+
+.ace-github .ace_paren {
+  font-weight: bold;
+}
+
+.ace-github .ace_boolean {
+  font-weight: bold;
+}
+
+.ace-github .ace_string.ace_regexp {
+  color: #009926;
+  font-weight: normal;
+}
+
+.ace-github .ace_variable.ace_instance {
+  color: teal;
+}
+
+.ace-github .ace_constant.ace_language {
+  font-weight: bold;
+}
+
+.ace-github .ace_cursor {
+  color: black;
+}
+
+.ace-github.ace_focus .ace_marker-layer .ace_active-line {
+  background: rgb(255, 255, 204);
+}
+.ace-github .ace_marker-layer .ace_active-line {
+  background: rgb(245, 245, 245);
+}
+
+.ace-github .ace_marker-layer .ace_selection {
+  background: rgb(181, 213, 255);
+}
+
+.ace-github.ace_multiselect .ace_selection.ace_start {
+  box-shadow: 0 0 3px 0px white;
+}
+/* bold keywords cause cursor issues for some fonts */
+/* this disables bold style for editor and keeps for static highlighter */
+.ace-github.ace_nobold .ace_line > span {
+    font-weight: normal !important;
+}
+
+.ace-github .ace_marker-layer .ace_step {
+  background: rgb(252, 255, 0);
+}
+
+.ace-github .ace_marker-layer .ace_stack {
+  background: rgb(164, 229, 101);
+}
+
+.ace-github .ace_marker-layer .ace_bracket {
+  margin: -1px 0 0 -1px;
+  border: 1px solid rgb(192, 192, 192);
+}
+
+.ace-github .ace_gutter-active-line {
+    background-color : rgba(0, 0, 0, 0.07);
+}
+
+.ace-github .ace_marker-layer .ace_selected-word {
+  background: rgb(250, 250, 255);
+  border: 1px solid rgb(200, 200, 250);
+}
+
+.ace-github .ace_invisible {
+  color: #BFBFBF
+}
+
+.ace-github .ace_print-margin {
+  width: 1px;
+  background: #e8e8e8;
+}
+
+.ace-github .ace_indent-guide {
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZgbYnAAAAE0lEQVQImWP4////f4bLly//BwAmVgd1/w11/gAAAABJRU5ErkJggg==") right repeat-y;
+}
+
+.ace-github .ace_indent-guide-active {
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZgbYnAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAAAZSURBVHjaYvj///9/hivKyv8BAAAA//8DACLqBhbvk+/eAAAAAElFTkSuQmCC") right repeat-y;
+}
+
+/*# sourceURL=ace/css/ace-github */</style><style id="error_marker.css">
+    .error_widget_wrapper {
+        background: inherit;
+        color: inherit;
+        border:none
+    }
+    .error_widget {
+        border-top: solid 2px;
+        border-bottom: solid 2px;
+        margin: 5px 0;
+        padding: 10px 40px;
+        white-space: pre-wrap;
+    }
+    .error_widget.ace_error, .error_widget_arrow.ace_error{
+        border-color: #ff5a5a
+    }
+    .error_widget.ace_warning, .error_widget_arrow.ace_warning{
+        border-color: #F1D817
+    }
+    .error_widget.ace_info, .error_widget_arrow.ace_info{
+        border-color: #5a5a5a
+    }
+    .error_widget.ace_ok, .error_widget_arrow.ace_ok{
+        border-color: #5aaa5a
+    }
+    .error_widget_arrow {
+        position: absolute;
+        border: solid 5px;
+        border-top-color: transparent!important;
+        border-right-color: transparent!important;
+        border-left-color: transparent!important;
+        top: -5px;
+    }
+
+/*# sourceURL=ace/css/error_marker.css */</style><style id="ace-tm">.ace-tm .ace_gutter {
+  background: #f0f0f0;
+  color: #333;
+}
+
+.ace-tm .ace_print-margin {
+  width: 1px;
+  background: #e8e8e8;
+}
+
+.ace-tm .ace_fold {
+    background-color: #6B72E6;
+}
+
+.ace-tm {
+  background-color: #FFFFFF;
+  color: black;
+}
+
+.ace-tm .ace_cursor {
+  color: black;
+}
+        
+.ace-tm .ace_invisible {
+  color: rgb(191, 191, 191);
+}
+
+.ace-tm .ace_storage,
+.ace-tm .ace_keyword {
+  color: blue;
+}
+
+.ace-tm .ace_constant {
+  color: rgb(197, 6, 11);
+}
+
+.ace-tm .ace_constant.ace_buildin {
+  color: rgb(88, 72, 246);
+}
+
+.ace-tm .ace_constant.ace_language {
+  color: rgb(88, 92, 246);
+}
+
+.ace-tm .ace_constant.ace_library {
+  color: rgb(6, 150, 14);
+}
+
+.ace-tm .ace_invalid {
+  background-color: rgba(255, 0, 0, 0.1);
+  color: red;
+}
+
+.ace-tm .ace_support.ace_function {
+  color: rgb(60, 76, 114);
+}
+
+.ace-tm .ace_support.ace_constant {
+  color: rgb(6, 150, 14);
+}
+
+.ace-tm .ace_support.ace_type,
+.ace-tm .ace_support.ace_class {
+  color: rgb(109, 121, 222);
+}
+
+.ace-tm .ace_keyword.ace_operator {
+  color: rgb(104, 118, 135);
+}
+
+.ace-tm .ace_string {
+  color: rgb(3, 106, 7);
+}
+
+.ace-tm .ace_comment {
+  color: rgb(76, 136, 107);
+}
+
+.ace-tm .ace_comment.ace_doc {
+  color: rgb(0, 102, 255);
+}
+
+.ace-tm .ace_comment.ace_doc.ace_tag {
+  color: rgb(128, 159, 191);
+}
+
+.ace-tm .ace_constant.ace_numeric {
+  color: rgb(0, 0, 205);
+}
+
+.ace-tm .ace_variable {
+  color: rgb(49, 132, 149);
+}
+
+.ace-tm .ace_xml-pe {
+  color: rgb(104, 104, 91);
+}
+
+.ace-tm .ace_entity.ace_name.ace_function {
+  color: #0000A2;
+}
+
+
+.ace-tm .ace_heading {
+  color: rgb(12, 7, 255);
+}
+
+.ace-tm .ace_list {
+  color:rgb(185, 6, 144);
+}
+
+.ace-tm .ace_meta.ace_tag {
+  color:rgb(0, 22, 142);
+}
+
+.ace-tm .ace_string.ace_regex {
+  color: rgb(255, 0, 0)
+}
+
+.ace-tm .ace_marker-layer .ace_selection {
+  background: rgb(181, 213, 255);
+}
+.ace-tm.ace_multiselect .ace_selection.ace_start {
+  box-shadow: 0 0 3px 0px white;
+}
+.ace-tm .ace_marker-layer .ace_step {
+  background: rgb(252, 255, 0);
+}
+
+.ace-tm .ace_marker-layer .ace_stack {
+  background: rgb(164, 229, 101);
+}
+
+.ace-tm .ace_marker-layer .ace_bracket {
+  margin: -1px 0 0 -1px;
+  border: 1px solid rgb(192, 192, 192);
+}
+
+.ace-tm .ace_marker-layer .ace_active-line {
+  background: rgba(0, 0, 0, 0.07);
+}
+
+.ace-tm .ace_gutter-active-line {
+    background-color : #dcdcdc;
+}
+
+.ace-tm .ace_marker-layer .ace_selected-word {
+  background: rgb(250, 250, 255);
+  border: 1px solid rgb(200, 200, 250);
+}
+
+.ace-tm .ace_indent-guide {
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZgbYnAAAAE0lEQVQImWP4////f4bLly//BwAmVgd1/w11/gAAAABJRU5ErkJggg==") right repeat-y;
+}
+
+.ace-tm .ace_indent-guide-active {
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZgbYnAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAAAZSURBVHjaYvj///9/hivKyv8BAAAA//8DACLqBhbvk+/eAAAAAElFTkSuQmCC") right repeat-y;
+}
+
+/*# sourceURL=ace/css/ace-tm */</style><style id="ace_editor.css">
+.ace_br1 {border-top-left-radius    : 3px;}
+.ace_br2 {border-top-right-radius   : 3px;}
+.ace_br3 {border-top-left-radius    : 3px; border-top-right-radius:    3px;}
+.ace_br4 {border-bottom-right-radius: 3px;}
+.ace_br5 {border-top-left-radius    : 3px; border-bottom-right-radius: 3px;}
+.ace_br6 {border-top-right-radius   : 3px; border-bottom-right-radius: 3px;}
+.ace_br7 {border-top-left-radius    : 3px; border-top-right-radius:    3px; border-bottom-right-radius: 3px;}
+.ace_br8 {border-bottom-left-radius : 3px;}
+.ace_br9 {border-top-left-radius    : 3px; border-bottom-left-radius:  3px;}
+.ace_br10{border-top-right-radius   : 3px; border-bottom-left-radius:  3px;}
+.ace_br11{border-top-left-radius    : 3px; border-top-right-radius:    3px; border-bottom-left-radius:  3px;}
+.ace_br12{border-bottom-right-radius: 3px; border-bottom-left-radius:  3px;}
+.ace_br13{border-top-left-radius    : 3px; border-bottom-right-radius: 3px; border-bottom-left-radius:  3px;}
+.ace_br14{border-top-right-radius   : 3px; border-bottom-right-radius: 3px; border-bottom-left-radius:  3px;}
+.ace_br15{border-top-left-radius    : 3px; border-top-right-radius:    3px; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px;}
+
+
+.ace_editor {
+    position: relative;
+    overflow: hidden;
+    padding: 0;
+    font: 12px/normal 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Source Code Pro', 'source-code-pro', monospace;
+    direction: ltr;
+    text-align: left;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.ace_scroller {
+    position: absolute;
+    overflow: hidden;
+    top: 0;
+    bottom: 0;
+    background-color: inherit;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    cursor: text;
+}
+
+.ace_content {
+    position: absolute;
+    box-sizing: border-box;
+    min-width: 100%;
+    contain: style size layout;
+    font-variant-ligatures: no-common-ligatures;
+}
+
+.ace_keyboard-focus:focus {
+    box-shadow: inset 0 0 0 2px #5E9ED6;
+    outline: none;
+}
+
+.ace_dragging .ace_scroller:before{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    content: '';
+    background: rgba(250, 250, 250, 0.01);
+    z-index: 1000;
+}
+.ace_dragging.ace_dark .ace_scroller:before{
+    background: rgba(0, 0, 0, 0.01);
+}
+
+.ace_gutter {
+    position: absolute;
+    overflow : hidden;
+    width: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    cursor: default;
+    z-index: 4;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    contain: style size layout;
+}
+
+.ace_gutter-active-line {
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+
+.ace_scroller.ace_scroll-left:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    box-shadow: 17px 0 16px -16px rgba(0, 0, 0, 0.4) inset;
+    pointer-events: none;
+}
+
+.ace_gutter-cell, .ace_gutter-cell_svg-icons {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding-left: 19px;
+    padding-right: 6px;
+    background-repeat: no-repeat;
+}
+
+.ace_gutter-cell_svg-icons .ace_gutter_annotation {
+    margin-left: -14px;
+    float: left;
+}
+
+.ace_gutter-cell .ace_gutter_annotation {
+    margin-left: -19px;
+    float: left;
+}
+
+.ace_gutter-cell.ace_error, .ace_icon.ace_error, .ace_icon.ace_error_fold, .ace_gutter-cell.ace_security, .ace_icon.ace_security, .ace_icon.ace_security_fold {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAABOFBMVEX/////////QRswFAb/Ui4wFAYwFAYwFAaWGAfDRymzOSH/PxswFAb/SiUwFAYwFAbUPRvjQiDllog5HhHdRybsTi3/Tyv9Tir+Syj/UC3////XurebMBIwFAb/RSHbPx/gUzfdwL3kzMivKBAwFAbbvbnhPx66NhowFAYwFAaZJg8wFAaxKBDZurf/RB6mMxb/SCMwFAYwFAbxQB3+RB4wFAb/Qhy4Oh+4QifbNRcwFAYwFAYwFAb/QRzdNhgwFAYwFAbav7v/Uy7oaE68MBK5LxLewr/r2NXewLswFAaxJw4wFAbkPRy2PyYwFAaxKhLm1tMwFAazPiQwFAaUGAb/QBrfOx3bvrv/VC/maE4wFAbRPBq6MRO8Qynew8Dp2tjfwb0wFAbx6eju5+by6uns4uH9/f36+vr/GkHjAAAAYnRSTlMAGt+64rnWu/bo8eAA4InH3+DwoN7j4eLi4xP99Nfg4+b+/u9B/eDs1MD1mO7+4PHg2MXa347g7vDizMLN4eG+Pv7i5evs/v79yu7S3/DV7/498Yv24eH+4ufQ3Ozu/v7+y13sRqwAAADLSURBVHjaZc/XDsFgGIBhtDrshlitmk2IrbHFqL2pvXf/+78DPokj7+Fz9qpU/9UXJIlhmPaTaQ6QPaz0mm+5gwkgovcV6GZzd5JtCQwgsxoHOvJO15kleRLAnMgHFIESUEPmawB9ngmelTtipwwfASilxOLyiV5UVUyVAfbG0cCPHig+GBkzAENHS0AstVF6bacZIOzgLmxsHbt2OecNgJC83JERmePUYq8ARGkJx6XtFsdddBQgZE2nPR6CICZhawjA4Fb/chv+399kfR+MMMDGOQAAAABJRU5ErkJggg==");
+    background-repeat: no-repeat;
+    background-position: 2px center;
+}
+
+.ace_gutter-cell.ace_warning, .ace_icon.ace_warning, .ace_icon.ace_warning_fold {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAmVBMVEX///8AAAD///8AAAAAAABPSzb/5sAAAAB/blH/73z/ulkAAAAAAAD85pkAAAAAAAACAgP/vGz/rkDerGbGrV7/pkQICAf////e0IsAAAD/oED/qTvhrnUAAAD/yHD/njcAAADuv2r/nz//oTj/p064oGf/zHAAAAA9Nir/tFIAAAD/tlTiuWf/tkIAAACynXEAAAAAAAAtIRW7zBpBAAAAM3RSTlMAABR1m7RXO8Ln31Z36zT+neXe5OzooRDfn+TZ4p3h2hTf4t3k3ucyrN1K5+Xaks52Sfs9CXgrAAAAjklEQVR42o3PbQ+CIBQFYEwboPhSYgoYunIqqLn6/z8uYdH8Vmdnu9vz4WwXgN/xTPRD2+sgOcZjsge/whXZgUaYYvT8QnuJaUrjrHUQreGczuEafQCO/SJTufTbroWsPgsllVhq3wJEk2jUSzX3CUEDJC84707djRc5MTAQxoLgupWRwW6UB5fS++NV8AbOZgnsC7BpEAAAAABJRU5ErkJggg==");
+    background-repeat: no-repeat;
+    background-position: 2px center;
+}
+
+.ace_gutter-cell.ace_info, .ace_icon.ace_info, .ace_gutter-cell.ace_hint, .ace_icon.ace_hint {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAAAAAA6mKC9AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAAJ0Uk5TAAB2k804AAAAPklEQVQY02NgIB68QuO3tiLznjAwpKTgNyDbMegwisCHZUETUZV0ZqOquBpXj2rtnpSJT1AEnnRmL2OgGgAAIKkRQap2htgAAAAASUVORK5CYII=");
+    background-repeat: no-repeat;
+    background-position: 2px center;
+}
+
+.ace_dark .ace_gutter-cell.ace_info, .ace_dark .ace_icon.ace_info, .ace_dark .ace_gutter-cell.ace_hint, .ace_dark .ace_icon.ace_hint {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQBAMAAADt3eJSAAAAJFBMVEUAAAChoaGAgIAqKiq+vr6tra1ZWVmUlJSbm5s8PDxubm56enrdgzg3AAAAAXRSTlMAQObYZgAAAClJREFUeNpjYMAPdsMYHegyJZFQBlsUlMFVCWUYKkAZMxZAGdxlDMQBAG+TBP4B6RyJAAAAAElFTkSuQmCC");
+}
+
+.ace_icon_svg.ace_error {
+    -webkit-mask-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMCAxNiI+CjxnIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlPSJyZWQiIHNoYXBlLXJlbmRlcmluZz0iZ2VvbWV0cmljUHJlY2lzaW9uIj4KPGNpcmNsZSBmaWxsPSJub25lIiBjeD0iOCIgY3k9IjgiIHI9IjciIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPGxpbmUgeDE9IjExIiB5MT0iNSIgeDI9IjUiIHkyPSIxMSIvPgo8bGluZSB4MT0iMTEiIHkxPSIxMSIgeDI9IjUiIHkyPSI1Ii8+CjwvZz4KPC9zdmc+");
+    background-color: crimson;
+}
+.ace_icon_svg.ace_security {
+    -webkit-mask-image: url("data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMjAgMTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8ZyBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZT0iZGFya29yYW5nZSIgZmlsbD0ibm9uZSIgc2hhcGUtcmVuZGVyaW5nPSJnZW9tZXRyaWNQcmVjaXNpb24iPgogICAgICAgIDxwYXRoIGNsYXNzPSJzdHJva2UtbGluZWpvaW4tcm91bmQiIGQ9Ik04IDE0LjgzMDdDOCAxNC44MzA3IDIgMTIuOTA0NyAyIDguMDg5OTJWMy4yNjU0OEM1LjMxIDMuMjY1NDggNy45ODk5OSAxLjM0OTE4IDcuOTg5OTkgMS4zNDkxOEM3Ljk4OTk5IDEuMzQ5MTggMTAuNjkgMy4yNjU0OCAxNCAzLjI2NTQ4VjguMDg5OTJDMTQgMTIuOTA0NyA4IDE0LjgzMDcgOCAxNC44MzA3WiIvPgogICAgICAgIDxwYXRoIGQ9Ik0yIDguMDg5OTJWMy4yNjU0OEM1LjMxIDMuMjY1NDggNy45ODk5OSAxLjM0OTE4IDcuOTg5OTkgMS4zNDkxOCIvPgogICAgICAgIDxwYXRoIGQ9Ik0xMy45OSA4LjA4OTkyVjMuMjY1NDhDMTAuNjggMy4yNjU0OCA4IDEuMzQ5MTggOCAxLjM0OTE4Ii8+CiAgICAgICAgPHBhdGggY2xhc3M9InN0cm9rZS1saW5lam9pbi1yb3VuZCIgZD0iTTggNFY5Ii8+CiAgICAgICAgPHBhdGggY2xhc3M9InN0cm9rZS1saW5lam9pbi1yb3VuZCIgZD0iTTggMTBWMTIiLz4KICAgIDwvZz4KPC9zdmc+");
+    background-color: crimson;
+}
+.ace_icon_svg.ace_warning {
+    -webkit-mask-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMCAxNiI+CjxnIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlPSJkYXJrb3JhbmdlIiBzaGFwZS1yZW5kZXJpbmc9Imdlb21ldHJpY1ByZWNpc2lvbiI+Cjxwb2x5Z29uIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGZpbGw9Im5vbmUiIHBvaW50cz0iOCAxIDE1IDE1IDEgMTUgOCAxIi8+CjxyZWN0IHg9IjgiIHk9IjEyIiB3aWR0aD0iMC4wMSIgaGVpZ2h0PSIwLjAxIi8+CjxsaW5lIHgxPSI4IiB5MT0iNiIgeDI9IjgiIHkyPSIxMCIvPgo8L2c+Cjwvc3ZnPg==");
+    background-color: darkorange;
+}
+.ace_icon_svg.ace_info {
+    -webkit-mask-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMCAxNiI+CjxnIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlPSJibHVlIiBzaGFwZS1yZW5kZXJpbmc9Imdlb21ldHJpY1ByZWNpc2lvbiI+CjxjaXJjbGUgZmlsbD0ibm9uZSIgY3g9IjgiIGN5PSI4IiByPSI3IiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+Cjxwb2x5bGluZSBwb2ludHM9IjggMTEgOCA4Ii8+Cjxwb2x5bGluZSBwb2ludHM9IjkgOCA2IDgiLz4KPGxpbmUgeDE9IjEwIiB5MT0iMTEiIHgyPSI2IiB5Mj0iMTEiLz4KPHJlY3QgeD0iOCIgeT0iNSIgd2lkdGg9IjAuMDEiIGhlaWdodD0iMC4wMSIvPgo8L2c+Cjwvc3ZnPg==");
+    background-color: royalblue;
+}
+.ace_icon_svg.ace_hint {
+    -webkit-mask-image: url("data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMjAgMTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8ZyBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZT0ic2lsdmVyIiBmaWxsPSJub25lIiBzaGFwZS1yZW5kZXJpbmc9Imdlb21ldHJpY1ByZWNpc2lvbiI+CiAgICAgICAgPHBhdGggY2xhc3M9InN0cm9rZS1saW5lam9pbi1yb3VuZCIgZD0iTTYgMTRIMTAiLz4KICAgICAgICA8cGF0aCBkPSJNOCAxMUg5QzkgOS40NzAwMiAxMiA4LjU0MDAyIDEyIDUuNzYwMDJDMTIuMDIgNC40MDAwMiAxMS4zOSAzLjM2MDAyIDEwLjQzIDIuNjcwMDJDOSAxLjY0MDAyIDcuMDAwMDEgMS42NDAwMiA1LjU3MDAxIDIuNjcwMDJDNC42MTAwMSAzLjM2MDAyIDMuOTggNC40MDAwMiA0IDUuNzYwMDJDNCA4LjU0MDAyIDcuMDAwMDEgOS40NzAwMiA3LjAwMDAxIDExSDhaIi8+CiAgICA8L2c+Cjwvc3ZnPg==");
+    background-color: silver;
+}
+
+.ace_icon_svg.ace_error_fold {
+    -webkit-mask-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMCAxNiIgZmlsbD0ibm9uZSI+CiAgPHBhdGggZD0ibSAxOC45Mjk4NTEsNy44Mjk4MDc2IGMgMC4xNDYzNTMsNi4zMzc0NjA0IC02LjMyMzE0Nyw3Ljc3Nzg0NDQgLTcuNDc3OTEyLDcuNzc3ODQ0NCAtMi4xMDcyNzI2LC0wLjEyODc1IDUuMTE3Njc4LDAuMzU2MjQ5IDUuMDUxNjk4LC03Ljg3MDA2MTggLTAuNjA0NjcyLC04LjAwMzk3MzQ5IC03LjA3NzI3MDYsLTcuNTYzMTE4OSAtNC44NTczLC03LjQzMDM5NTU2IDEuNjA2LC0wLjExNTE0MjI1IDYuODk3NDg1LDEuMjYyNTQ1OTYgNy4yODM1MTQsNy41MjI2MTI5NiB6IiBmaWxsPSJjcmltc29uIiBzdHJva2Utd2lkdGg9IjIiLz4KICA8cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0ibSA4LjExNDc1NjIsMi4wNTI5ODI4IGMgMy4zNDkxNjk4LDAgNi4wNjQxMzI4LDIuNjc2ODYyNyA2LjA2NDEzMjgsNS45Nzg5NTMgMCwzLjMwMjExMjIgLTIuNzE0OTYzLDUuOTc4OTIwMiAtNi4wNjQxMzI4LDUuOTc4OTIwMiAtMy4zNDkxNDczLDAgLTYuMDY0MTc3MiwtMi42NzY4MDggLTYuMDY0MTc3MiwtNS45Nzg5MjAyIDAuMDA1MzksLTMuMjk5ODg2MSAyLjcxNzI2NTYsLTUuOTczNjQwOCA2LjA2NDE3NzIsLTUuOTc4OTUzIHogbSAwLC0xLjczNTgyNzE5IGMgLTQuMzIxNDgzNiwwIC03LjgyNDc0MDM4LDMuNDU0MDE4NDkgLTcuODI0NzQwMzgsNy43MTQ3ODAxOSAwLDQuMjYwNzI4MiAzLjUwMzI1Njc4LDcuNzE0NzQ1MiA3LjgyNDc0MDM4LDcuNzE0NzQ1MiA0LjMyMTQ0OTgsMCA3LjgyNDY5OTgsLTMuNDU0MDE3IDcuODI0Njk5OCwtNy43MTQ3NDUyIDAsLTIuMDQ2MDkxNCAtMC44MjQzOTIsLTQuMDA4MzY3MiAtMi4yOTE3NTYsLTUuNDU1MTc0NiBDIDEyLjE4MDIyNSwxLjEyOTk2NDggMTAuMTkwMDEzLDAuMzE3MTU1NjEgOC4xMTQ3NTYyLDAuMzE3MTU1NjEgWiBNIDYuOTM3NDU2Myw4LjI0MDU5ODUgNC42NzE4Njg1LDEwLjQ4NTg1MiA2LjAwODY4MTQsMTEuODc2NzI4IDguMzE3MDAzNSw5LjYwMDc5MTEgMTAuNjI1MzM3LDExLjg3NjcyOCAxMS45NjIxMzgsMTAuNDg1ODUyIDkuNjk2NTUwOCw4LjI0MDU5ODUgMTEuOTYyMTM4LDYuMDA2ODA2NiAxMC41NzMyNDYsNC42Mzc0MzM1IDguMzE3MDAzNSw2Ljg3MzQyOTcgNi4wNjA3NjA3LDQuNjM3NDMzNSA0LjY3MTg2ODUsNi4wMDY4MDY2IFoiIGZpbGw9ImNyaW1zb24iIHN0cm9rZS13aWR0aD0iMiIvPgo8L3N2Zz4=");
+    background-color: crimson;
+}
+.ace_icon_svg.ace_security_fold {
+    -webkit-mask-image: url("data:image/svg+xml;base64,CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgMTcgMTQiIGZpbGw9Im5vbmUiPgogICAgPHBhdGggZD0iTTEwLjAwMDEgMTMuNjk5MkMxMC4wMDAxIDEzLjY5OTIgMTEuOTI0MSAxMy40NzYzIDEzIDEyLjY5OTJDMTQuNDEzOSAxMS42NzgxIDE2IDEwLjUgMTYuMTI1MSA2LjgxMTI2VjIuNTg5ODdDMTYuMTI1MSAyLjU0NzY4IDE2LjEyMjEgMi41MDYxOSAxNi4xMTY0IDIuNDY1NTlWMS43MTQ4NUgxNS4yNDE0TDE1LjIzMDcgMS43MTQ4NEwxNC42MjUxIDEuNjk5MjJWNi44MTEyM0MxNC42MjUxIDguNTEwNjEgMTQuNjI1MSA5LjQ2NDYxIDEyLjc4MjQgMTEuNzIxQzEyLjE1ODYgMTIuNDg0OCAxMC4wMDAxIDEzLjY5OTIgMTAuMDAwMSAxMy42OTkyWiIgZmlsbD0iY3JpbXNvbiIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTcuMzM2MDkgMC4zNjc0NzVDNy4wMzIxNCAwLjE1MjY1MiA2LjYyNTQ4IDAuMTUzNjE0IDYuMzIyNTMgMC4zNjk5OTdMNi4zMDg2OSAwLjM3OTU1NEM2LjI5NTUzIDAuMzg4NTg4IDYuMjczODggMC40MDMyNjYgNi4yNDQxNyAwLjQyMjc4OUM2LjE4NDcxIDAuNDYxODYgNi4wOTMyMSAwLjUyMDE3MSA1Ljk3MzEzIDAuNTkxMzczQzUuNzMyNTEgMC43MzQwNTkgNS4zNzk5IDAuOTI2ODY0IDQuOTQyNzkgMS4xMjAwOUM0LjA2MTQ0IDEuNTA5NyAyLjg3NTQxIDEuODgzNzcgMS41ODk4NCAxLjg4Mzc3SDAuNzE0ODQ0VjIuNzU4NzdWNi45ODAxNUMwLjcxNDg0NCA5LjQ5Mzc0IDIuMjg4NjYgMTEuMTk3MyAzLjcwMjU0IDEyLjIxODVDNC40MTg0NSAxMi43MzU1IDUuMTI4NzQgMTMuMTA1MyA1LjY1NzMzIDEzLjM0NTdDNS45MjI4NCAxMy40NjY0IDYuMTQ1NjYgMTMuNTU1OSA2LjMwNDY1IDEzLjYxNjFDNi4zODQyMyAxMy42NDYyIDYuNDQ4MDUgMTMuNjY5IDYuNDkzNDkgMTMuNjg0OEM2LjUxNjIyIDEzLjY5MjcgNi41MzQzOCAxMy42OTg5IDYuNTQ3NjQgMTMuNzAzM0w2LjU2MzgyIDEzLjcwODdMNi41NjkwOCAxMy43MTA0TDYuNTcwOTkgMTMuNzExTDYuODM5ODQgMTMuNzUzM0w2LjU3MjQyIDEzLjcxMTVDNi43NDYzMyAxMy43NjczIDYuOTMzMzUgMTMuNzY3MyA3LjEwNzI3IDEzLjcxMTVMNy4xMDg3IDEzLjcxMUw3LjExMDYxIDEzLjcxMDRMNy4xMTU4NyAxMy43MDg3TDcuMTMyMDUgMTMuNzAzM0M3LjE0NTMxIDEzLjY5ODkgNy4xNjM0NiAxMy42OTI3IDcuMTg2MTkgMTMuNjg0OEM3LjIzMTY0IDEzLjY2OSA3LjI5NTQ2IDEzLjY0NjIgNy4zNzUwMyAxMy42MTYxQzcuNTM0MDMgMTMuNTU1OSA3Ljc1Njg1IDEzLjQ2NjQgOC4wMjIzNiAxMy4zNDU3QzguNTUwOTUgMTMuMTA1MyA5LjI2MTIzIDEyLjczNTUgOS45NzcxNSAxMi4yMTg1QzExLjM5MSAxMS4xOTczIDEyLjk2NDggOS40OTM3NyAxMi45NjQ4IDYuOTgwMThWMi43NTg4QzEyLjk2NDggMi43MTY2IDEyLjk2MTkgMi42NzUxMSAxMi45NTYxIDIuNjM0NTFWMS44ODM3N0gxMi4wODExQzEyLjA3NzUgMS44ODM3NyAxMi4wNzQgMS44ODM3NyAxMi4wNzA0IDEuODgzNzdDMTAuNzk3OSAxLjg4MDA0IDkuNjE5NjIgMS41MTEwMiA4LjczODk0IDEuMTI0ODZDOC43MzUzNCAxLjEyMzI3IDguNzMxNzQgMS4xMjE2OCA4LjcyODE0IDEuMTIwMDlDOC4yOTEwMyAwLjkyNjg2NCA3LjkzODQyIDAuNzM0MDU5IDcuNjk3NzkgMC41OTEzNzNDNy41Nzc3MiAwLjUyMDE3MSA3LjQ4NjIyIDAuNDYxODYgNy40MjY3NiAwLjQyMjc4OUM3LjM5NzA1IDAuNDAzMjY2IDcuMzc1MzkgMC4zODg1ODggNy4zNjIyNCAwLjM3OTU1NEw3LjM0ODk2IDAuMzcwMzVDNy4zNDg5NiAwLjM3MDM1IDcuMzQ4NDcgMC4zNzAwMiA3LjM0NTYzIDAuMzc0MDU0TDcuMzM3NzkgMC4zNjg2NTlMNy4zMzYwOSAwLjM2NzQ3NVpNOC4wMzQ3MSAyLjcyNjkxQzguODYwNCAzLjA5MDYzIDkuOTYwNjYgMy40NjMwOSAxMS4yMDYxIDMuNTg5MDdWNi45ODAxNUgxMS4yMTQ4QzExLjIxNDggOC42Nzk1MyAxMC4xNjM3IDkuOTI1MDcgOC45NTI1NCAxMC43OTk4QzguMzU1OTUgMTEuMjMwNiA3Ljc1Mzc0IDExLjU0NTQgNy4yOTc5NiAxMS43NTI3QzcuMTE2NzEgMTEuODM1MSA2Ljk2MDYyIDExLjg5OTYgNi44Mzk4NCAxMS45NDY5QzYuNzE5MDYgMTEuODk5NiA2LjU2Mjk3IDExLjgzNTEgNi4zODE3MyAxMS43NTI3QzUuOTI1OTUgMTEuNTQ1NCA1LjMyMzczIDExLjIzMDYgNC43MjcxNSAxMC43OTk4QzMuNTE2MDMgOS45MjUwNyAyLjQ2NDg0IDguNjc5NTUgMi40NjQ4NCA2Ljk4MDE4VjMuNTg5MDlDMy43MTczOCAzLjQ2MjM5IDQuODIzMDggMy4wODYzOSA1LjY1MDMzIDIuNzIwNzFDNi4xNDIyOCAyLjUwMzI0IDYuNTQ0ODUgMi4yODUzNyA2LjgzMjU0IDIuMTE2MjRDNy4xMjE4MSAyLjI4NTM1IDcuNTI3IDIuNTAzNTIgOC4wMjE5NiAyLjcyMTMxQzguMDI2MiAyLjcyMzE3IDguMDMwNDUgMi43MjUwNCA4LjAzNDcxIDIuNzI2OTFaTTUuOTY0ODQgMy40MDE0N1Y3Ljc3NjQ3SDcuNzE0ODRWMy40MDE0N0g1Ljk2NDg0Wk01Ljk2NDg0IDEwLjQwMTVWOC42NTE0N0g3LjcxNDg0VjEwLjQwMTVINS45NjQ4NFoiIGZpbGw9ImNyaW1zb24iIHN0cm9rZS13aWR0aD0iMiIvPgo8L3N2Zz4=");
+    background-color: crimson;
+}
+.ace_icon_svg.ace_warning_fold {
+    -webkit-mask-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAyMCAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xNC43NzY5IDE0LjczMzdMOC42NTE5MiAyLjQ4MzY5QzguMzI5NDYgMS44Mzg3NyA3LjQwOTEzIDEuODM4NzcgNy4wODY2NyAyLjQ4MzY5TDAuOTYxNjY5IDE0LjczMzdDMC42NzA3NzUgMTUuMzE1NSAxLjA5MzgzIDE2IDEuNzQ0MjkgMTZIMTMuOTk0M0MxNC42NDQ4IDE2IDE1LjA2NzggMTUuMzE1NSAxNC43NzY5IDE0LjczMzdaTTMuMTYwMDcgMTQuMjVMNy44NjkyOSA0LjgzMTU2TDEyLjU3ODUgMTQuMjVIMy4xNjAwN1pNOC43NDQyOSAxMS42MjVWMTMuMzc1SDYuOTk0MjlWMTEuNjI1SDguNzQ0MjlaTTYuOTk0MjkgMTAuNzVWNy4yNUg4Ljc0NDI5VjEwLjc1SDYuOTk0MjlaIiBmaWxsPSIjRUM3MjExIi8+CjxwYXRoIGQ9Ik0xMS4xOTkxIDIuOTUyMzhDMTAuODgwOSAyLjMxNDY3IDEwLjM1MzcgMS44MDUyNiA5LjcwNTUgMS41MDlMMTEuMDQxIDEuMDY5NzhDMTEuNjg4MyAwLjk0OTgxNCAxMi4zMzcgMS4yNzI2MyAxMi42MzE3IDEuODYxNDFMMTcuNjEzNiAxMS44MTYxQzE4LjM1MjcgMTMuMjkyOSAxNy41OTM4IDE1LjA4MDQgMTYuMDE4IDE1LjU3NDVDMTYuNDA0NCAxNC40NTA3IDE2LjMyMzEgMTMuMjE4OCAxNS43OTI0IDEyLjE1NTVMMTEuMTk5MSAyLjk1MjM4WiIgZmlsbD0iI0VDNzIxMSIvPgo8L3N2Zz4=");
+    background-color: darkorange;
+}
+
+.ace_scrollbar {
+    contain: strict;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: 6;
+}
+
+.ace_scrollbar-inner {
+    position: absolute;
+    cursor: text;
+    left: 0;
+    top: 0;
+}
+
+.ace_scrollbar-v{
+    overflow-x: hidden;
+    overflow-y: scroll;
+    top: 0;
+}
+
+.ace_scrollbar-h {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    left: 0;
+}
+
+.ace_print-margin {
+    position: absolute;
+    height: 100%;
+}
+
+.ace_text-input {
+    position: absolute;
+    z-index: 0;
+    width: 0.5em;
+    height: 1em;
+    opacity: 0;
+    background: transparent;
+    -moz-appearance: none;
+    appearance: none;
+    border: none;
+    resize: none;
+    outline: none;
+    overflow: hidden;
+    font: inherit;
+    padding: 0 1px;
+    margin: 0 -1px;
+    contain: strict;
+    -ms-user-select: text;
+    -moz-user-select: text;
+    -webkit-user-select: text;
+    user-select: text;
+    /*with `pre-line` chrome inserts &nbsp; instead of space*/
+    white-space: pre!important;
+}
+.ace_text-input.ace_composition {
+    background: transparent;
+    color: inherit;
+    z-index: 1000;
+    opacity: 1;
+}
+.ace_composition_placeholder { color: transparent }
+.ace_composition_marker { 
+    border-bottom: 1px solid;
+    position: absolute;
+    border-radius: 0;
+    margin-top: 1px;
+}
+
+[ace_nocontext=true] {
+    transform: none!important;
+    filter: none!important;
+    clip-path: none!important;
+    mask : none!important;
+    contain: none!important;
+    perspective: none!important;
+    mix-blend-mode: initial!important;
+    z-index: auto;
+}
+
+.ace_layer {
+    z-index: 1;
+    position: absolute;
+    overflow: hidden;
+    /* workaround for chrome bug https://github.com/ajaxorg/ace/issues/2312*/
+    word-wrap: normal;
+    white-space: pre;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    /* setting pointer-events: auto; on node under the mouse, which changes
+        during scroll, will break mouse wheel scrolling in Safari */
+    pointer-events: none;
+}
+
+.ace_gutter-layer {
+    position: relative;
+    width: auto;
+    text-align: right;
+    pointer-events: auto;
+    height: 1000000px;
+    contain: style size layout;
+}
+
+.ace_text-layer {
+    font: inherit !important;
+    position: absolute;
+    height: 1000000px;
+    width: 1000000px;
+    contain: style size layout;
+}
+
+.ace_text-layer > .ace_line, .ace_text-layer > .ace_line_group {
+    contain: style size layout;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.ace_hidpi .ace_text-layer,
+.ace_hidpi .ace_gutter-layer,
+.ace_hidpi .ace_content,
+.ace_hidpi .ace_gutter {
+    contain: strict;
+}
+.ace_hidpi .ace_text-layer > .ace_line, 
+.ace_hidpi .ace_text-layer > .ace_line_group {
+    contain: strict;
+}
+
+.ace_cjk {
+    display: inline-block;
+    text-align: center;
+}
+
+.ace_cursor-layer {
+    z-index: 4;
+}
+
+.ace_cursor {
+    z-index: 4;
+    position: absolute;
+    box-sizing: border-box;
+    border-left: 2px solid;
+    /* workaround for smooth cursor repaintng whole screen in chrome */
+    transform: translatez(0);
+}
+
+.ace_multiselect .ace_cursor {
+    border-left-width: 1px;
+}
+
+.ace_slim-cursors .ace_cursor {
+    border-left-width: 1px;
+}
+
+.ace_overwrite-cursors .ace_cursor {
+    border-left-width: 0;
+    border-bottom: 1px solid;
+}
+
+.ace_hidden-cursors .ace_cursor {
+    opacity: 0.2;
+}
+
+.ace_hasPlaceholder .ace_hidden-cursors .ace_cursor {
+    opacity: 0;
+}
+
+.ace_smooth-blinking .ace_cursor {
+    transition: opacity 0.18s;
+}
+
+.ace_animate-blinking .ace_cursor {
+    animation-duration: 1000ms;
+    animation-timing-function: step-end;
+    animation-name: blink-ace-animate;
+    animation-iteration-count: infinite;
+}
+
+.ace_animate-blinking.ace_smooth-blinking .ace_cursor {
+    animation-duration: 1000ms;
+    animation-timing-function: ease-in-out;
+    animation-name: blink-ace-animate-smooth;
+}
+    
+@keyframes blink-ace-animate {
+    from, to { opacity: 1; }
+    60% { opacity: 0; }
+}
+
+@keyframes blink-ace-animate-smooth {
+    from, to { opacity: 1; }
+    45% { opacity: 1; }
+    60% { opacity: 0; }
+    85% { opacity: 0; }
+}
+
+.ace_marker-layer .ace_step, .ace_marker-layer .ace_stack {
+    position: absolute;
+    z-index: 3;
+}
+
+.ace_marker-layer .ace_selection {
+    position: absolute;
+    z-index: 5;
+}
+
+.ace_marker-layer .ace_bracket {
+    position: absolute;
+    z-index: 6;
+}
+
+.ace_marker-layer .ace_error_bracket {
+    position: absolute;
+    border-bottom: 1px solid #DE5555;
+    border-radius: 0;
+}
+
+.ace_marker-layer .ace_active-line {
+    position: absolute;
+    z-index: 2;
+}
+
+.ace_marker-layer .ace_selected-word {
+    position: absolute;
+    z-index: 4;
+    box-sizing: border-box;
+}
+
+.ace_line .ace_fold {
+    box-sizing: border-box;
+
+    display: inline-block;
+    height: 11px;
+    margin-top: -2px;
+    vertical-align: middle;
+
+    background-image:
+        url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAAJCAYAAADU6McMAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAJpJREFUeNpi/P//PwOlgAXGYGRklAVSokD8GmjwY1wasKljQpYACtpCFeADcHVQfQyMQAwzwAZI3wJKvCLkfKBaMSClBlR7BOQikCFGQEErIH0VqkabiGCAqwUadAzZJRxQr/0gwiXIal8zQQPnNVTgJ1TdawL0T5gBIP1MUJNhBv2HKoQHHjqNrA4WO4zY0glyNKLT2KIfIMAAQsdgGiXvgnYAAAAASUVORK5CYII="),
+        url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAA3CAYAAADNNiA5AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAACJJREFUeNpi+P//fxgTAwPDBxDxD078RSX+YeEyDFMCIMAAI3INmXiwf2YAAAAASUVORK5CYII=");
+    background-repeat: no-repeat, repeat-x;
+    background-position: center center, top left;
+    color: transparent;
+
+    border: 1px solid black;
+    border-radius: 2px;
+
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+.ace_dark .ace_fold {
+}
+
+.ace_fold:hover{
+    background-image:
+        url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAAJCAYAAADU6McMAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAJpJREFUeNpi/P//PwOlgAXGYGRklAVSokD8GmjwY1wasKljQpYACtpCFeADcHVQfQyMQAwzwAZI3wJKvCLkfKBaMSClBlR7BOQikCFGQEErIH0VqkabiGCAqwUadAzZJRxQr/0gwiXIal8zQQPnNVTgJ1TdawL0T5gBIP1MUJNhBv2HKoQHHjqNrA4WO4zY0glyNKLT2KIfIMAAQsdgGiXvgnYAAAAASUVORK5CYII="),
+        url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAA3CAYAAADNNiA5AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAACBJREFUeNpi+P//fz4TAwPDZxDxD5X4i5fLMEwJgAADAEPVDbjNw87ZAAAAAElFTkSuQmCC");
+}
+
+.ace_tooltip {
+    background-color: #f5f5f5;
+    border: 1px solid gray;
+    border-radius: 1px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    color: black;
+    max-width: 100%;
+    padding: 3px 4px;
+    position: fixed;
+    z-index: 999999;
+    box-sizing: border-box;
+    cursor: default;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    line-height: normal;
+    font-style: normal;
+    font-weight: normal;
+    letter-spacing: normal;
+    pointer-events: none;
+    overflow: auto;
+    max-width: min(60em, 66vw);
+    overscroll-behavior: contain;
+}
+.ace_tooltip pre {
+    white-space: pre-wrap;
+}
+
+.ace_tooltip.ace_dark {
+    background-color: #636363;
+    color: #fff;
+}
+
+.ace_tooltip:focus {
+    outline: 1px solid #5E9ED6;
+}
+
+.ace_icon {
+    display: inline-block;
+    width: 18px;
+    vertical-align: top;
+}
+
+.ace_icon_svg {
+    display: inline-block;
+    width: 12px;
+    vertical-align: top;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-size: 12px;
+    -webkit-mask-position: center;
+}
+
+.ace_folding-enabled > .ace_gutter-cell, .ace_folding-enabled > .ace_gutter-cell_svg-icons {
+    padding-right: 13px;
+}
+
+.ace_fold-widget {
+    box-sizing: border-box;
+
+    margin: 0 -12px 0 1px;
+    display: none;
+    width: 11px;
+    vertical-align: top;
+
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAANElEQVR42mWKsQ0AMAzC8ixLlrzQjzmBiEjp0A6WwBCSPgKAXoLkqSot7nN3yMwR7pZ32NzpKkVoDBUxKAAAAABJRU5ErkJggg==");
+    background-repeat: no-repeat;
+    background-position: center;
+
+    border-radius: 3px;
+    
+    border: 1px solid transparent;
+    cursor: pointer;
+}
+
+.ace_folding-enabled .ace_fold-widget {
+    display: inline-block;   
+}
+
+.ace_fold-widget.ace_end {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAANElEQVR42m3HwQkAMAhD0YzsRchFKI7sAikeWkrxwScEB0nh5e7KTPWimZki4tYfVbX+MNl4pyZXejUO1QAAAABJRU5ErkJggg==");
+}
+
+.ace_fold-widget.ace_closed {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAAGCAYAAAAG5SQMAAAAOUlEQVR42jXKwQkAMAgDwKwqKD4EwQ26sSOkVWjgIIHAzPiCgaqiqnJHZnKICBERHN194O5b9vbLuAVRL+l0YWnZAAAAAElFTkSuQmCCXA==");
+}
+
+.ace_fold-widget:hover {
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    background-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 1px 1px rgba(255, 255, 255, 0.7);
+}
+
+.ace_fold-widget:active {
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    background-color: rgba(0, 0, 0, 0.05);
+    box-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);
+}
+/**
+ * Dark version for fold widgets
+ */
+.ace_dark .ace_fold-widget {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHklEQVQIW2P4//8/AzoGEQ7oGCaLLAhWiSwB146BAQCSTPYocqT0AAAAAElFTkSuQmCC");
+}
+.ace_dark .ace_fold-widget.ace_end {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAH0lEQVQIW2P4//8/AxQ7wNjIAjDMgC4AxjCVKBirIAAF0kz2rlhxpAAAAABJRU5ErkJggg==");
+}
+.ace_dark .ace_fold-widget.ace_closed {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAAFCAYAAACAcVaiAAAAHElEQVQIW2P4//+/AxAzgDADlOOAznHAKgPWAwARji8UIDTfQQAAAABJRU5ErkJggg==");
+}
+.ace_dark .ace_fold-widget:hover {
+    box-shadow: 0 1px 1px rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+.ace_dark .ace_fold-widget:active {
+    box-shadow: 0 1px 1px rgba(255, 255, 255, 0.2);
+}
+
+.ace_inline_button {
+    border: 1px solid lightgray;
+    display: inline-block;
+    margin: -1px 8px;
+    padding: 0 5px;
+    pointer-events: auto;
+    cursor: pointer;
+}
+.ace_inline_button:hover {
+    border-color: gray;
+    background: rgba(200,200,200,0.2);
+    display: inline-block;
+    pointer-events: auto;
+}
+
+.ace_fold-widget.ace_invalid {
+    background-color: #FFB4B4;
+    border-color: #DE5555;
+}
+
+.ace_fade-fold-widgets .ace_fold-widget {
+    transition: opacity 0.4s ease 0.05s;
+    opacity: 0;
+}
+
+.ace_fade-fold-widgets:hover .ace_fold-widget {
+    transition: opacity 0.05s ease 0.05s;
+    opacity:1;
+}
+
+.ace_underline {
+    text-decoration: underline;
+}
+
+.ace_bold {
+    font-weight: bold;
+}
+
+.ace_nobold .ace_bold {
+    font-weight: normal;
+}
+
+.ace_italic {
+    font-style: italic;
+}
+
+
+.ace_error-marker {
+    background-color: rgba(255, 0, 0,0.2);
+    position: absolute;
+    z-index: 9;
+}
+
+.ace_highlight-marker {
+    background-color: rgba(255, 255, 0,0.2);
+    position: absolute;
+    z-index: 8;
+}
+
+.ace_mobile-menu {
+    position: absolute;
+    line-height: 1.5;
+    border-radius: 4px;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    background: white;
+    box-shadow: 1px 3px 2px grey;
+    border: 1px solid #dcdcdc;
+    color: black;
+}
+.ace_dark > .ace_mobile-menu {
+    background: #333;
+    color: #ccc;
+    box-shadow: 1px 3px 2px grey;
+    border: 1px solid #444;
+
+}
+.ace_mobile-button {
+    padding: 2px;
+    cursor: pointer;
+    overflow: hidden;
+}
+.ace_mobile-button:hover {
+    background-color: #eee;
+    opacity:1;
+}
+.ace_mobile-button:active {
+    background-color: #ddd;
+}
+
+.ace_placeholder {
+    position: relative;
+    font-family: arial;
+    transform: scale(0.9);
+    transform-origin: left;
+    white-space: pre;
+    opacity: 0.7;
+    margin: 0 10px;
+    z-index: 1;
+}
+
+.ace_ghost_text {
+    opacity: 0.5;
+    font-style: italic;
+}
+
+.ace_ghost_text_container > div {
+    white-space: pre;
+}
+
+.ghost_text_line_wrapped::after {
+    content: "↩";
+    position: absolute;
+}
+
+.ace_lineWidgetContainer.ace_ghost_text {
+    margin: 0px 4px
+}
+
+.ace_screenreader-only {
+    position:absolute;
+    left:-10000px;
+    top:auto;
+    width:1px;
+    height:1px;
+    overflow:hidden;
+}
+
+.ace_hidden_token {
+    display: none;
+}
+/*# sourceURL=ace/css/ace_editor.css */</style><style id="ace_scrollbar.css">.ace_editor>.ace_sb-v div, .ace_editor>.ace_sb-h div{
+  position: absolute;
+  background: rgba(128, 128, 128, 0.6);
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  border: 1px solid #bbb;
+  border-radius: 2px;
+  z-index: 8;
+}
+.ace_editor>.ace_sb-v, .ace_editor>.ace_sb-h {
+  position: absolute;
+  z-index: 6;
+  background: none;
+  overflow: hidden!important;
+}
+.ace_editor>.ace_sb-v {
+  z-index: 6;
+  right: 0;
+  top: 0;
+  width: 12px;
+}
+.ace_editor>.ace_sb-v div {
+  z-index: 8;
+  right: 0;
+  width: 100%;
+}
+.ace_editor>.ace_sb-h {
+  bottom: 0;
+  left: 0;
+  height: 12px;
+}
+.ace_editor>.ace_sb-h div {
+  bottom: 0;
+  height: 100%;
+}
+.ace_editor>.ace_sb_grabbed {
+  z-index: 8;
+  background: #000;
+}
+/*# sourceURL=ace/css/ace_scrollbar.css */</style><style data-emotion="css-global" data-s=""></style><style data-emotion="css" data-s=""></style><meta name="viewport" content="user-scalable=0,initial-scale=1,minimum-scale=1,width=device-width,height=device-height"><meta name="theme-color" content="#000000"><meta name="keywords" content="Web, Application, Interactive, Visual, Editor, Graphviz, Graph, DOT,Draw, View, Visualization, WYSIWYG"><meta name="description" content="A web application for interactive visual editing of Graphviz graphs described in the DOT language"><meta name="author" content="Magnus Jacobsson"><title>Graphviz Visual Editor</title><script defer="defer" src="./ER Diagram(PRJ-1)_files/main.c780f59f.js.download"></script><link href="./ER Diagram(PRJ-1)_files/main.2206e13e.css" rel="stylesheet"></head><body><div id="root"><div class="css-11ythaj-wA-root"><script src="./ER Diagram(PRJ-1)_files/graphviz.umd.js.download" type="javascript/worker"></script><div class="css-xljr6b-root"><header class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionStatic css-znju32"><div class="MuiToolbar-root MuiToolbar-gutters MuiToolbar-regular css-6q0jja-toolbar" id="toolbar"><button class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit MuiIconButton-sizeLarge css-ci7vtn-menuButton" tabindex="0" type="button" id="menu" aria-label="Menu"><svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-vubbuv" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="MenuIcon"><path d="M3 18h18v-2H3zm0-5h18v-2H3zm0-7v2h18V6z"></path></svg><span class="MuiTouchRipple-root css-w0pj6f"></span></button><button class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit MuiIconButton-sizeLarge css-1l1167e" tabindex="0" type="button" id="new" aria-label="New"><svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-vubbuv" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="AddIcon"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z"></path></svg><span class="MuiTouchRipple-root css-w0pj6f"></span></button><button class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit MuiIconButton-sizeLarge css-1l1167e" tabindex="0" type="button" id="open" aria-label="OpenInBrowser"><svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-vubbuv" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="OpenInBrowserIcon"><path d="M19 4H5c-1.11 0-2 .9-2 2v12c0 1.1.89 2 2 2h4v-2H5V8h14v10h-4v2h4c1.1 0 2-.9 2-2V6c0-1.1-.89-2-2-2m-7 6-4 4h3v6h2v-6h3z"></path></svg><span class="MuiTouchRipple-root css-w0pj6f"></span></button><button class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit MuiIconButton-sizeLarge css-1l1167e" tabindex="0" type="button" id="save-as" aria-label="SaveAlt"><svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-vubbuv" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="SaveAltIcon"><path d="M19 12v7H5v-7H3v7c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-7zm-6 .67 2.59-2.58L17 11.5l-5 5-5-5 1.41-1.41L11 12.67V3h2z"></path></svg><span class="MuiTouchRipple-root css-w0pj6f"></span></button><button class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit MuiIconButton-sizeLarge css-1l1167e" tabindex="0" type="button" id="undo" aria-label="Undo"><svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-vubbuv" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="UndoIcon"><path d="M12.5 8c-2.65 0-5.05.99-6.9 2.6L2 7v9h9l-3.62-3.62c1.39-1.16 3.16-1.88 5.12-1.88 3.54 0 6.55 2.31 7.6 5.5l2.37-.78C21.08 11.03 17.15 8 12.5 8"></path></svg><span class="MuiTouchRipple-root css-w0pj6f"></span></button><button class="MuiButtonBase-root Mui-disabled MuiIconButton-root Mui-disabled MuiIconButton-colorInherit MuiIconButton-sizeLarge css-1l1167e" tabindex="-1" type="button" disabled="" id="redo" aria-label="Redo"><svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-vubbuv" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="RedoIcon"><path d="M18.4 10.6C16.55 8.99 14.15 8 11.5 8c-4.65 0-8.58 3.03-9.96 7.22L3.9 16c1.05-3.19 4.05-5.5 7.6-5.5 1.95 0 3.73.72 5.12 1.88L13 16h9V7z"></path></svg></button><h6 class="MuiTypography-root MuiTypography-h6 css-14p4nfs-flex"><span class="material-icons notranslate MuiIcon-root MuiIcon-fontSizeMedium css-brxcdl-iconRoot" aria-hidden="true"><img class="css-1khddib-imageIcon" src="./ER Diagram(PRJ-1)_files/GraphvizLogo.png" width="64" height="64"></span>Graphviz Visual Editor</h6><button class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit MuiIconButton-sizeLarge css-1l1167e" tabindex="0" type="button" id="zoom-in" aria-label="ZoomIn"><svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-vubbuv" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="ZoomInIcon"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path><path d="M12 10h-2v2H9v-2H7V9h2V7h1v2h2z"></path></svg><span class="MuiTouchRipple-root css-w0pj6f"></span></button><button class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit MuiIconButton-sizeLarge css-1l1167e" tabindex="0" type="button" id="zoom-out" aria-label="ZoomOut"><svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-vubbuv" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="ZoomOutIcon"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14M7 9h5v1H7z"></path></svg><span class="MuiTouchRipple-root css-w0pj6f"></span></button><button class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit MuiIconButton-sizeLarge css-1l1167e" tabindex="0" type="button" id="zoom-out-map" aria-label="ZoomOutMap"><svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-vubbuv" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="ZoomOutMapIcon"><path d="m15 3 2.3 2.3-2.89 2.87 1.42 1.42L18.7 6.7 21 9V3zM3 9l2.3-2.3 2.87 2.89 1.42-1.42L6.7 5.3 9 3H3zm6 12-2.3-2.3 2.89-2.87-1.42-1.42L5.3 17.3 3 15v6zm12-6-2.3 2.3-2.87-2.89-1.42 1.42 2.89 2.87L15 21h6z"></path></svg><span class="MuiTouchRipple-root css-w0pj6f"></span></button><button class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textInherit MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorInherit MuiButton-root MuiButton-text MuiButton-textInherit MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorInherit css-b7766g" tabindex="0" type="button" id="zoom-reset">1:1<span class="MuiTouchRipple-root css-w0pj6f"></span></button><button class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textInherit MuiButton-sizeLarge MuiButton-textSizeLarge MuiButton-colorInherit MuiButton-root MuiButton-text MuiButton-textInherit MuiButton-sizeLarge MuiButton-textSizeLarge MuiButton-colorInherit css-6095vc" tabindex="0" type="button">Insert<span class="MuiTouchRipple-root css-w0pj6f"></span></button><button class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textInherit MuiButton-sizeLarge MuiButton-textSizeLarge MuiButton-colorInherit MuiButton-root MuiButton-text MuiButton-textInherit MuiButton-sizeLarge MuiButton-textSizeLarge MuiButton-colorInherit css-6095vc" tabindex="0" type="button">Node format<span class="MuiTouchRipple-root css-w0pj6f"></span></button><button class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textInherit MuiButton-sizeLarge MuiButton-textSizeLarge MuiButton-colorInherit MuiButton-root MuiButton-text MuiButton-textInherit MuiButton-sizeLarge MuiButton-textSizeLarge MuiButton-colorInherit css-6095vc" tabindex="0" type="button">Edge format<span class="MuiTouchRipple-root css-w0pj6f"></span></button><button class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit MuiIconButton-sizeLarge css-1l1167e" tabindex="0" type="button" id="settings" aria-label="Settings"><svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-vubbuv" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="SettingsIcon"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6"></path></svg><span class="MuiTouchRipple-root css-w0pj6f"></span></button><a id="github" class="css-1xdpwhl-gitHubLink" href="https://github.com/magjac/graphviz-visual-editor" target="_blank" rel="noreferrer noopener"><button class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit MuiIconButton-sizeLarge css-1l1167e" tabindex="0" type="button" aria-label="GitHub"><svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-vubbuv" focusable="false" aria-hidden="true" viewBox="-2.4 -2.4 28.8 28.8"><path d="M12.007 0C6.12 0 1.1 4.27.157 10.08c-.944 5.813 2.468 11.45 8.054 13.312.19.064.397.033.555-.084.16-.117.25-.304.244-.5v-2.042c-3.33.735-4.037-1.56-4.037-1.56-.22-.726-.694-1.35-1.334-1.756-1.096-.75.074-.735.074-.735.773.103 1.454.557 1.846 1.23.694 1.21 2.23 1.638 3.45.96.056-.61.327-1.178.766-1.605-2.67-.3-5.462-1.335-5.462-6.002-.02-1.193.42-2.35 1.23-3.226-.327-1.015-.27-2.116.166-3.09 0 0 1.006-.33 3.3 1.23 1.966-.538 4.04-.538 6.003 0 2.295-1.5 3.3-1.23 3.3-1.23.445 1.006.49 2.144.12 3.18.81.877 1.25 2.033 1.23 3.226 0 4.607-2.805 5.627-5.476 5.927.578.583.88 1.386.825 2.206v3.29c-.005.2.092.393.26.507.164.115.377.14.565.063 5.568-1.88 8.956-7.514 8.007-13.313C22.892 4.267 17.884.007 12.008 0z"></path></svg><span class="MuiTouchRipple-root css-w0pj6f"></span></button></a><button class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit MuiIconButton-sizeLarge css-1l1167e" tabindex="0" type="button" id="help" aria-label="Help"><svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-vubbuv" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="HelpIcon"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2m1 17h-2v-2h2zm2.07-7.75-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25"></path></svg><span class="MuiTouchRipple-root css-w0pj6f"></span></button></div></header></div><div class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-1.5 css-sag665" style="margin: 0px; width: 100%;"><div class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 css-hun87l" style="display: block;"><div class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation2 css-qwe824-wA-paper"><div style="display: block;"><div id="text-editor-wrapper"><div id="text-editor" class=" ace_editor ace_hidpi ace-github" style="width: calc(-24px + 50vw); height: calc(-88px + 100vh); font-size: 12px;"><textarea class="ace_text-input" wrap="off" autocorrect="off" autocapitalize="off" spellcheck="false" aria-haspopup="false" aria-autocomplete="both" role="textbox" style="opacity: 0; font-size: 1px; height: 1px; width: 1px; transform: translate(0px, 0px);"></textarea><div class="ace_gutter" aria-hidden="true" style="left: 0px; width: 54px;"><div class="ace_layer ace_gutter-layer ace_folding-enabled" style="height: 1e+06px; transform: translate(0px, -2143px); width: 54px;"><div class="ace_gutter-cell " aria-hidden="false" style="height: 15px; top: 2130px;">97<span tabindex="-1" style="display: inline-block; height: 15px;" class="ace_fold-widget ace_start ace_open" role="button" aria-label="Toggle code folding, rows 97 through 100" aria-expanded="true" title="Fold code"></span><span tabindex="0" style="display: none;"><span></span></span></div><div class="ace_gutter-cell " aria-hidden="true" style="height: 45px; top: 2145px;">98<span tabindex="0" style="display: none; height: 15px;" class="ace_fold-widget ace_start ace_open" aria-expanded="true" title="Fold code"></span><span tabindex="0" style="display: none;"><span></span></span></div><div class="ace_gutter-cell " aria-hidden="true" style="height: 15px; top: 2190px;">99<span tabindex="0" style="display: none;"></span><span tabindex="0" style="display: none;"><span></span></span></div><div class="ace_gutter-cell " aria-hidden="true" style="height: 15px; top: 2205px;">100<span tabindex="0" style="display: none;"></span><span tabindex="0" style="display: none;"><span></span></span></div><div class="ace_gutter-cell " aria-hidden="true" style="height: 15px; top: 2220px;">101<span tabindex="0" style="display: none; height: 15px;" class="ace_fold-widget ace_start ace_open" aria-expanded="true" title="Fold code"></span><span tabindex="0" style="display: none;"><span></span></span></div><div class="ace_gutter-cell " aria-hidden="false" style="height: 15px; top: 2235px;">102<span tabindex="-1" style="display: inline-block; height: 15px;" class="ace_fold-widget ace_start ace_open" role="button" aria-label="Toggle code folding, rows 102 through 105" aria-expanded="true" title="Fold code"></span><span tabindex="0" style="display: none;"><span></span></span></div><div class="ace_gutter-cell " aria-hidden="true" style="height: 45px; top: 2250px;">103<span tabindex="0" class="ace_fold-widget ace_start ace_open" aria-expanded="true" title="Fold code" style="display: none; height: 15px;"></span><span tabindex="0" style="display: none;"><span></span></span></div><div class="ace_gutter-cell " aria-hidden="true" style="height: 15px; top: 2295px;">104<span tabindex="0" style="display: none;"></span><span tabindex="0" style="display: none;"><span></span></span></div><div class="ace_gutter-cell " aria-hidden="true" style="height: 15px; top: 2310px;">105<span tabindex="0" style="display: none;"></span><span tabindex="0" style="display: none;"><span></span></span></div><div class="ace_gutter-cell " aria-hidden="true" style="height: 15px; top: 2325px;">106<span tabindex="0" class="ace_fold-widget ace_start ace_open" aria-expanded="true" title="Fold code" style="display: none; height: 15px;"></span><span tabindex="0" style="display: none;"><span></span></span></div><div class="ace_gutter-cell " aria-hidden="false" style="height: 15px; top: 2340px;">107<span tabindex="-1" style="display: inline-block; height: 15px;" class="ace_fold-widget ace_start ace_open" role="button" aria-label="Toggle code folding, rows 107 through 110" aria-expanded="true" title="Fold code"></span><span tabindex="0" style="display: none;"><span></span></span></div><div class="ace_gutter-cell " aria-hidden="true" style="height: 45px; top: 2355px;">108<span tabindex="0" style="display: none; height: 15px;" class="ace_fold-widget ace_start ace_open" aria-expanded="true" title="Fold code"></span><span tabindex="0" style="display: none;"><span></span></span></div><div class="ace_gutter-cell " aria-hidden="true" style="height: 15px; top: 2400px;">109<span tabindex="0" style="display: none;"></span><span tabindex="0" style="display: none;"><span></span></span></div><div class="ace_gutter-cell " aria-hidden="true" style="height: 15px; top: 2415px;">110<span tabindex="0" style="display: none;"></span><span tabindex="0" style="display: none;"><span></span></span></div><div class="ace_gutter-cell " aria-hidden="true" style="height: 15px; top: 2430px;">111<span tabindex="0" style="display: none; height: 15px;" class="ace_fold-widget ace_start ace_open" aria-expanded="true" title="Fold code"></span><span tabindex="0" style="display: none;"><span></span></span></div><div class="ace_gutter-cell " aria-hidden="false" style="height: 15px; top: 2445px;">112<span tabindex="-1" style="display: inline-block; height: 15px;" class="ace_fold-widget ace_start ace_open" role="button" aria-label="Toggle code folding, rows 112 through 115" aria-expanded="true" title="Fold code"></span><span tabindex="0" style="display: none;"><span></span></span></div><div class="ace_gutter-cell " aria-hidden="true" style="height: 45px; top: 2460px;">113<span tabindex="0" style="display: none;"></span><span tabindex="0" style="display: none;"><span></span></span></div><div class="ace_gutter-cell " aria-hidden="true" style="height: 15px; top: 2505px;">114<span tabindex="0" style="display: none;"></span><span tabindex="0" style="display: none;"><span></span></span></div><div class="ace_gutter-cell " aria-hidden="true" style="height: 15px; top: 2520px;">115<span tabindex="0" style="display: none;"></span><span tabindex="0" style="display: none;"><span></span></span></div><div class="ace_gutter-cell " aria-hidden="true" style="height: 15px; top: 2535px;">116<span tabindex="0" style="display: none; height: 15px;" class="ace_fold-widget ace_start ace_open" aria-expanded="true" title="Fold code"></span><span tabindex="0" style="display: none;"><span></span></span></div><div class="ace_gutter-cell " aria-hidden="false" style="height: 15px; top: 2550px;">117<span tabindex="-1" style="display: inline-block; height: 15px;" class="ace_fold-widget ace_start ace_open" role="button" aria-label="Toggle code folding, rows 117 through 120" aria-expanded="true" title="Fold code"></span><span tabindex="0" style="display: none;"><span></span></span></div><div class="ace_gutter-cell " aria-hidden="true" style="height: 45px; top: 2565px;">118<span tabindex="0" style="display: none;"></span><span tabindex="0" style="display: none;"><span></span></span></div><div class="ace_gutter-cell " aria-hidden="true" style="height: 15px; top: 2610px;">119<span tabindex="0" style="display: none;"></span><span tabindex="0" style="display: none;"><span></span></span></div><div class="ace_gutter-cell " aria-hidden="true" style="height: 15px; top: 2625px;">120<span tabindex="0" style="display: none;"></span><span tabindex="0" style="display: none;"><span></span></span></div><div class="ace_gutter-cell ace_gutter-active-line " aria-hidden="true" style="height: 15px; top: 2640px;">121<span tabindex="0" style="display: none;"></span><span tabindex="0" style="display: none;"><span></span></span></div></div></div><div class="ace_scroller " style="line-height: 15px; left: 53.2441px; right: 15px; bottom: 0px;"><div class="ace_content" style="transform: translate(0px, -13px); width: 547.756px; height: 527px;"><div class="ace_layer ace_print-margin-layer"><div class="ace_print-margin" style="left: 544px; visibility: hidden;"></div></div><div class="ace_layer ace_marker-layer"><div class="ace_active-line" style="height: 15px; top: 510px; left: 0px; right: 0px;"></div><div class="ace_bracket ace_start ace_br15" style="height: 15px; width: 6.74805px; top: 510px; left: 4px;"></div></div><div class="ace_layer ace_text-layer" style="height: 1e+06px; margin: 0px 4px; transform: translate(0px, -2130px);"><div class="ace_line_group" style="height: 15px; top: 2130px;"><div class="ace_line" style="height: 15px;">    USER:user_id <span class="ace_keyword ace_operator">-&gt;</span> GLOBAL_PROFILE:user_id <span class="ace_paren ace_lparen">[</span></div></div><div class="ace_line_group" style="height: 45px; top: 2145px;"><div class="ace_line" style="height: 15px;"><span class="ace_indent-guide">    </span>    <span class="ace_variable">label</span><span class="ace_keyword ace_operator">=</span>&lt;&lt;TABLE BORDER<span class="ace_keyword ace_operator">=</span><span class="ace_string">"0"</span> CELLPADDING<span class="ace_keyword ace_operator">=</span><span class="ace_string">"4"</span> <span class="ace_variable">BGCOLOR</span><span class="ace_keyword ace_operator">=</span><span class="ace_string">"white"</span>&gt;&lt;TR&gt;&lt;TD ALIGN</div><div class="ace_line" style="height: 15px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ace_keyword ace_operator">=</span><span class="ace_string">"CENTER"</span>&gt;&lt;B&gt;<span class="ace_constant ace_numeric">1</span> to <span class="ace_constant ace_numeric">1</span>&lt;/B&gt;&lt;BR/&gt;(One User maintains One Basic Profile</div><div class="ace_line" style="height: 15px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&lt;/TD&gt;&lt;/TR&gt;&lt;/TABLE&gt;&gt;<span class="ace_punctuation ace_operator">,</span> </div></div><div class="ace_line_group" style="height: 15px; top: 2190px;"><div class="ace_line" style="height: 15px;"><span class="ace_indent-guide">    </span>    <span class="ace_variable">arrowhead</span><span class="ace_keyword ace_operator">=</span>tee<span class="ace_punctuation ace_operator">,</span> <span class="ace_variable">arrowtail</span><span class="ace_keyword ace_operator">=</span>tee<span class="ace_punctuation ace_operator">,</span> <span class="ace_variable">dir</span><span class="ace_keyword ace_operator">=</span>both</div></div><div class="ace_line_group" style="height: 15px; top: 2205px;"><div class="ace_line" style="height: 15px;">    <span class="ace_paren ace_rparen">]</span><span class="ace_punctuation ace_operator">;</span></div></div><div class="ace_line_group" style="height: 15px; top: 2220px;"><div class="ace_line" style="height: 15px;">    </div></div><div class="ace_line_group" style="height: 15px; top: 2235px;"><div class="ace_line" style="height: 15px;">    USER:user_id <span class="ace_keyword ace_operator">-&gt;</span> DATA_FOLDER:user_id <span class="ace_paren ace_lparen">[</span></div></div><div class="ace_line_group" style="height: 45px; top: 2250px;"><div class="ace_line" style="height: 15px;"><span class="ace_indent-guide">    </span>    <span class="ace_variable">label</span><span class="ace_keyword ace_operator">=</span>&lt;&lt;TABLE BORDER<span class="ace_keyword ace_operator">=</span><span class="ace_string">"0"</span> CELLPADDING<span class="ace_keyword ace_operator">=</span><span class="ace_string">"4"</span> <span class="ace_variable">BGCOLOR</span><span class="ace_keyword ace_operator">=</span><span class="ace_string">"white"</span>&gt;&lt;TR&gt;&lt;TD ALIGN</div><div class="ace_line" style="height: 15px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ace_keyword ace_operator">=</span><span class="ace_string">"CENTER"</span>&gt;&lt;B&gt;<span class="ace_constant ace_numeric">1</span> to Many&lt;/B&gt;&lt;BR/&gt;(One User can create Multiple </div><div class="ace_line" style="height: 15px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Folders)&lt;/TD&gt;&lt;/TR&gt;&lt;/TABLE&gt;&gt;<span class="ace_punctuation ace_operator">,</span> </div></div><div class="ace_line_group" style="height: 15px; top: 2295px;"><div class="ace_line" style="height: 15px;"><span class="ace_indent-guide">    </span>    <span class="ace_variable">arrowhead</span><span class="ace_keyword ace_operator">=</span>crow<span class="ace_punctuation ace_operator">,</span> <span class="ace_variable">arrowtail</span><span class="ace_keyword ace_operator">=</span>tee<span class="ace_punctuation ace_operator">,</span> <span class="ace_variable">dir</span><span class="ace_keyword ace_operator">=</span>both</div></div><div class="ace_line_group" style="height: 15px; top: 2310px;"><div class="ace_line" style="height: 15px;">    <span class="ace_paren ace_rparen">]</span><span class="ace_punctuation ace_operator">;</span></div></div><div class="ace_line_group" style="height: 15px; top: 2325px;"><div class="ace_line" style="height: 15px;">    </div></div><div class="ace_line_group" style="height: 15px; top: 2340px;"><div class="ace_line" style="height: 15px;">    USER:user_id <span class="ace_keyword ace_operator">-&gt;</span> SMART_TEMPLATE:user_id <span class="ace_paren ace_lparen">[</span></div></div><div class="ace_line_group" style="height: 45px; top: 2355px;"><div class="ace_line" style="height: 15px;"><span class="ace_indent-guide">    </span>    <span class="ace_variable">label</span><span class="ace_keyword ace_operator">=</span>&lt;&lt;TABLE BORDER<span class="ace_keyword ace_operator">=</span><span class="ace_string">"0"</span> CELLPADDING<span class="ace_keyword ace_operator">=</span><span class="ace_string">"4"</span> <span class="ace_variable">BGCOLOR</span><span class="ace_keyword ace_operator">=</span><span class="ace_string">"white"</span>&gt;&lt;TR&gt;&lt;TD ALIGN</div><div class="ace_line" style="height: 15px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ace_keyword ace_operator">=</span><span class="ace_string">"CENTER"</span>&gt;&lt;B&gt;<span class="ace_constant ace_numeric">1</span> to Many&lt;/B&gt;&lt;BR/&gt;(One User can save Multiple </div><div class="ace_line" style="height: 15px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Templates)&lt;/TD&gt;&lt;/TR&gt;&lt;/TABLE&gt;&gt;<span class="ace_punctuation ace_operator">,</span> </div></div><div class="ace_line_group" style="height: 15px; top: 2400px;"><div class="ace_line" style="height: 15px;"><span class="ace_indent-guide">    </span>    <span class="ace_variable">arrowhead</span><span class="ace_keyword ace_operator">=</span>crow<span class="ace_punctuation ace_operator">,</span> <span class="ace_variable">arrowtail</span><span class="ace_keyword ace_operator">=</span>tee<span class="ace_punctuation ace_operator">,</span> <span class="ace_variable">dir</span><span class="ace_keyword ace_operator">=</span>both</div></div><div class="ace_line_group" style="height: 15px; top: 2415px;"><div class="ace_line" style="height: 15px;">    <span class="ace_paren ace_rparen">]</span><span class="ace_punctuation ace_operator">;</span></div></div><div class="ace_line_group" style="height: 15px; top: 2430px;"><div class="ace_line" style="height: 15px;">    </div></div><div class="ace_line_group" style="height: 15px; top: 2445px;"><div class="ace_line" style="height: 15px;">    USER:user_id <span class="ace_keyword ace_operator">-&gt;</span> PAYMENT_LOG:user_id <span class="ace_paren ace_lparen">[</span></div></div><div class="ace_line_group" style="height: 45px; top: 2460px;"><div class="ace_line" style="height: 15px;"><span class="ace_indent-guide">    </span>    <span class="ace_variable">label</span><span class="ace_keyword ace_operator">=</span>&lt;&lt;TABLE BORDER<span class="ace_keyword ace_operator">=</span><span class="ace_string">"0"</span> CELLPADDING<span class="ace_keyword ace_operator">=</span><span class="ace_string">"4"</span> <span class="ace_variable">BGCOLOR</span><span class="ace_keyword ace_operator">=</span><span class="ace_string">"white"</span>&gt;&lt;TR&gt;&lt;TD ALIGN</div><div class="ace_line" style="height: 15px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ace_keyword ace_operator">=</span><span class="ace_string">"CENTER"</span>&gt;&lt;B&gt;<span class="ace_constant ace_numeric">1</span> to Many&lt;/B&gt;&lt;BR/&gt;(One User can have Multiple Payments</div><div class="ace_line" style="height: 15px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)&lt;/TD&gt;&lt;/TR&gt;&lt;/TABLE&gt;&gt;<span class="ace_punctuation ace_operator">,</span> </div></div><div class="ace_line_group" style="height: 15px; top: 2505px;"><div class="ace_line" style="height: 15px;"><span class="ace_indent-guide">    </span>    <span class="ace_variable">arrowhead</span><span class="ace_keyword ace_operator">=</span>crow<span class="ace_punctuation ace_operator">,</span> <span class="ace_variable">arrowtail</span><span class="ace_keyword ace_operator">=</span>tee<span class="ace_punctuation ace_operator">,</span> <span class="ace_variable">dir</span><span class="ace_keyword ace_operator">=</span>both</div></div><div class="ace_line_group" style="height: 15px; top: 2520px;"><div class="ace_line" style="height: 15px;">    <span class="ace_paren ace_rparen">]</span><span class="ace_punctuation ace_operator">;</span></div></div><div class="ace_line_group" style="height: 15px; top: 2535px;"><div class="ace_line" style="height: 15px;">    </div></div><div class="ace_line_group" style="height: 15px; top: 2550px;"><div class="ace_line" style="height: 15px;">    DATA_FOLDER:folder_id <span class="ace_keyword ace_operator">-&gt;</span> DYNAMIC_FIELD:folder_id <span class="ace_paren ace_lparen">[</span></div></div><div class="ace_line_group" style="height: 45px; top: 2565px;"><div class="ace_line" style="height: 15px;"><span class="ace_indent-guide">    </span>    <span class="ace_variable">label</span><span class="ace_keyword ace_operator">=</span>&lt;&lt;TABLE BORDER<span class="ace_keyword ace_operator">=</span><span class="ace_string">"0"</span> CELLPADDING<span class="ace_keyword ace_operator">=</span><span class="ace_string">"4"</span> <span class="ace_variable">BGCOLOR</span><span class="ace_keyword ace_operator">=</span><span class="ace_string">"white"</span>&gt;&lt;TR&gt;&lt;TD ALIGN</div><div class="ace_line" style="height: 15px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ace_keyword ace_operator">=</span><span class="ace_string">"CENTER"</span>&gt;&lt;B&gt;<span class="ace_constant ace_numeric">1</span> to Many&lt;/B&gt;&lt;BR/&gt;(One Folder contains Multiple </div><div class="ace_line" style="height: 15px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Details)&lt;/TD&gt;&lt;/TR&gt;&lt;/TABLE&gt;&gt;<span class="ace_punctuation ace_operator">,</span> </div></div><div class="ace_line_group" style="height: 15px; top: 2610px;"><div class="ace_line" style="height: 15px;"><span class="ace_indent-guide">    </span>    <span class="ace_variable">arrowhead</span><span class="ace_keyword ace_operator">=</span>crow<span class="ace_punctuation ace_operator">,</span> <span class="ace_variable">arrowtail</span><span class="ace_keyword ace_operator">=</span>tee<span class="ace_punctuation ace_operator">,</span> <span class="ace_variable">dir</span><span class="ace_keyword ace_operator">=</span>both</div></div><div class="ace_line_group" style="height: 15px; top: 2625px;"><div class="ace_line" style="height: 15px;">    <span class="ace_paren ace_rparen">]</span><span class="ace_punctuation ace_operator">;</span></div></div><div class="ace_line_group" style="height: 15px; top: 2640px;"><div class="ace_line" style="height: 15px;"><span class="ace_paren ace_rparen">}</span></div></div></div><div class="ace_layer ace_marker-layer"></div><div class="ace_layer ace_cursor-layer ace_hidden-cursors"><div class="ace_cursor" style="display: block; transform: translate(11px, 510px); width: 7px; height: 15px; animation-duration: 1000ms;"></div></div></div></div><div class="ace_scrollbar ace_scrollbar-v" style="width: 20px; height: 497px; bottom: 0px;"><div class="ace_scrollbar-inner" style="width: 20px; height: 2655px;">&nbsp;</div></div><div class="ace_scrollbar ace_scrollbar-h" style="display: none; height: 20px; left: 53.2441px; right: 15px; width: 547.756px;"><div class="ace_scrollbar-inner" style="height: 20px; width: 576px;">&nbsp;</div></div><div style="height: auto; width: auto; top: 0px; left: 0px; visibility: hidden; position: absolute; white-space: pre; font: inherit; overflow: hidden;"><div style="height: auto; width: auto; top: 0px; left: 0px; visibility: hidden; position: absolute; white-space: pre; font: inherit; overflow: visible;">הההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההה</div><div style="height: auto; width: auto; top: 0px; left: 0px; visibility: hidden; position: absolute; white-space: pre; font-style: inherit; font-variant: inherit; font-stretch: inherit; font-size: inherit; line-height: inherit; font-family: inherit; font-optical-sizing: inherit; font-size-adjust: inherit; font-kerning: inherit; font-feature-settings: inherit; font-variation-settings: inherit; font-language-override: inherit; overflow: visible;">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</div></div></div><button class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit MuiIconButton-sizeLarge css-18v3qkw-au-errorButton" tabindex="0" type="button" id="error-button" aria-label="Error" style="left: calc(-55px + 50vw); display: none; z-index: 1;"><svg class="MuiSvgIcon-root MuiSvgIcon-colorError MuiSvgIcon-fontSizeMedium css-dvceld" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="ErrorOutlineIcon"><path d="M11 15h2v2h-2zm0-8h2v6h-2zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2M12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8"></path></svg><span class="MuiTouchRipple-root css-w0pj6f"></span></button></div></div></div></div><div class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 css-hun87l"><div class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation2 css-qwe824-wA-paper"><div id="canvas"><svg width="608" height="497" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0.00 0.00 2534.06 1267.50">
+<g id="graph0" class="graph" transform="translate(4.000012397766113, 1263.5)">
+<title style="">FillSync_Final_Clean_ER</title>
+<polygon fill="white" stroke="none" points="-4,4 -4,-1263.5 2530.06,-1263.5 2530.06,4 -4,4" style=""></polygon>
+<!-- USER -->
+<g id="node1" class="node">
+<title style="">USER</title>
+<polygon fill="#2c3e50" stroke="none" points="186.66,-722 186.66,-763 574.66,-763 574.66,-722 186.66,-722" style=""></polygon>
+<polygon fill="none" stroke="black" points="186.66,-722 186.66,-763 574.66,-763 574.66,-722 186.66,-722" style=""></polygon>
+<text text-anchor="start" x="276.2" y="-738.6" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="16.00" fill="white" style="">1. USER (Account &amp; Limits)</text>
+<polygon fill="#d6eaf8" stroke="none" points="186.66,-681 186.66,-722 230.66,-722 230.66,-681 186.66,-681" style=""></polygon>
+<polygon fill="none" stroke="black" points="186.66,-681 186.66,-722 230.66,-722 230.66,-681 186.66,-681" style=""></polygon>
+<text text-anchor="start" x="197.54" y="-697.6" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="16.00" style="">PK</text>
+<polygon fill="none" stroke="black" points="230.66,-681 230.66,-722 372.66,-722 372.66,-681 230.66,-681" style=""></polygon>
+<text text-anchor="start" x="241.66" y="-697.6" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="16.00" style="">user_id</text>
+<polygon fill="none" stroke="black" points="372.66,-681 372.66,-722 574.66,-722 574.66,-681 372.66,-681" style=""></polygon>
+<text text-anchor="start" x="383.66" y="-696.6" font-family="Helvetica,sans-Serif" font-size="16.00" style="">UUID (Unique ID)</text>
+<polygon fill="none" stroke="black" points="186.66,-640 186.66,-681 230.66,-681 230.66,-640 186.66,-640" style=""></polygon>
+<polygon fill="none" stroke="black" points="230.66,-640 230.66,-681 372.66,-681 372.66,-640 230.66,-640" style=""></polygon>
+<text text-anchor="start" x="241.66" y="-655.6" font-family="Helvetica,sans-Serif" font-size="16.00" style="">email</text>
+<polygon fill="none" stroke="black" points="372.66,-640 372.66,-681 574.66,-681 574.66,-640 372.66,-640" style=""></polygon>
+<text text-anchor="start" x="383.66" y="-655.6" font-family="Helvetica,sans-Serif" font-size="16.00" style="">VARCHAR (Unique)</text>
+<polygon fill="none" stroke="black" points="186.66,-599 186.66,-640 230.66,-640 230.66,-599 186.66,-599" style=""></polygon>
+<polygon fill="none" stroke="black" points="230.66,-599 230.66,-640 372.66,-640 372.66,-599 230.66,-599" style=""></polygon>
+<text text-anchor="start" x="241.66" y="-614.6" font-family="Helvetica,sans-Serif" font-size="16.00" style="">password_hash</text>
+<polygon fill="none" stroke="black" points="372.66,-599 372.66,-640 574.66,-640 574.66,-599 372.66,-599" style=""></polygon>
+<text text-anchor="start" x="383.66" y="-614.6" font-family="Helvetica,sans-Serif" font-size="16.00" style="">VARCHAR (Hidden)</text>
+<polygon fill="none" stroke="black" points="186.66,-558 186.66,-599 230.66,-599 230.66,-558 186.66,-558" style=""></polygon>
+<polygon fill="none" stroke="black" points="230.66,-558 230.66,-599 372.66,-599 372.66,-558 230.66,-558" style=""></polygon>
+<text text-anchor="start" x="241.66" y="-573.6" font-family="Helvetica,sans-Serif" font-size="16.00" style="">plan_type</text>
+<polygon fill="none" stroke="black" points="372.66,-558 372.66,-599 574.66,-599 574.66,-558 372.66,-558" style=""></polygon>
+<text text-anchor="start" x="383.54" y="-573.6" font-family="Helvetica,sans-Serif" font-size="16.00" style="">ENUM ('Free', 'Premium')</text>
+<polygon fill="none" stroke="black" points="186.66,-517 186.66,-558 230.66,-558 230.66,-517 186.66,-517" style=""></polygon>
+<polygon fill="none" stroke="black" points="230.66,-517 230.66,-558 372.66,-558 372.66,-517 230.66,-517" style=""></polygon>
+<text text-anchor="start" x="241.62" y="-532.6" font-family="Helvetica,sans-Serif" font-size="16.00" style="">active_templates</text>
+<polygon fill="none" stroke="black" points="372.66,-517 372.66,-558 574.66,-558 574.66,-517 372.66,-517" style=""></polygon>
+<text text-anchor="start" x="383.66" y="-532.6" font-family="Helvetica,sans-Serif" font-size="16.00" style="">INT (Max 3 for Free)</text>
+<polygon fill="none" stroke="black" points="186.66,-476 186.66,-517 230.66,-517 230.66,-476 186.66,-476" style=""></polygon>
+<polygon fill="none" stroke="black" points="230.66,-476 230.66,-517 372.66,-517 372.66,-476 230.66,-476" style=""></polygon>
+<text text-anchor="start" x="241.66" y="-491.6" font-family="Helvetica,sans-Serif" font-size="16.00" style="">join_date</text>
+<polygon fill="none" stroke="black" points="372.66,-476 372.66,-517 574.66,-517 574.66,-476 372.66,-476" style=""></polygon>
+<text text-anchor="start" x="383.66" y="-491.6" font-family="Helvetica,sans-Serif" font-size="16.00" style="">TIMESTAMP</text>
+</g>
+<!-- GLOBAL_PROFILE -->
+<g id="node2" class="node">
+<title style="">GLOBAL_PROFILE</title>
+<polygon fill="#2980b9" stroke="none" points="1305.85,-1214.5 1305.85,-1255.5 1631.85,-1255.5 1631.85,-1214.5 1305.85,-1214.5" style=""></polygon>
+<polygon fill="none" stroke="black" points="1305.85,-1214.5 1305.85,-1255.5 1631.85,-1255.5 1631.85,-1214.5 1305.85,-1214.5" style=""></polygon>
+<text text-anchor="start" x="1316.39" y="-1231.1" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="16.00" fill="white" style="">2. GLOBAL_PROFILE (Common Details)</text>
+<polygon fill="#d6eaf8" stroke="none" points="1305.85,-1173.5 1305.85,-1214.5 1375.85,-1214.5 1375.85,-1173.5 1305.85,-1173.5" style=""></polygon>
+<polygon fill="none" stroke="black" points="1305.85,-1173.5 1305.85,-1214.5 1375.85,-1214.5 1375.85,-1173.5 1305.85,-1173.5" style=""></polygon>
+<text text-anchor="start" x="1329.74" y="-1190.1" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="16.00" style="">PK</text>
+<polygon fill="none" stroke="black" points="1375.85,-1173.5 1375.85,-1214.5 1517.85,-1214.5 1517.85,-1173.5 1375.85,-1173.5" style=""></polygon>
+<text text-anchor="start" x="1386.85" y="-1190.1" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="16.00" style="">profile_id</text>
+<polygon fill="none" stroke="black" points="1517.85,-1173.5 1517.85,-1214.5 1631.85,-1214.5 1631.85,-1173.5 1517.85,-1173.5" style=""></polygon>
+<text text-anchor="start" x="1528.85" y="-1189.1" font-family="Helvetica,sans-Serif" font-size="16.00" style="">UUID</text>
+<polygon fill="#fad7a1" stroke="none" points="1305.85,-1132.5 1305.85,-1173.5 1375.85,-1173.5 1375.85,-1132.5 1305.85,-1132.5" style=""></polygon>
+<polygon fill="none" stroke="black" points="1305.85,-1132.5 1305.85,-1173.5 1375.85,-1173.5 1375.85,-1132.5 1305.85,-1132.5" style=""></polygon>
+<text text-anchor="start" x="1330.63" y="-1149.1" font-family="Helvetica,sans-Serif" font-style="italic" font-size="16.00" style="">FK</text>
+<polygon fill="none" stroke="black" points="1375.85,-1132.5 1375.85,-1173.5 1517.85,-1173.5 1517.85,-1132.5 1375.85,-1132.5" style=""></polygon>
+<text text-anchor="start" x="1386.85" y="-1149.1" font-family="Helvetica,sans-Serif" font-style="italic" font-size="16.00" style="">user_id</text>
+<polygon fill="none" stroke="black" points="1517.85,-1132.5 1517.85,-1173.5 1631.85,-1173.5 1631.85,-1132.5 1517.85,-1132.5" style=""></polygon>
+<text text-anchor="start" x="1528.85" y="-1148.1" font-family="Helvetica,sans-Serif" font-size="16.00" style="">UUID</text>
+<polygon fill="none" stroke="black" points="1305.85,-1091.5 1305.85,-1132.5 1375.85,-1132.5 1375.85,-1091.5 1305.85,-1091.5" style=""></polygon>
+<polygon fill="none" stroke="black" points="1375.85,-1091.5 1375.85,-1132.5 1517.85,-1132.5 1517.85,-1091.5 1375.85,-1091.5" style=""></polygon>
+<text text-anchor="start" x="1386.85" y="-1107.1" font-family="Helvetica,sans-Serif" font-size="16.00" style="">first_name</text>
+<polygon fill="none" stroke="black" points="1517.85,-1091.5 1517.85,-1132.5 1631.85,-1132.5 1631.85,-1091.5 1517.85,-1091.5" style=""></polygon>
+<text text-anchor="start" x="1528.85" y="-1107.1" font-family="Helvetica,sans-Serif" font-size="16.00" style="">VARCHAR</text>
+<polygon fill="none" stroke="black" points="1305.85,-1050.5 1305.85,-1091.5 1375.85,-1091.5 1375.85,-1050.5 1305.85,-1050.5" style=""></polygon>
+<polygon fill="none" stroke="black" points="1375.85,-1050.5 1375.85,-1091.5 1517.85,-1091.5 1517.85,-1050.5 1375.85,-1050.5" style=""></polygon>
+<text text-anchor="start" x="1386.85" y="-1066.1" font-family="Helvetica,sans-Serif" font-size="16.00" style="">phone_number</text>
+<polygon fill="none" stroke="black" points="1517.85,-1050.5 1517.85,-1091.5 1631.85,-1091.5 1631.85,-1050.5 1517.85,-1050.5" style=""></polygon>
+<text text-anchor="start" x="1528.85" y="-1066.1" font-family="Helvetica,sans-Serif" font-size="16.00" style="">VARCHAR</text>
+<polygon fill="none" stroke="black" points="1305.85,-1009.5 1305.85,-1050.5 1375.85,-1050.5 1375.85,-1009.5 1305.85,-1009.5" style=""></polygon>
+<polygon fill="none" stroke="black" points="1375.85,-1009.5 1375.85,-1050.5 1517.85,-1050.5 1517.85,-1009.5 1375.85,-1009.5" style=""></polygon>
+<text text-anchor="start" x="1386.85" y="-1025.1" font-family="Helvetica,sans-Serif" font-size="16.00" style="">date_of_birth</text>
+<polygon fill="none" stroke="black" points="1517.85,-1009.5 1517.85,-1050.5 1631.85,-1050.5 1631.85,-1009.5 1517.85,-1009.5" style=""></polygon>
+<text text-anchor="start" x="1528.85" y="-1025.1" font-family="Helvetica,sans-Serif" font-size="16.00" style="">DATE</text>
+</g>
+<!-- USER&#45;&gt;GLOBAL_PROFILE -->
+<g id="edge1" class="edge">
+<title style="">USER:user_id-&gt;GLOBAL_PROFILE:user_id</title>
+<path fill="none" stroke="#2c3e50" stroke-width="2" d="M586.7,-716.34C790.98,-812.82 1101.2,-959.33 1293.83,-1050.31" style=""></path>
+<polygon fill="#2c3e50" stroke="#2c3e50" stroke-width="2" points="581.23,-719.29 585.5,-710.25 587.31,-711.1 583.04,-720.14 581.23,-719.29" style=""></polygon>
+<polyline fill="none" stroke="#2c3e50" stroke-width="2" points="582.46,-714.34 586.98,-716.47" style=""></polyline>
+<polygon fill="#2c3e50" stroke="#2c3e50" stroke-width="2" points="1299.31,-1047.37 1295.04,-1056.41 1293.23,-1055.56 1297.5,-1046.52 1299.31,-1047.37" style=""></polygon>
+<polyline fill="none" stroke="#2c3e50" stroke-width="2" points="1298.08,-1052.32 1293.56,-1050.18" style=""></polyline>
+<polygon fill="white" stroke="none" points="890.04,-980.91 890.04,-1020.91 1147.13,-1020.91 1147.13,-980.91 890.04,-980.91" style=""></polygon>
+<text text-anchor="start" x="1000.3" y="-1003.31" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="14.00" style="">1 to 1</text>
+<text text-anchor="start" x="896.04" y="-989.31" font-family="Helvetica,sans-Serif" font-size="14.00" style="">(One User maintains One Basic Profile)</text>
+</g>
+<!-- DATA_FOLDER -->
+<g id="node3" class="node">
+<title style="">DATA_FOLDER</title>
+<polygon fill="#27ae60" stroke="none" points="1289.85,-852 1289.85,-893 1647.85,-893 1647.85,-852 1289.85,-852" style=""></polygon>
+<polygon fill="none" stroke="black" points="1289.85,-852 1289.85,-893 1647.85,-893 1647.85,-852 1289.85,-852" style=""></polygon>
+<text text-anchor="start" x="1351.5" y="-868.6" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="16.00" fill="white" style="">3. DATA_FOLDER (Categories)</text>
+<polygon fill="#d6eaf8" stroke="none" points="1289.85,-811 1289.85,-852 1333.85,-852 1333.85,-811 1289.85,-811" style=""></polygon>
+<polygon fill="none" stroke="black" points="1289.85,-811 1289.85,-852 1333.85,-852 1333.85,-811 1289.85,-811" style=""></polygon>
+<text text-anchor="start" x="1300.74" y="-827.6" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="16.00" style="">PK</text>
+<polygon fill="none" stroke="black" points="1333.85,-811 1333.85,-852 1446.85,-852 1446.85,-811 1333.85,-811" style=""></polygon>
+<text text-anchor="start" x="1344.85" y="-827.6" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="16.00" style="">folder_id</text>
+<polygon fill="none" stroke="black" points="1446.85,-811 1446.85,-852 1647.85,-852 1647.85,-811 1446.85,-811" style=""></polygon>
+<text text-anchor="start" x="1457.85" y="-826.6" font-family="Helvetica,sans-Serif" font-size="16.00" style="">UUID</text>
+<polygon fill="#fad7a1" stroke="none" points="1289.85,-770 1289.85,-811 1333.85,-811 1333.85,-770 1289.85,-770" style=""></polygon>
+<polygon fill="none" stroke="black" points="1289.85,-770 1289.85,-811 1333.85,-811 1333.85,-770 1289.85,-770" style=""></polygon>
+<text text-anchor="start" x="1301.63" y="-786.6" font-family="Helvetica,sans-Serif" font-style="italic" font-size="16.00" style="">FK</text>
+<polygon fill="none" stroke="black" points="1333.85,-770 1333.85,-811 1446.85,-811 1446.85,-770 1333.85,-770" style=""></polygon>
+<text text-anchor="start" x="1344.85" y="-786.6" font-family="Helvetica,sans-Serif" font-style="italic" font-size="16.00" style="">user_id</text>
+<polygon fill="none" stroke="black" points="1446.85,-770 1446.85,-811 1647.85,-811 1647.85,-770 1446.85,-770" style=""></polygon>
+<text text-anchor="start" x="1457.85" y="-785.6" font-family="Helvetica,sans-Serif" font-size="16.00" style="">UUID</text>
+<polygon fill="none" stroke="black" points="1289.85,-729 1289.85,-770 1333.85,-770 1333.85,-729 1289.85,-729" style=""></polygon>
+<polygon fill="none" stroke="black" points="1333.85,-729 1333.85,-770 1446.85,-770 1446.85,-729 1333.85,-729" style=""></polygon>
+<text text-anchor="start" x="1344.85" y="-744.6" font-family="Helvetica,sans-Serif" font-size="16.00" style="">folder_name</text>
+<polygon fill="none" stroke="black" points="1446.85,-729 1446.85,-770 1647.85,-770 1647.85,-729 1446.85,-729" style=""></polygon>
+<text text-anchor="start" x="1457.61" y="-744.6" font-family="Helvetica,sans-Serif" font-size="16.00" style="">VARCHAR (e.g., 'Travel')</text>
+<polygon fill="none" stroke="black" points="1289.85,-688 1289.85,-729 1333.85,-729 1333.85,-688 1289.85,-688" style=""></polygon>
+<polygon fill="none" stroke="black" points="1333.85,-688 1333.85,-729 1446.85,-729 1446.85,-688 1333.85,-688" style=""></polygon>
+<text text-anchor="start" x="1344.53" y="-703.6" font-family="Helvetica,sans-Serif" font-size="16.00" style="">last_updated</text>
+<polygon fill="none" stroke="black" points="1446.85,-688 1446.85,-729 1647.85,-729 1647.85,-688 1446.85,-688" style=""></polygon>
+<text text-anchor="start" x="1457.85" y="-703.6" font-family="Helvetica,sans-Serif" font-size="16.00" style="">TIMESTAMP</text>
+</g>
+<!-- USER&#45;&gt;DATA_FOLDER -->
+<g id="edge2" class="edge">
+<title style="">USER:user_id-&gt;DATA_FOLDER:user_id</title>
+<path fill="none" stroke="#2c3e50" stroke-width="2" d="M587.17,-651.85C783.79,-682.81 1078.22,-729.16 1271.66,-759.61" style=""></path>
+<polygon fill="#2c3e50" stroke="#2c3e50" stroke-width="2" points="582.67,-656.21 584.23,-646.33 586.2,-646.64 584.65,-656.52 582.67,-656.21" style=""></polygon>
+<polyline fill="none" stroke="#2c3e50" stroke-width="2" points="582.46,-651.11 587.4,-651.89" style=""></polyline>
+<polygon fill="#2c3e50" stroke="#2c3e50" stroke-width="2" points="1271.7,-759.62 1280.87,-765.62 1277.3,-760.5 1280.91,-761.07 1280.91,-761.07 1280.91,-761.07 1277.3,-760.5 1282.27,-756.73 1271.7,-759.62" style=""></polygon>
+<polygon fill="white" stroke="none" points="891.98,-739.97 891.98,-779.97 1145.18,-779.97 1145.18,-739.97 891.98,-739.97" style=""></polygon>
+<text text-anchor="start" x="986.3" y="-762.37" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="14.00" style="">1 to Many</text>
+<text text-anchor="start" x="897.98" y="-748.37" font-family="Helvetica,sans-Serif" font-size="14.00" style="">(One User can create Multiple Folders)</text>
+</g>
+<!-- SMART_TEMPLATE -->
+<g id="node5" class="node">
+<title style="">SMART_TEMPLATE</title>
+<polygon fill="#8e44ad" stroke="none" points="1283.85,-530.5 1283.85,-571.5 1653.85,-571.5 1653.85,-530.5 1283.85,-530.5" style=""></polygon>
+<polygon fill="none" stroke="black" points="1283.85,-530.5 1283.85,-571.5 1653.85,-571.5 1653.85,-530.5 1283.85,-530.5" style=""></polygon>
+<text text-anchor="start" x="1312.37" y="-547.1" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="16.00" fill="white" style="">5. SMART_TEMPLATE (Saved Messages)</text>
+<polygon fill="#d6eaf8" stroke="none" points="1283.85,-489.5 1283.85,-530.5 1327.85,-530.5 1327.85,-489.5 1283.85,-489.5" style=""></polygon>
+<polygon fill="none" stroke="black" points="1283.85,-489.5 1283.85,-530.5 1327.85,-530.5 1327.85,-489.5 1283.85,-489.5" style=""></polygon>
+<text text-anchor="start" x="1294.74" y="-506.1" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="16.00" style="">PK</text>
+<polygon fill="none" stroke="black" points="1327.85,-489.5 1327.85,-530.5 1437.85,-530.5 1437.85,-489.5 1327.85,-489.5" style=""></polygon>
+<text text-anchor="start" x="1338.39" y="-506.1" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="16.00" style="">template_id</text>
+<polygon fill="none" stroke="black" points="1437.85,-489.5 1437.85,-530.5 1653.85,-530.5 1653.85,-489.5 1437.85,-489.5" style=""></polygon>
+<text text-anchor="start" x="1448.85" y="-505.1" font-family="Helvetica,sans-Serif" font-size="16.00" style="">UUID</text>
+<polygon fill="#fad7a1" stroke="none" points="1283.85,-448.5 1283.85,-489.5 1327.85,-489.5 1327.85,-448.5 1283.85,-448.5" style=""></polygon>
+<polygon fill="none" stroke="black" points="1283.85,-448.5 1283.85,-489.5 1327.85,-489.5 1327.85,-448.5 1283.85,-448.5" style=""></polygon>
+<text text-anchor="start" x="1295.63" y="-465.1" font-family="Helvetica,sans-Serif" font-style="italic" font-size="16.00" style="">FK</text>
+<polygon fill="none" stroke="black" points="1327.85,-448.5 1327.85,-489.5 1437.85,-489.5 1437.85,-448.5 1327.85,-448.5" style=""></polygon>
+<text text-anchor="start" x="1338.85" y="-465.1" font-family="Helvetica,sans-Serif" font-style="italic" font-size="16.00" style="">user_id</text>
+<polygon fill="none" stroke="black" points="1437.85,-448.5 1437.85,-489.5 1653.85,-489.5 1653.85,-448.5 1437.85,-448.5" style=""></polygon>
+<text text-anchor="start" x="1448.85" y="-464.1" font-family="Helvetica,sans-Serif" font-size="16.00" style="">UUID</text>
+<polygon fill="none" stroke="black" points="1283.85,-407.5 1283.85,-448.5 1327.85,-448.5 1327.85,-407.5 1283.85,-407.5" style=""></polygon>
+<polygon fill="none" stroke="black" points="1327.85,-407.5 1327.85,-448.5 1437.85,-448.5 1437.85,-407.5 1327.85,-407.5" style=""></polygon>
+<text text-anchor="start" x="1338.85" y="-423.1" font-family="Helvetica,sans-Serif" font-size="16.00" style="">title</text>
+<polygon fill="none" stroke="black" points="1437.85,-407.5 1437.85,-448.5 1653.85,-448.5 1653.85,-407.5 1437.85,-407.5" style=""></polygon>
+<text text-anchor="start" x="1448.55" y="-423.1" font-family="Helvetica,sans-Serif" font-size="16.00" style="">VARCHAR (e.g., 'Job Mail')</text>
+<polygon fill="none" stroke="black" points="1283.85,-366.5 1283.85,-407.5 1327.85,-407.5 1327.85,-366.5 1283.85,-366.5" style=""></polygon>
+<polygon fill="none" stroke="black" points="1327.85,-366.5 1327.85,-407.5 1437.85,-407.5 1437.85,-366.5 1327.85,-366.5" style=""></polygon>
+<text text-anchor="start" x="1338.85" y="-382.1" font-family="Helvetica,sans-Serif" font-size="16.00" style="">body_text</text>
+<polygon fill="none" stroke="black" points="1437.85,-366.5 1437.85,-407.5 1653.85,-407.5 1653.85,-366.5 1437.85,-366.5" style=""></polygon>
+<text text-anchor="start" x="1448.85" y="-382.1" font-family="Helvetica,sans-Serif" font-size="16.00" style="">TEXT</text>
+<polygon fill="none" stroke="black" points="1283.85,-325.5 1283.85,-366.5 1327.85,-366.5 1327.85,-325.5 1283.85,-325.5" style=""></polygon>
+<polygon fill="none" stroke="black" points="1327.85,-325.5 1327.85,-366.5 1437.85,-366.5 1437.85,-325.5 1327.85,-325.5" style=""></polygon>
+<text text-anchor="start" x="1338.85" y="-341.1" font-family="Helvetica,sans-Serif" font-size="16.00" style="">variables</text>
+<polygon fill="none" stroke="black" points="1437.85,-325.5 1437.85,-366.5 1653.85,-366.5 1653.85,-325.5 1437.85,-325.5" style=""></polygon>
+<text text-anchor="start" x="1448.85" y="-341.1" font-family="Helvetica,sans-Serif" font-size="16.00" style="">JSON (e.g., ["HR_Name"])</text>
+</g>
+<!-- USER&#45;&gt;SMART_TEMPLATE -->
+<g id="edge3" class="edge">
+<title style="">USER:user_id-&gt;SMART_TEMPLATE:user_id</title>
+<path fill="none" stroke="#2c3e50" stroke-width="2" d="M587.12,-587.15C781.61,-556.53 1071.85,-510.84 1265.36,-480.38" style=""></path>
+<polygon fill="#2c3e50" stroke="#2c3e50" stroke-width="2" points="584.23,-592.67 582.67,-582.79 584.65,-582.48 586.2,-592.36 584.23,-592.67" style=""></polygon>
+<polyline fill="none" stroke="#2c3e50" stroke-width="2" points="582.46,-587.89 587.4,-587.11" style=""></polyline>
+<polygon fill="#2c3e50" stroke="#2c3e50" stroke-width="2" points="1265.4,-480.37 1275.98,-483.26 1271,-479.49 1274.62,-478.92 1274.62,-478.92 1274.62,-478.92 1271,-479.49 1274.58,-474.37 1265.4,-480.37" style=""></polygon>
+<polygon fill="white" stroke="none" points="887.31,-539.13 887.31,-579.13 1149.85,-579.13 1149.85,-539.13 887.31,-539.13" style=""></polygon>
+<text text-anchor="start" x="986.3" y="-561.53" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="14.00" style="">1 to Many</text>
+<text text-anchor="start" x="893.31" y="-547.53" font-family="Helvetica,sans-Serif" font-size="14.00" style="">(One User can save Multiple Templates)</text>
+</g>
+<!-- PAYMENT_LOG -->
+<g id="node6" class="node">
+<title style="">PAYMENT_LOG</title>
+<polygon fill="#c0392b" stroke="none" points="1294.35,-168 1294.35,-209 1643.35,-209 1643.35,-168 1294.35,-168" style=""></polygon>
+<polygon fill="none" stroke="black" points="1294.35,-168 1294.35,-209 1643.35,-209 1643.35,-168 1294.35,-168" style=""></polygon>
+<text text-anchor="start" x="1338.16" y="-184.6" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="16.00" fill="white" style="">6. PAYMENT_LOG (Premium Bills)</text>
+<polygon fill="#d6eaf8" stroke="none" points="1294.35,-127 1294.35,-168 1338.35,-168 1338.35,-127 1294.35,-127" style=""></polygon>
+<polygon fill="none" stroke="black" points="1294.35,-127 1294.35,-168 1338.35,-168 1338.35,-127 1294.35,-127" style=""></polygon>
+<text text-anchor="start" x="1305.24" y="-143.6" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="16.00" style="">PK</text>
+<polygon fill="none" stroke="black" points="1338.35,-127 1338.35,-168 1452.35,-168 1452.35,-127 1338.35,-127" style=""></polygon>
+<text text-anchor="start" x="1349.35" y="-143.6" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="16.00" style="">txn_id</text>
+<polygon fill="none" stroke="black" points="1452.35,-127 1452.35,-168 1643.35,-168 1643.35,-127 1452.35,-127" style=""></polygon>
+<text text-anchor="start" x="1463.35" y="-142.6" font-family="Helvetica,sans-Serif" font-size="16.00" style="">VARCHAR</text>
+<polygon fill="#fad7a1" stroke="none" points="1294.35,-86 1294.35,-127 1338.35,-127 1338.35,-86 1294.35,-86" style=""></polygon>
+<polygon fill="none" stroke="black" points="1294.35,-86 1294.35,-127 1338.35,-127 1338.35,-86 1294.35,-86" style=""></polygon>
+<text text-anchor="start" x="1306.13" y="-102.6" font-family="Helvetica,sans-Serif" font-style="italic" font-size="16.00" style="">FK</text>
+<polygon fill="none" stroke="black" points="1338.35,-86 1338.35,-127 1452.35,-127 1452.35,-86 1338.35,-86" style=""></polygon>
+<text text-anchor="start" x="1349.35" y="-102.6" font-family="Helvetica,sans-Serif" font-style="italic" font-size="16.00" style="">user_id</text>
+<polygon fill="none" stroke="black" points="1452.35,-86 1452.35,-127 1643.35,-127 1643.35,-86 1452.35,-86" style=""></polygon>
+<text text-anchor="start" x="1463.35" y="-101.6" font-family="Helvetica,sans-Serif" font-size="16.00" style="">UUID</text>
+<polygon fill="none" stroke="black" points="1294.35,-45 1294.35,-86 1338.35,-86 1338.35,-45 1294.35,-45" style=""></polygon>
+<polygon fill="none" stroke="black" points="1338.35,-45 1338.35,-86 1452.35,-86 1452.35,-45 1338.35,-45" style=""></polygon>
+<text text-anchor="start" x="1349.09" y="-60.6" font-family="Helvetica,sans-Serif" font-size="16.00" style="">amount_paid</text>
+<polygon fill="none" stroke="black" points="1452.35,-45 1452.35,-86 1643.35,-86 1643.35,-45 1452.35,-45" style=""></polygon>
+<text text-anchor="start" x="1463.35" y="-60.6" font-family="Helvetica,sans-Serif" font-size="16.00" style="">DECIMAL</text>
+<polygon fill="none" stroke="black" points="1294.35,-4 1294.35,-45 1338.35,-45 1338.35,-4 1294.35,-4" style=""></polygon>
+<polygon fill="none" stroke="black" points="1338.35,-4 1338.35,-45 1452.35,-45 1452.35,-4 1338.35,-4" style=""></polygon>
+<text text-anchor="start" x="1349.35" y="-19.6" font-family="Helvetica,sans-Serif" font-size="16.00" style="">status</text>
+<polygon fill="none" stroke="black" points="1452.35,-4 1452.35,-45 1643.35,-45 1643.35,-4 1452.35,-4" style=""></polygon>
+<text text-anchor="start" x="1463.06" y="-19.6" font-family="Helvetica,sans-Serif" font-size="16.00" style="">ENUM ('Success', 'Fail')</text>
+</g>
+<!-- USER&#45;&gt;PAYMENT_LOG -->
+<g id="edge4" class="edge">
+<title style="">USER:user_id-&gt;PAYMENT_LOG:user_id</title>
+<path fill="none" stroke="#2c3e50" stroke-width="2" d="M586.91,-522.56C785.34,-428.85 1083.57,-287.99 1276.98,-196.65" style=""></path>
+<polygon fill="#2c3e50" stroke="#2c3e50" stroke-width="2" points="585.5,-528.75 581.23,-519.71 583.04,-518.86 587.31,-527.9 585.5,-528.75" style=""></polygon>
+<polyline fill="none" stroke="#2c3e50" stroke-width="2" points="582.46,-524.66 586.98,-522.53" style=""></polyline>
+<polygon fill="#2c3e50" stroke="#2c3e50" stroke-width="2" points="1277.04,-196.62 1288,-196.42 1282.17,-194.2 1285.48,-192.63 1285.48,-192.63 1285.48,-192.63 1282.17,-194.2 1284.16,-188.28 1277.04,-196.62" style=""></polygon>
+<polygon fill="white" stroke="none" points="888.47,-378.38 888.47,-418.38 1148.69,-418.38 1148.69,-378.38 888.47,-378.38" style=""></polygon>
+<text text-anchor="start" x="986.3" y="-400.78" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="14.00" style="">1 to Many</text>
+<text text-anchor="start" x="894.47" y="-386.78" font-family="Helvetica,sans-Serif" font-size="14.00" style="">(One User can have Multiple Payments)</text>
+</g>
+<!-- DYNAMIC_FIELD -->
+<g id="node4" class="node">
+<title style="">DYNAMIC_FIELD</title>
+<polygon fill="#e67e22" stroke="none" points="2168.06,-872.5 2168.06,-913.5 2518.06,-913.5 2518.06,-872.5 2168.06,-872.5" style=""></polygon>
+<polygon fill="none" stroke="black" points="2168.06,-872.5 2168.06,-913.5 2518.06,-913.5 2518.06,-872.5 2168.06,-872.5" style=""></polygon>
+<text text-anchor="start" x="2196.36" y="-889.1" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="16.00" fill="white" style="">4. DYNAMIC_FIELD (Saved Form Data)</text>
+<polygon fill="#d6eaf8" stroke="none" points="2168.06,-831.5 2168.06,-872.5 2212.06,-872.5 2212.06,-831.5 2168.06,-831.5" style=""></polygon>
+<polygon fill="none" stroke="black" points="2168.06,-831.5 2168.06,-872.5 2212.06,-872.5 2212.06,-831.5 2168.06,-831.5" style=""></polygon>
+<text text-anchor="start" x="2178.94" y="-848.1" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="16.00" style="">PK</text>
+<polygon fill="none" stroke="black" points="2212.06,-831.5 2212.06,-872.5 2316.06,-872.5 2316.06,-831.5 2212.06,-831.5" style=""></polygon>
+<text text-anchor="start" x="2223.06" y="-848.1" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="16.00" style="">field_id</text>
+<polygon fill="none" stroke="black" points="2316.06,-831.5 2316.06,-872.5 2518.06,-872.5 2518.06,-831.5 2316.06,-831.5" style=""></polygon>
+<text text-anchor="start" x="2327.06" y="-847.1" font-family="Helvetica,sans-Serif" font-size="16.00" style="">UUID</text>
+<polygon fill="#fad7a1" stroke="none" points="2168.06,-790.5 2168.06,-831.5 2212.06,-831.5 2212.06,-790.5 2168.06,-790.5" style=""></polygon>
+<polygon fill="none" stroke="black" points="2168.06,-790.5 2168.06,-831.5 2212.06,-831.5 2212.06,-790.5 2168.06,-790.5" style=""></polygon>
+<text text-anchor="start" x="2179.83" y="-807.1" font-family="Helvetica,sans-Serif" font-style="italic" font-size="16.00" style="">FK</text>
+<polygon fill="none" stroke="black" points="2212.06,-790.5 2212.06,-831.5 2316.06,-831.5 2316.06,-790.5 2212.06,-790.5" style=""></polygon>
+<text text-anchor="start" x="2223.06" y="-807.1" font-family="Helvetica,sans-Serif" font-style="italic" font-size="16.00" style="">folder_id</text>
+<polygon fill="none" stroke="black" points="2316.06,-790.5 2316.06,-831.5 2518.06,-831.5 2518.06,-790.5 2316.06,-790.5" style=""></polygon>
+<text text-anchor="start" x="2327.06" y="-806.1" font-family="Helvetica,sans-Serif" font-size="16.00" style="">UUID</text>
+<polygon fill="none" stroke="black" points="2168.06,-749.5 2168.06,-790.5 2212.06,-790.5 2212.06,-749.5 2168.06,-749.5" style=""></polygon>
+<polygon fill="none" stroke="black" points="2212.06,-749.5 2212.06,-790.5 2316.06,-790.5 2316.06,-749.5 2212.06,-749.5" style=""></polygon>
+<text text-anchor="start" x="2222.69" y="-765.1" font-family="Helvetica,sans-Serif" font-size="16.00" style="">label_name</text>
+<polygon fill="none" stroke="black" points="2316.06,-749.5 2316.06,-790.5 2518.06,-790.5 2518.06,-749.5 2316.06,-749.5" style=""></polygon>
+<text text-anchor="start" x="2326.87" y="-765.1" font-family="Helvetica,sans-Serif" font-size="16.00" style="">VARCHAR (e.g., 'CGPA')</text>
+<polygon fill="none" stroke="black" points="2168.06,-708.5 2168.06,-749.5 2212.06,-749.5 2212.06,-708.5 2168.06,-708.5" style=""></polygon>
+<polygon fill="none" stroke="black" points="2212.06,-708.5 2212.06,-749.5 2316.06,-749.5 2316.06,-708.5 2212.06,-708.5" style=""></polygon>
+<text text-anchor="start" x="2223.06" y="-724.1" font-family="Helvetica,sans-Serif" font-size="16.00" style="">label_value</text>
+<polygon fill="none" stroke="black" points="2316.06,-708.5 2316.06,-749.5 2518.06,-749.5 2518.06,-708.5 2316.06,-708.5" style=""></polygon>
+<text text-anchor="start" x="2327.06" y="-724.1" font-family="Helvetica,sans-Serif" font-size="16.00" style="">TEXT (e.g., '8.5')</text>
+<polygon fill="none" stroke="black" points="2168.06,-667.5 2168.06,-708.5 2212.06,-708.5 2212.06,-667.5 2168.06,-667.5" style=""></polygon>
+<polygon fill="none" stroke="black" points="2212.06,-667.5 2212.06,-708.5 2316.06,-708.5 2316.06,-667.5 2212.06,-667.5" style=""></polygon>
+<text text-anchor="start" x="2223.06" y="-683.1" font-family="Helvetica,sans-Serif" font-size="16.00" style="">is_private</text>
+<polygon fill="none" stroke="black" points="2316.06,-667.5 2316.06,-708.5 2518.06,-708.5 2518.06,-667.5 2316.06,-667.5" style=""></polygon>
+<text text-anchor="start" x="2327.06" y="-683.1" font-family="Helvetica,sans-Serif" font-size="16.00" style="">BOOLEAN (Yes/No)</text>
+</g>
+<!-- DATA_FOLDER&#45;&gt;DYNAMIC_FIELD -->
+<g id="edge5" class="edge">
+<title style="">DATA_FOLDER:folder_id-&gt;DYNAMIC_FIELD:folder_id</title>
+<path fill="none" stroke="#2c3e50" stroke-width="2" d="M1660.44,-790.5C1805.4,-790.5 2004.04,-790.5 2149.48,-790.5" style=""></path>
+<polygon fill="#2c3e50" stroke="#2c3e50" stroke-width="2" points="1656.62,-795.5 1656.62,-785.5 1658.62,-785.5 1658.62,-795.5 1656.62,-795.5" style=""></polygon>
+<polyline fill="none" stroke="#2c3e50" stroke-width="2" points="1655.62,-790.5 1660.62,-790.5" style=""></polyline>
+<polygon fill="#2c3e50" stroke="#2c3e50" stroke-width="2" points="2149.63,-790.5 2159.63,-795 2155.3,-790.5 2158.96,-790.5 2158.96,-790.5 2158.96,-790.5 2155.3,-790.5 2159.63,-786 2149.63,-790.5" style=""></polygon>
+<polygon fill="white" stroke="none" points="1787.85,-790.5 1787.85,-830.5 2034.06,-830.5 2034.06,-790.5 1787.85,-790.5" style=""></polygon>
+<text text-anchor="start" x="1878.67" y="-812.9" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="14.00" style="">1 to Many</text>
+<text text-anchor="start" x="1793.85" y="-798.9" font-family="Helvetica,sans-Serif" font-size="14.00" style="">(One Folder contains Multiple Details)</text>
+</g>
+<!-- ARCHITECTURE_NOTE -->
+<g id="node7" class="node">
+<title style="">ARCHITECTURE_NOTE</title>
+<polygon fill="#fef9e7" stroke="black" points="755.31,-1130.1 0,-1130.1 0,-874.9 761.31,-874.9 761.31,-1124.1 755.31,-1130.1" style=""></polygon>
+<polyline fill="none" stroke="black" points="755.31,-1130.1 755.31,-1124.1" style=""></polyline>
+<polyline fill="none" stroke="black" points="761.31,-1124.1 755.31,-1124.1" style=""></polyline>
+<text text-anchor="start" x="234.86" y="-1100.7" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="16.00" style="">Project Design Highlights (Viva Notes)</text>
+<text text-anchor="start" x="210.82" y="-1061.5" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="16.00" style="">1. Why Folders &amp; Fields are separate tables?</text>
+<text text-anchor="start" x="63.67" y="-1045.5" font-family="Helvetica,sans-Serif" font-size="16.00" style=""> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Agar kal user ko apni profile me koi nayi detail (jaise 'Blood Group') add karni ho, </text>
+<text text-anchor="start" x="20" y="-1029.5" font-family="Helvetica,sans-Serif" font-size="16.00" style=""> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;toh hume database nahi todna padega. Wo naya row banakar save kar lega. (Highly Scalable)</text>
+<text text-anchor="start" x="109.41" y="-993.5" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="16.00" style="">2. Why are Templates storing Variables as JSON?</text>
+<text text-anchor="start" x="20" y="-977.5" font-family="Helvetica,sans-Serif" font-size="16.00" style=""> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Taaki jab extension khule, toh JSON format ko padh kar turant utne hi </text>
+<text text-anchor="start" x="69.79" y="-961.5" font-family="Helvetica,sans-Serif" font-size="16.00" style=""> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;input boxes screen par dikha de. Isse speed fast hoti hai.</text>
+<text text-anchor="start" x="204.98" y="-925.5" font-family="Helvetica,sans-Serif" font-weight="bold" font-size="16.00" style="">3. What is 'is_private' in Fields?</text>
+<text text-anchor="start" x="20" y="-909.5" font-family="Helvetica,sans-Serif" font-size="16.00" style=""> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ye security feature hai. Agar kisi detail par is_private = Yes hai, toh extension </text>
+<text text-anchor="start" x="60.24" y="-893.5" font-family="Helvetica,sans-Serif" font-size="16.00" style=""> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;usko form me tab tak nahi bharega jab tak user khud allow na kare.</text>
+</g>
+</g>
+</svg></div><button class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorInherit MuiIconButton-sizeSmall css-1w0t2yh-nu-fullscreenWhenNotFullscreen" tabindex="0" type="button" id="fullscreen" aria-label="Fullscreen"><svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-vubbuv" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="OpenInFullIcon"><path d="M21 11V3h-8l3.29 3.29-10 10L3 13v8h8l-3.29-3.29 10-10z"></path></svg><span class="MuiTouchRipple-root css-w0pj6f"></span></button></div></div></div></div></div></body></html>

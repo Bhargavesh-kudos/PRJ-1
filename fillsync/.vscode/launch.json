@@ -1,0 +1,16 @@
+{
+  // VS Code Launch configuration for FillSync
+  // Press F5 to open http://localhost:5173 in your default browser automatically
+  "version": "0.2.0",
+  "configurations": [
+    {
+      // Opens the FillSync website in Chrome when you press F5
+      "name": "🌐 Open FillSync in Browser",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:5173",
+      "webRoot": "${workspaceFolder}/users/frontend/src",
+      "preLaunchTask": "🚀 Start FillSync (Both Servers)"
+    }
+  ]
+}

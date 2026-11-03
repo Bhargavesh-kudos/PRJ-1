@@ -1,0 +1,50 @@
+﻿Feasibility Study
+
+1. Opportunity description:
+Every day, internet users, particularly students and professionals, spend a significant amount of time manually entering repetitive data into web forms (e.g., job applications, e-commerce checkouts, Tatkal travel bookings) and copy-pasting repetitive application emails. Right now, users deal with this using built-in browser autofill features or AI text generators. However, these solutions are fragmented: browser autofills lack centralized control and dynamic profile switching (mixing personal and professional data), while AI text tools require constant "context-switching" (switching tabs, copying, and pasting).
+FillSync brings intelligent form automation and smart text templates into one centralized web dashboard and a cross-platform Chromium extension. For users, it means one secure place to manage their data profiles (Travel, Job, Personal) and inject them seamlessly across any website. For power users, it eliminates the friction of bulk applications by injecting pre-formatted templates directly into text areas like Gmail or LinkedIn.
+2. Business objectives and scope:
+2.1 What We're Trying to Achieve
+Make it faster and highly accurate for users to fill out complex, multi-page web forms and applications.
+Eliminate the need for context-switching by allowing users to inject customized text templates directly into target platforms.
+Provide a centralized dashboard to manage dynamic data profiles independently of the user's primary browser ecosystem.
+Ensure the automation mimics human interaction to bypass basic bot-detection systems safely and legally.
+2.2 What's Included
+What we're building in this version:
+Login and profile management system on a secure web portal.
+Creation of categorized data folders (e.g., Personal, Travel, Professional) and Smart Templates with dynamic variables.
+A Chromium-based browser extension (compatible with Chrome, Edge, Brave) for DOM parsing and 1-click data injection.
+AI-powered field mapping (Gemini API) to identify complex or unconventionally named form fields.
+Simulated human-like delays and native browser events during injection to avoid anti-bot triggers.
+A Mock "Freemium" subscription model dividing users into Free and Premium tiers.
+What we're leaving out for now (can be added later):
+Mobile browser support (due to OS-level restrictions on mobile extensions).
+Apple Safari browser support (requires separate Xcode packaging).
+CAPTCHA bypass mechanisms (strictly left for manual user intervention to ensure ethical compliance).
+Real payment processing (only mock/test APIs will be used for the academic scope).
+3. Market and user research:
+3.1 Who This Is For
+This is built for students applying for multiple internships, professionals sending bulk networking emails, and general internet users who frequently book time-sensitive tickets or shop online. It is designed to be universally applicable across any web platform running on a desktop/laptop Chromium browser.
+3.2 What Exists Now and What's Missing
+3.3 What We're Basing This On
+Since we are engineering students navigating the placement season and frequently using travel portals, this comes from our own friction with repetitive typing and context-switching. The need for dynamic profiles became evident when built-in browser autofill mixed up personal addresses with professional resumes. The integration of AI for unidentifiable fields and Smart Templates was derived from observing how students actively use AI tools but struggle with the copy-paste overhead.
+4. Technical feasibility:
+The proposed system is technically feasible as a modern client-server application built using widely adopted web development technologies. The overall architecture ensures secure cross-origin communication between a web portal and a browser extension.
+The system will consist of the following core technical components:
+A responsive web-based frontend (Dashboard) developed using modern UI frameworks for user profile and template management.
+A Chromium Browser Extension (Manifest V3 architecture) utilizing background scripts and content scripts to interact with the target webpage's Document Object Model (DOM).
+A NoSQL database system (e.g., MongoDB/Firebase) to efficiently store, retrieve, and normalize structured data (Profiles, Templates, User Roles).
+Integration of third-party RESTful APIs, specifically the Google Gemini API, to dynamically analyze and map unconventional HTML form tags.
+Implementation of security mechanisms, including secure authentication (OAuth/JWT), HTTPS data transmission, and Cross-Origin Resource Sharing (CORS) policies to protect user data during extension-server communication.
+5. Financial viability:
+The development cost of FillSync is expected to be minimal due to the utilization of open-source libraries and free-tier developer tools.
+The major costs associated with the development, launch, and maintenance of the system may include:
+Development Costs: Primarily zero, utilizing free IDEs and open-source frameworks.
+Hosting & Database Costs: Free-tier cloud hosting (e.g., Vercel/Netlify) and free-tier NoSQL database clusters (e.g., MongoDB Atlas) will be sufficient for the academic scope.
+Third-Party APIs: The Google Gemini API provides a robust free tier for developers which is adequate for system operations and testing.
+Domain Costs: A domain registration cost may be required if the web portal is made officially public.
+6. Risk assessment:
+The development and implementation of FillSync involve several technical and security-related risks. The major risks and proposed mitigation strategies are as follows:
+7. Decision and recommendations:
+The technical assessment indicates that the system can be successfully developed using a conventional Client-Server architecture paired with a Chromium extension manifest. The core functionality leverages standard web technologies (HTML, CSS, JavaScript) alongside a NoSQL database, making it highly suitable for implementation within the available academic resources and timeline.
+From an operational perspective, FillSync offers a highly practical utility that solves a real-world productivity bottleneck. By keeping the scope restricted to desktop Chromium browsers and avoiding native mobile app development, the project remains highly achievable while delivering a commercial-grade SaaS experience complete with dynamic profiles, AI integration, and Smart Templates.

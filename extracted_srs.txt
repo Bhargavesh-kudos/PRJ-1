@@ -1,0 +1,97 @@
+﻿Software Requirements Specification (SRS)
+FillSync – Smart Form Automation & Profile Management System
+
+1. Introduction
+1.1 Purpose of this Document
+The purpose of this Software Requirements Specification (SRS) document is to provide a detailed description of the FillSync system, its objectives, scope, users, functional requirements, constraints, and quality requirements. This document serves as a reference for the development team and academic evaluators by defining the expected technical architecture and functionality of the proposed system.
+1.2 Scope of the Development Project
+FillSync is a centralized web-based profile management platform accompanied by a Chromium-based browser extension. The system is designed to automate repetitive data entry tasks and manage reusable text templates across various web platforms.
+The system will provide services including Dynamic Profile Management (Personal, Travel, Professional), Smart Text Templates for emails/messages, 1-Click Form Data Injection via Document Object Model (DOM) manipulation, and AI-powered field mapping for unrecognized web forms.
+The system is intended to reduce manual data entry errors, eliminate context-switching during bulk applications, and securely bypass generic bot-detection by simulating human-like typing and clicking delays.
+1.3 Definitions, Abbreviations and Acronyms
+1.4 References
+The requirements and structure of this document are based on the provided IEEE-format Software Requirements Specification example and the initial feasibility study prepared for the FillSync capstone project.
+1.5 Overview
+The remaining sections provide an overall description of FillSync, including its product functions, users, constraints, assumptions, dependencies, detailed functional requirements, performance requirements, logical database requirements, and quality attributes.
+2. Overall Description
+2.1 Product Perspective
+FillSync will operate using a Client-Server architecture. The server-side comprises a web-based dashboard and a NoSQL database for managing user records securely. The client-side consists of a Manifest V3 compliant Chromium browser extension that communicates with the backend via RESTful APIs to fetch user data and execute DOM manipulation on target websites.
+2.2 Product Functions
+Authenticate and authorize users based on Free or Premium subscription roles.
+Allow users to create, update, and manage dynamic data profiles categorized into specific folders (Travel, Jobs, etc.).
+Allow users to create and manage Smart Templates with dynamic text variables.
+Scan and parse target webpage DOM structures to identify input fields accurately.
+Execute human-like data injection (using artificial delays and native browser events) to fill forms.
+Utilize Google Gemini AI API as a fallback to identify dynamic or complex form fields.
+Halt automated execution securely upon detection of a CAPTCHA or high-security payment gateway iframe.
+2.3 User Characteristics
+The system is intended for the following primary user groups:
+Students / Job Seekers: Use the system for rapid, bulk internship/job applications and customized HR cold-emailing.
+General Users: Use the system for time-sensitive travel bookings (e.g., IRCTC) and e-commerce checkouts.
+Premium / Power Users: Utilize unlimited templates and multi-step form automation.Users are expected to possess basic web browsing skills and familiarity with installing browser extensions.
+2.4 General Constraints, Assumptions and Dependencies
+The extension will strictly support Chromium-based desktop browsers (Google Chrome, Microsoft Edge, Brave). Mobile browsers and Apple Safari are excluded from the current scope.
+The system requires an active internet connection to sync data between the web portal and the extension.
+The system heavily depends on the Google Gemini API for the AI Field Mapping feature.
+The script is constrained to stop at CAPTCHAs to ensure ethical use and compliance with target website policies.
+The project is subject to the available academic development timeline and resources.
+2.5 Apportioning of Requirements
+The primary requirements of the initial system include User Authentication, Database Schema implementation, Profile/Template Management, and Core DOM Injection scripts. Additional functionalities such as native Android autofill services, Safari support, and highly advanced analytics are deferred to future versions beyond the academic scope.
+3. Specific Requirements
+3.1 External Interface Requirements
+The system will feature a responsive web dashboard built with modern UI frameworks for account management. The browser extension will feature a lightweight, intuitive Popup HTML interface. The system will programmatically interact with external web pages (DOM) to inject data, and communicate with external APIs (Razorpay Test API, Gemini API) via structured HTTP requests.
+3.2 Detailed Description of Functional Requirements
+3.2.1 User Authentication and Authorization
+Purpose: To verify user identity and provide role-based access (Free vs. Premium).
+Inputs: User credentials (Email/Password or Google OAuth).
+Processing: Validates credentials, generates secure session tokens (JWT), and checks subscription status.
+Outputs: Access to the user dashboard and active API connection for the extension.
+3.2.2 Dynamic Profile Management
+Purpose: To allow users to store common data and category-specific data securely.
+Inputs: Text strings, numbers, dates, and dropdown selections via web forms.
+Processing: Validates data and stores it in categorized NoSQL collections (Master Profile, Travel Folder, Professional Folder).
+Outputs: Synced data available for instant retrieval by the browser extension.
+3.2.3 Smart Templates Management
+Purpose: To store and process customizable text paragraphs for emails and messages.
+Inputs: Paragraph text containing bracketed variables (e.g., "Hello {HR_Name}").
+Processing: Saves the template. When requested by the extension, extracts the variables and prompts the user for real-time input to construct the final string.
+Outputs: A fully formatted text block ready for injection.
+3.2.4 DOM Parsing and Data Injection (Human-Like Automation)
+Purpose: To automatically populate target web forms safely.
+Inputs: User trigger (clicking "Fill Form" in the extension).
+Processing: The Content Script scans the page's HTML tags. It matches input IDs/Labels with database records. It injects data using setTimeout delays and dispatches native mouse/keyboard events (dispatchEvent) to mimic human interaction.
+Outputs: Successfully populated web forms without triggering standard anti-bot alarms.
+3.2.5 AI-Powered Field Mapping
+Purpose: To identify obscure or dynamically generated HTML input names.
+Inputs: Unrecognized HTML snippet from the target webpage.
+Processing: Transmits the snippet to the Gemini API with a system prompt. The AI returns a structured JSON mapping indicating the field type (e.g., mapping "id_x99_janam" to "Date of Birth").
+Outputs: Successful data injection in complex, non-standard forms.
+3.2.6 Subscription and Access Management
+Purpose: To enforce the Freemium business logic.
+Inputs: Mock payment success payload via Razorpay Test API.
+Processing: Upgrades user role in the database from "Free" to "Premium", unlocking unlimited templates and multi-step automation features.
+Outputs: Updated user dashboard UI and unlocked extension features.
+3.3 Performance Requirements
+Data retrieval and form injection must execute within 3 seconds to maintain user efficiency.
+The AI fallback mechanism must process and return field classifications within 5 seconds.
+The extension must remain lightweight, consuming minimal browser RAM to prevent system lag.
+3.4 Logical Database Requirements
+The NoSQL database will maintain structured JSON-like documents encompassing:
+Users Collection: Authentication details, Subscription Role (Free/Premium).
+Global Profile Collection: Universal data (Name, DOB, Phone).
+Categorized Folders Collection: Travel Data, Job Data, Custom Data.
+Templates Collection: Saved text strings and extracted variable arrays.
+3.5 Quality Attributes
+Usability: The extension must require no more than two clicks to fill a standard form.
+Security: The system will explicitly strictly block the storage of highly sensitive data (Passwords, CVVs).
+Compliance: The DOM script will immediately halt execution if an iframe payment gateway or CAPTCHA is detected.
+Maintainability: Code will be strictly modular, separating the Web Frontend, Backend API, and Extension scripts.
+Scalability: The NoSQL schema will support dynamic scaling of user records and custom fields.
+3.6 Other Requirements
+The browser extension must strictly adhere to Google Chrome's Manifest V3 security and performance guidelines. Standard software development life cycle (SDLC) practices, including version control (Git) and modular testing, will be followed.
+4. Change History
+5. Document Approvers
+SRS for FillSync – Smart Form Automation & Profile Management System approved by:
+Name: ______________________________
+Designation: ________________________
+Date: ______________________________

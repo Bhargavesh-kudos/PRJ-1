@@ -1,0 +1,12 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "🚀 Launch FillSync (Both Servers)",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/fillsync/start-project.js",
+      "console": "integratedTerminal"
+    }
+  ]
+}

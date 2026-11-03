@@ -1,0 +1,9 @@
+{
+  "name": "fillsync-project",
+  "version": "1.0.0",
+  "description": "FillSync - Smart Form Automation & Profile Management System (PRJ-1)",
+  "type": "module",
+  "scripts": {
+    "start": "node start-project.js"
+  }
+}
