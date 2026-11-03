@@ -7,7 +7,7 @@
 
 import React from "react";
 import { Link } from "react-router-dom";
-import { Zap, LayoutDashboard } from "lucide-react";
+import { Zap, LayoutDashboard, Download, Chrome } from "lucide-react";
 import { useAuth } from "../../context/AuthContext.jsx";
 
 export default function PublicNavbar() {
@@ -45,6 +45,16 @@ export default function PublicNavbar() {
 
         {/* Right CTA Buttons */}
         <div className="flex items-center gap-3">
+          <a
+            href="/fillsync-extension.zip"
+            download="fillsync-extension.zip"
+            className="hidden sm:inline-flex items-center gap-1.5 px-3 py-2 rounded-lg border border-teal-500/40 bg-teal-50 hover:bg-teal-100 text-teal-800 text-xs font-bold transition-all shadow-xs"
+            title="Download FillSync Chrome Extension ZIP"
+          >
+            <Download className="w-3.5 h-3.5 text-teal-600" />
+            <span>Download Extension</span>
+          </a>
+
           {user ? (
             <Link
               to={user.role === "superadmin" ? "/admin" : "/dashboard"}

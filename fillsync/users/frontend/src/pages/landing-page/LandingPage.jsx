@@ -23,6 +23,7 @@ import {
   CheckCircle2,
   ArrowRight,
   Chrome,
+  Download,
   Send
 } from "lucide-react";
 import PublicNavbar from "../../components/navbar/PublicNavbar.jsx";
@@ -127,10 +128,19 @@ export default function LandingPage() {
               to="/signup"
               className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-teal-500 hover:bg-teal-600 text-white font-semibold shadow-sm transition-all"
             >
-              <Chrome className="w-5 h-5" />
               <span>Get Started Free</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
+
+            <a
+              href="/fillsync-extension.zip"
+              download="fillsync-extension.zip"
+              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-semibold shadow-sm transition-all group"
+            >
+              <Chrome className="w-5 h-5 text-teal-400 group-hover:scale-110 transition-transform" />
+              <span>Download Chrome Extension (.zip)</span>
+              <Download className="w-4 h-4 text-teal-400" />
+            </a>
 
             <Link
               to="/login"
@@ -138,6 +148,19 @@ export default function LandingPage() {
             >
               Login to Dashboard
             </Link>
+          </div>
+
+          {/* Quick 3-Step Extension Installation Note */}
+          <div className="mt-6 max-w-xl mx-auto p-4 rounded-xl bg-teal-50/80 border border-teal-200 text-xs text-slate-700 text-left flex flex-col gap-1.5 shadow-xs">
+            <div className="font-bold text-teal-900 flex items-center gap-1.5">
+              <Chrome className="w-4 h-4 text-teal-600" />
+              <span>How to Install in Google Chrome (Takes 30 Seconds):</span>
+            </div>
+            <ol className="list-decimal list-inside space-y-0.5 text-slate-600 pl-1">
+              <li>Click <strong>Download Chrome Extension</strong> above and extract the downloaded <code>fillsync-extension.zip</code>.</li>
+              <li>In Chrome, go to <code>chrome://extensions</code> and switch on <strong>Developer mode</strong> (top-right).</li>
+              <li>Click <strong>Load unpacked</strong> and select the extracted folder. Done! ✅</li>
+            </ol>
           </div>
 
           {/* Trust Badges */}

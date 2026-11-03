@@ -11,6 +11,8 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
+import fs from "fs";
+import path from "path";
 
 import { initDatabase, readDB, saveDB } from "./config/db.js";
 import authRoutes from "./routes/authRoutes.js";
@@ -38,10 +40,19 @@ app.use(express.json());
 app.get("/api/health", (req, res) => {
   res.json({
     success: true,
-    service: "FillSync Localhost Backend API (Users + SuperAdmin)",
+    service: "FillSync Backend API (Users + SuperAdmin)",
     encryption: "AES-256-CBC Active",
     timestamp: new Date().toISOString()
   });
+});
+
+// 3.5 Extension Download Route (Serves the ZIP file)
+app.get("/api/extension/download", (req, res) => {
+  const zipPath = path.resolve(process.cwd(), "../frontend/public/fillsync-extension.zip");
+  if (fs.existsSync(zipPath)) {
+    return res.download(zipPath, "fillsync-extension.zip");
+  }
+  return res.status(404).json({ success: false, message: "Extension ZIP not found." });
 });
 
 // 4. Public Contact / Support Ticket Submission Route

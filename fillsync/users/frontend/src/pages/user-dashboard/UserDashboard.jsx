@@ -17,7 +17,9 @@ import {
   PlusCircle,
   Sparkles,
   Crown,
-  Layers
+  Layers,
+  Chrome,
+  Download
 } from "lucide-react";
 import { useAuth } from "../../context/AuthContext.jsx";
 import { apiRequest } from "../../services/api.js";
@@ -79,6 +81,36 @@ export default function UserDashboard() {
             Upgrade to Premium
           </Link>
         )}
+      </div>
+
+      {/* Chrome Extension Download & Quick Setup Card */}
+      <div className="bg-gradient-to-r from-teal-500/10 via-slate-50 to-teal-500/5 p-5 rounded-2xl border border-teal-200/80 flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-xs">
+        <div className="flex items-start sm:items-center gap-3.5">
+          <div className="w-11 h-11 rounded-xl bg-slate-900 text-teal-400 flex items-center justify-center shrink-0 shadow-sm">
+            <Chrome className="w-6 h-6" />
+          </div>
+          <div>
+            <h3 className="text-sm font-bold text-slate-900 flex items-center gap-2">
+              <span>Install FillSync Browser Extension</span>
+              <span className="px-2 py-0.5 rounded-full bg-teal-100 text-teal-800 text-[10px] font-extrabold uppercase">
+                Chrome &bull; Edge &bull; Brave
+              </span>
+            </h3>
+            <p className="text-xs text-slate-600 mt-0.5">
+              Auto-fill government portals (UPSC/SSC), college admission forms, and IRCTC train tickets directly inside your browser.
+            </p>
+          </div>
+        </div>
+        <div className="flex items-center gap-2.5 shrink-0">
+          <a
+            href="/fillsync-extension.zip"
+            download="fillsync-extension.zip"
+            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-teal-500 hover:bg-teal-600 text-white text-xs font-bold shadow-sm transition-all"
+          >
+            <Download className="w-4 h-4" />
+            <span>Download Extension (.zip)</span>
+          </a>
+        </div>
       </div>
 
       {/* 4 Metric Stat Cards */}
