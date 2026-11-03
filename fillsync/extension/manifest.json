@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "description": "1-Click Human-Like Form Automation & Smart Template Injector synced with FillSync Localhost Dashboard.",
   "permissions": ["activeTab", "scripting", "storage"],
-  "host_permissions": ["http://localhost:5000/*"],
+  "host_permissions": ["http://localhost:5000/*", "https://*.onrender.com/*", "https://*.vercel.app/*", "*://*/*"],
   "action": {
     "default_popup": "popup/popup.html",
     "default_title": "FillSync Form Automation"

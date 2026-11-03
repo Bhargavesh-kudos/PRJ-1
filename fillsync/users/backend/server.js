@@ -90,8 +90,8 @@ app.use("/api/admin", adminRoutes);
 // Also keep /api/admin/subscribe/* alias for backward compatibility
 app.use("/api/admin/subscribe", subscriptionRoutes);
 
-// 7. Start Server on Localhost
-app.listen(PORT, () => {
+// 7. Start Server (binds to 0.0.0.0 for Cloud Deployment & Localhost)
+app.listen(PORT, "0.0.0.0", () => {
   console.log("============================================================");
   console.log(`🚀 FillSync Backend Server running on http://localhost:${PORT}`);
   console.log(`🔒 AES-256 Field Encryption: ENABLED`);

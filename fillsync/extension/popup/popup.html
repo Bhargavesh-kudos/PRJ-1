@@ -192,6 +192,19 @@
     </div>
 
     <div class="msg" id="statusMsg"></div>
+
+    <!-- API Server Switcher (Supports Localhost & Live Deployed Server) -->
+    <div style="margin-top: 12px; padding-top: 8px; border-top: 1px solid #1e293b; text-align: center;">
+      <span id="apiStatusText" style="font-size: 10px; color: #64748b; cursor: pointer; text-decoration: underline;">
+        🔗 Server: Localhost (Port 5000) • Switch
+      </span>
+      <div id="apiUrlBox" style="display: none; margin-top: 6px;">
+        <input type="text" id="customApiUrlInput" placeholder="https://fillsync-api.onrender.com/api" style="font-size: 11px; margin-bottom: 4px;" />
+        <button class="btn-secondary" id="saveApiUrlBtn" style="padding: 5px; font-size: 11px; margin-bottom: 2px;">Save Server URL</button>
+        <button class="btn-secondary" id="resetApiUrlBtn" style="padding: 5px; font-size: 10px; background: transparent; border: none; color: #94a3b8;">Reset to Localhost</button>
+      </div>
+    </div>
+
     <script src="popup.js"></script>
   </body>
 </html>

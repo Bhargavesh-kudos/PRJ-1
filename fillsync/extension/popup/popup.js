@@ -7,7 +7,8 @@
  * ============================================================================
  */
 
-const API_BASE = "http://localhost:5000/api";
+// Dynamic API Base: Defaults to Localhost 5000, or uses saved Live Deployed Server URL
+let API_BASE = localStorage.getItem("fillsync_api_url") || "http://localhost:5000/api";
 
 const loginSection = document.getElementById("loginSection");
 const controlsSection = document.getElementById("controlsSection");
@@ -16,6 +17,46 @@ const templateSelect = document.getElementById("templateSelect");
 const statusMsg = document.getElementById("statusMsg");
 const planBadge = document.getElementById("planBadge");
 const userNameDisplay = document.getElementById("userNameDisplay");
+const apiStatusText = document.getElementById("apiStatusText");
+const apiUrlBox = document.getElementById("apiUrlBox");
+const customApiUrlInput = document.getElementById("customApiUrlInput");
+const saveApiUrlBtn = document.getElementById("saveApiUrlBtn");
+const resetApiUrlBtn = document.getElementById("resetApiUrlBtn");
+
+function updateApiStatusLabel() {
+  if (!apiStatusText) return;
+  const isLocal = API_BASE.includes("localhost") || API_BASE.includes("127.0.0.1");
+  apiStatusText.textContent = isLocal
+    ? "🔗 Server: Localhost (Port 5000) • Switch"
+    : `🔗 Server: Live (${new URL(API_BASE).hostname}) • Switch`;
+}
+updateApiStatusLabel();
+
+if (apiStatusText && apiUrlBox) {
+  apiStatusText.addEventListener("click", () => {
+    apiUrlBox.style.display = apiUrlBox.style.display === "none" ? "block" : "none";
+    if (customApiUrlInput) customApiUrlInput.value = API_BASE;
+  });
+
+  saveApiUrlBtn?.addEventListener("click", () => {
+    const rawVal = customApiUrlInput.value.trim().replace(/\/+$/, "");
+    if (!rawVal) return;
+    const finalUrl = rawVal.endsWith("/api") ? rawVal : `${rawVal}/api`;
+    localStorage.setItem("fillsync_api_url", finalUrl);
+    API_BASE = finalUrl;
+    updateApiStatusLabel();
+    apiUrlBox.style.display = "none";
+    statusMsg.textContent = "Server URL updated! Please sign in.";
+  });
+
+  resetApiUrlBtn?.addEventListener("click", () => {
+    localStorage.removeItem("fillsync_api_url");
+    API_BASE = "http://localhost:5000/api";
+    updateApiStatusLabel();
+    apiUrlBox.style.display = "none";
+    statusMsg.textContent = "Reset to Localhost (Port 5000).";
+  });
+}
 
 // Premium toggles
 const aiMappingToggle = document.getElementById("aiMappingToggle");
