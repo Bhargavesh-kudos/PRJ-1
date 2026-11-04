@@ -5,13 +5,19 @@
  * ============================================================================
  */
 
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Zap, LayoutDashboard, Download, Chrome } from "lucide-react";
 import { useAuth } from "../../context/AuthContext.jsx";
+import ExtensionInstallModal from "../extension-install-modal/ExtensionInstallModal.jsx";
 
 export default function PublicNavbar() {
   const { user } = useAuth();
+  const [isInstallModalOpen, setIsInstallModalOpen] = useState(false);
+
+  function handleDownloadClick() {
+    setIsInstallModalOpen(true);
+  }
 
   return (
     <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200">
@@ -35,6 +41,9 @@ export default function PublicNavbar() {
           <a href="#how-it-works" className="hover:text-teal-600 transition-colors">
             How It Works
           </a>
+          <a href="#installation" className="hover:text-teal-600 transition-colors">
+            Install Guide
+          </a>
           <a href="#pricing" className="hover:text-teal-600 transition-colors">
             Pricing
           </a>
@@ -48,8 +57,9 @@ export default function PublicNavbar() {
           <a
             href="/fillsync-extension.zip"
             download="fillsync-extension.zip"
+            onClick={handleDownloadClick}
             className="hidden sm:inline-flex items-center gap-1.5 px-3 py-2 rounded-lg border border-teal-500/40 bg-teal-50 hover:bg-teal-100 text-teal-800 text-xs font-bold transition-all shadow-xs"
-            title="Download FillSync Chrome Extension ZIP"
+            title="Download FillSync Chrome Extension ZIP & View Setup Guide"
           >
             <Download className="w-3.5 h-3.5 text-teal-600" />
             <span>Download Extension</span>
@@ -81,6 +91,11 @@ export default function PublicNavbar() {
           )}
         </div>
       </div>
+
+      <ExtensionInstallModal
+        isOpen={isInstallModalOpen}
+        onClose={() => setIsInstallModalOpen(false)}
+      />
     </header>
   );
 }

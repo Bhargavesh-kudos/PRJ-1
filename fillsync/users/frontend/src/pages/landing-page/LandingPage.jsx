@@ -24,13 +24,28 @@ import {
   ArrowRight,
   Chrome,
   Download,
-  Send
+  Send,
+  Copy,
+  Check,
+  ShieldCheck,
+  Puzzle,
+  ExternalLink
 } from "lucide-react";
 import PublicNavbar from "../../components/navbar/PublicNavbar.jsx";
 import Footer from "../../components/footer/Footer.jsx";
+import ExtensionInstallModal from "../../components/extension-install-modal/ExtensionInstallModal.jsx";
 import { apiRequest } from "../../services/api.js";
 
 export default function LandingPage() {
+  const [isInstallModalOpen, setIsInstallModalOpen] = useState(false);
+  const [activeBrowserTab, setActiveBrowserTab] = useState("chrome");
+  const [copiedUrl, setCopiedUrl] = useState(false);
+
+  function handleCopyUrl(url) {
+    navigator.clipboard.writeText(url);
+    setCopiedUrl(true);
+    setTimeout(() => setCopiedUrl(false), 2000);
+  }
   // State for the Contact / Support Ticket form
   const [contactForm, setContactForm] = useState({
     name: "",
@@ -135,7 +150,8 @@ export default function LandingPage() {
             <a
               href="/fillsync-extension.zip"
               download="fillsync-extension.zip"
-              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-semibold shadow-sm transition-all group"
+              onClick={() => setIsInstallModalOpen(true)}
+              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-semibold shadow-sm transition-all group cursor-pointer"
             >
               <Chrome className="w-5 h-5 text-teal-400 group-hover:scale-110 transition-transform" />
               <span>Download Chrome Extension (.zip)</span>
@@ -265,6 +281,212 @@ export default function LandingPage() {
                 Click "Fill This Form" in the extension popup and watch your data
                 get typed into any web form — Gmail, IRCTC, LinkedIn, and more.
               </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* =================================================================
+          SECTION 3.5: BROWSER SETUP & INSTALLATION GUIDE
+      ================================================================= */}
+      <section id="installation" className="py-20 bg-slate-900 text-white border-t border-slate-800">
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="text-center max-w-2xl mx-auto mb-12">
+            <span className="px-3.5 py-1 rounded-full bg-teal-500/20 text-teal-400 text-xs font-bold uppercase tracking-wider border border-teal-500/30">
+              Works on All Major Browsers
+            </span>
+            <h2 className="text-3xl font-extrabold mt-3">
+              How to Install FillSync in 30 Seconds
+            </h2>
+            <p className="text-slate-400 text-sm mt-2">
+              Select your browser below to see the exact 1-2-3 steps to load the extension.
+            </p>
+          </div>
+
+          {/* Browser Selector Tab Buttons */}
+          <div className="flex flex-wrap items-center justify-center gap-3 mb-10">
+            {[
+              { id: "chrome", name: "Google Chrome", icon: "🌐" },
+              { id: "edge", name: "Microsoft Edge", icon: "🔷" },
+              { id: "brave", name: "Brave Browser", icon: "🦁" },
+              { id: "opera", name: "Opera / Opera GX", icon: "🔴" }
+            ].map((tab) => {
+              const active = activeBrowserTab === tab.id;
+              return (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveBrowserTab(tab.id)}
+                  className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold transition-all ${
+                    active
+                      ? "bg-teal-500 text-slate-950 shadow-lg shadow-teal-500/20"
+                      : "bg-slate-800 border border-slate-700 text-slate-300 hover:border-slate-600 hover:text-white"
+                  }`}
+                >
+                  <span className="text-base">{tab.icon}</span>
+                  <span>{tab.name}</span>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Active Browser Steps Container */}
+          <div className="bg-slate-950/60 border border-slate-800 p-8 rounded-3xl max-w-3xl mx-auto space-y-5 shadow-2xl backdrop-blur-sm">
+            {/* Header banner */}
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-slate-800">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-teal-500/20 text-teal-400 flex items-center justify-center text-lg">
+                  {activeBrowserTab === "chrome" && "🌐"}
+                  {activeBrowserTab === "edge" && "🔷"}
+                  {activeBrowserTab === "brave" && "🦁"}
+                  {activeBrowserTab === "opera" && "🔴"}
+                </div>
+                <div>
+                  <h3 className="text-base font-bold">
+                    Installing on{" "}
+                    {activeBrowserTab === "chrome" && "Google Chrome"}
+                    {activeBrowserTab === "edge" && "Microsoft Edge"}
+                    {activeBrowserTab === "brave" && "Brave Browser"}
+                    {activeBrowserTab === "opera" && "Opera / Opera GX"}
+                  </h3>
+                  <p className="text-xs text-slate-400">
+                    Takes 30 seconds &bull; 100% Free &bull; No Store Account Needed
+                  </p>
+                </div>
+              </div>
+
+              <a
+                href="/fillsync-extension.zip"
+                download="fillsync-extension.zip"
+                className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-teal-500 hover:bg-teal-400 text-slate-950 text-xs font-extrabold shadow-md transition-all shrink-0"
+              >
+                <Download className="w-4 h-4" />
+                <span>Download Extension (.zip)</span>
+              </a>
+            </div>
+
+            {/* Steps list */}
+            <div className="space-y-3 pt-2">
+              {/* Step 1 */}
+              <div className="p-4 rounded-xl bg-slate-900/80 border border-slate-800/80 flex items-start gap-3.5">
+                <span className="w-6 h-6 rounded-lg bg-teal-500/20 text-teal-400 text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">
+                  1
+                </span>
+                <div>
+                  <h4 className="text-xs font-bold text-slate-200">
+                    Download &amp; Extract the ZIP
+                  </h4>
+                  <p className="text-xs text-slate-400 mt-0.5 leading-relaxed">
+                    Click <strong>Download Extension (.zip)</strong> and right-click the downloaded <code>fillsync-extension.zip</code> file to extract it.
+                  </p>
+                </div>
+              </div>
+
+              {/* Step 2 */}
+              <div className="p-4 rounded-xl bg-slate-900/80 border border-slate-800/80 flex items-start gap-3.5">
+                <span className="w-6 h-6 rounded-lg bg-teal-500/20 text-teal-400 text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">
+                  2
+                </span>
+                <div className="flex-1">
+                  <h4 className="text-xs font-bold text-slate-200">
+                    Open the Extensions Page
+                  </h4>
+                  <p className="text-xs text-slate-400 mt-0.5 leading-relaxed">
+                    Open a new tab in your browser and paste the link below in the address bar:
+                  </p>
+                  <div className="mt-2 flex items-center gap-2 max-w-sm">
+                    <code className="px-3 py-1.5 rounded-lg bg-slate-950 border border-slate-700 text-teal-300 font-mono text-xs select-all flex-1">
+                      {activeBrowserTab === "chrome" && "chrome://extensions"}
+                      {activeBrowserTab === "edge" && "edge://extensions"}
+                      {activeBrowserTab === "brave" && "brave://extensions"}
+                      {activeBrowserTab === "opera" && "opera://extensions"}
+                    </code>
+                    <button
+                      onClick={() =>
+                        handleCopyUrl(
+                          activeBrowserTab === "chrome"
+                            ? "chrome://extensions"
+                            : activeBrowserTab === "edge"
+                            ? "edge://extensions"
+                            : activeBrowserTab === "brave"
+                            ? "brave://extensions"
+                            : "opera://extensions"
+                        )
+                      }
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold transition-all shrink-0"
+                    >
+                      {copiedUrl ? (
+                        <>
+                          <Check className="w-3.5 h-3.5 text-emerald-400" />
+                          <span className="text-emerald-400">Copied!</span>
+                        </>
+                      ) : (
+                        <>
+                          <Copy className="w-3.5 h-3.5" />
+                          <span>Copy</span>
+                        </>
+                      )}
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              {/* Step 3 */}
+              <div className="p-4 rounded-xl bg-slate-900/80 border border-slate-800/80 flex items-start gap-3.5">
+                <span className="w-6 h-6 rounded-lg bg-teal-500/20 text-teal-400 text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">
+                  3
+                </span>
+                <div>
+                  <h4 className="text-xs font-bold text-slate-200">
+                    Switch ON Developer Mode
+                  </h4>
+                  <p className="text-xs text-slate-400 mt-0.5 leading-relaxed">
+                    {activeBrowserTab === "edge"
+                      ? "In the left-hand menu, turn the 'Developer mode' toggle switch ON."
+                      : "In the top-right corner of the Extensions page, switch the 'Developer mode' toggle to ON."}
+                  </p>
+                </div>
+              </div>
+
+              {/* Step 4 */}
+              <div className="p-4 rounded-xl bg-slate-900/80 border border-slate-800/80 flex items-start gap-3.5">
+                <span className="w-6 h-6 rounded-lg bg-teal-500/20 text-teal-400 text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">
+                  4
+                </span>
+                <div>
+                  <h4 className="text-xs font-bold text-slate-200">
+                    Click "Load unpacked" &amp; Select Folder
+                  </h4>
+                  <p className="text-xs text-slate-400 mt-0.5 leading-relaxed">
+                    Click the <strong>Load unpacked</strong> button and pick the extracted <code>extension</code> folder. FillSync will appear in your browser immediately!
+                  </p>
+                </div>
+              </div>
+
+              {/* Step 5 */}
+              <div className="p-4 rounded-xl bg-slate-900/80 border border-slate-800/80 flex items-start gap-3.5">
+                <span className="w-6 h-6 rounded-lg bg-teal-500/20 text-teal-400 text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">
+                  5
+                </span>
+                <div>
+                  <h4 className="text-xs font-bold text-slate-200">
+                    Pin to Toolbar &amp; Enjoy 1-Click Form Filling
+                  </h4>
+                  <p className="text-xs text-slate-400 mt-0.5 leading-relaxed">
+                    Click the puzzle icon 🧩 in your browser toolbar and pin FillSync. Now open any form on IRCTC, Google Forms, or college portals and fill it in 1 click!
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Why Developer Mode explanation */}
+            <div className="p-4 rounded-2xl bg-teal-950/40 border border-teal-500/30 text-xs text-teal-200 flex items-start gap-3 mt-4">
+              <ShieldCheck className="w-5 h-5 text-teal-400 shrink-0 mt-0.5" />
+              <div>
+                <p className="font-bold text-teal-300">Why does this require Developer Mode?</p>
+                <p className="text-[11px] text-teal-200/80 mt-0.5 leading-relaxed">
+                  Google Chrome and Chromium browsers intentionally block random websites from silently installing background software for security reasons. Developer Mode is the official, 100% free, and completely safe mechanism provided by Google to load verified extensions.
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -481,6 +703,11 @@ export default function LandingPage() {
       </section>
 
       <Footer />
+
+      <ExtensionInstallModal
+        isOpen={isInstallModalOpen}
+        onClose={() => setIsInstallModalOpen(false)}
+      />
     </div>
   );
 }
