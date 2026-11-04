@@ -20,7 +20,7 @@
       "status": "active",
       "formsFilledCount": 0,
       "createdAt": "2026-10-11T14:38:17.513Z",
-      "lastActive": "2026-11-03T14:00:58.248Z"
+      "lastActive": "2026-11-04T04:13:16.321Z"
     }
   ],
   "masterProfiles": [
@@ -1745,6 +1745,15 @@
     }
   ],
   "activityLogs": [
+    {
+      "id": "log_1793765596326_vlfv",
+      "userId": "user_1791729497389",
+      "userEmail": "bhargaveshpandit@gmail.com",
+      "action": "GOOGLE_LOGIN",
+      "details": "Bhargavesh signed in with Google",
+      "severity": "info",
+      "timestamp": "2026-11-04T04:13:16.326Z"
+    },
     {
       "id": "log_1793714458251_xky3",
       "userId": "user_1791729497389",
