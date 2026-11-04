@@ -11,7 +11,8 @@ import {
   loginUser,
   googleAuthUser,
   getKnownUserAccounts,
-  getCurrentUser
+  getCurrentUser,
+  resetPassword
 } from "../controllers/authController.js";
 import { protectRoute } from "../middleware/authMiddleware.js";
 
@@ -25,6 +26,9 @@ router.post("/login", loginUser);
 
 // POST /api/auth/google -> Login or Register with Google (Gmail)
 router.post("/google", googleAuthUser);
+
+// POST /api/auth/reset-password -> Reset or set new password
+router.post("/reset-password", resetPassword);
 
 // GET /api/auth/known-accounts -> Registered user emails for downward dropdown suggestions
 router.get("/known-accounts", getKnownUserAccounts);

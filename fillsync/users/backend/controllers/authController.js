@@ -329,3 +329,48 @@ export function getCurrentUser(req, res) {
     }
   });
 }
+
+/**
+ * POST /api/auth/reset-password
+ * Sets a new password for any registered user email.
+ */
+export function resetPassword(req, res) {
+  const { email, newPassword } = req.body;
+
+  if (!email || !newPassword) {
+    return res.status(400).json({
+      success: false,
+      message: "Please provide both Email and New Password."
+    });
+  }
+
+  const normalizedEmail = email.trim().toLowerCase();
+  const db = readDB();
+
+  const user = db.users.find((u) => u.email.toLowerCase() === normalizedEmail);
+  if (!user) {
+    return res.status(404).json({
+      success: false,
+      message: "No user found with this email."
+    });
+  }
+
+  user.passwordHash = bcrypt.hashSync(newPassword, 10);
+  saveDB(db);
+  addActivityLog(user.id, user.email, "PASSWORD_RESET", "Password was reset by user", "info");
+
+  const token = generateToken(user);
+
+  return res.json({
+    success: true,
+    message: "Password updated successfully!",
+    token,
+    user: {
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      role: user.role,
+      formsFilledCount: user.formsFilledCount
+    }
+  });
+}

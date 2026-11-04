@@ -31,6 +31,14 @@ export default function LoginPage() {
   const [googleEmail, setGoogleEmail] = useState("");
   const [googleName, setGoogleName] = useState("");
 
+  // Forgot / Reset Password state
+  const [showForgotModal, setShowForgotModal] = useState(false);
+  const [resetEmail, setResetEmail] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [resetLoading, setResetLoading] = useState(false);
+  const [resetError, setResetError] = useState("");
+  const [resetSuccess, setResetSuccess] = useState("");
+
   const { saveAuthSession } = useAuth();
   const navigate = useNavigate();
 
@@ -92,6 +100,33 @@ export default function LoginPage() {
     }
   }
 
+  async function handleResetPasswordSubmit(e) {
+    e.preventDefault();
+    setResetError("");
+    setResetSuccess("");
+    setResetLoading(true);
+
+    try {
+      const res = await apiRequest("/auth/reset-password", {
+        method: "POST",
+        body: JSON.stringify({ email: resetEmail.trim(), newPassword })
+      });
+
+      setResetSuccess("Password updated successfully! Logging you in...");
+      rememberAccountLocally(res.user);
+      saveAuthSession(res.token, res.user);
+
+      setTimeout(() => {
+        setShowForgotModal(false);
+        navigate("/dashboard");
+      }, 1000);
+    } catch (err) {
+      setResetError(err.message);
+    } finally {
+      setResetLoading(false);
+    }
+  }
+
   async function handleGoogleLogin(selectedEmail, selectedName) {
     const targetEmail = (selectedEmail || googleEmail).trim();
     const targetName = (selectedName || googleName).trim();
@@ -118,6 +153,33 @@ export default function LoginPage() {
       setError(err.message);
     } finally {
       setLoading(false);
+    }
+  }
+
+  async function handleResetPasswordSubmit(e) {
+    e.preventDefault();
+    setResetError("");
+    setResetSuccess("");
+    setResetLoading(true);
+
+    try {
+      const res = await apiRequest("/auth/reset-password", {
+        method: "POST",
+        body: JSON.stringify({ email: resetEmail.trim(), newPassword })
+      });
+
+      setResetSuccess("Password updated successfully! Logging you in...");
+      rememberAccountLocally(res.user);
+      saveAuthSession(res.token, res.user);
+
+      setTimeout(() => {
+        setShowForgotModal(false);
+        navigate("/dashboard");
+      }, 1000);
+    } catch (err) {
+      setResetError(err.message);
+    } finally {
+      setResetLoading(false);
     }
   }
 
@@ -163,8 +225,18 @@ export default function LoginPage() {
           </p>
 
           {error && (
-            <div className="mb-5 p-3.5 rounded-xl bg-rose-50 border border-rose-200 text-xs font-semibold text-rose-700">
-              {error}
+            <div className="mb-5 p-3.5 rounded-xl bg-rose-50 border border-rose-200 text-xs font-semibold text-rose-700 flex flex-col gap-1.5">
+              <p>{error}</p>
+              <button
+                type="button"
+                onClick={() => {
+                  setResetEmail(email || "bhargaveshpandit@gmail.com");
+                  setShowForgotModal(true);
+                }}
+                className="text-teal-700 font-bold hover:underline text-left inline-flex items-center gap-1 cursor-pointer"
+              >
+                ⚡ Click here to set your original password in 5 seconds →
+              </button>
             </div>
           )}
 
@@ -260,9 +332,21 @@ export default function LoginPage() {
 
             {/* Password Field */}
             <div>
-              <label className="block text-xs font-semibold text-slate-700 mb-1.5">
-                Password
-              </label>
+              <div className="flex items-center justify-between mb-1.5">
+                <label className="text-xs font-semibold text-slate-700">
+                  Password
+                </label>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setResetEmail(email || "bhargaveshpandit@gmail.com");
+                    setShowForgotModal(true);
+                  }}
+                  className="text-xs font-semibold text-teal-600 hover:text-teal-700 hover:underline cursor-pointer"
+                >
+                  Forgot / Set Password?
+                </button>
+              </div>
               <div className="relative">
                 <Lock className="w-4 h-4 text-slate-400 absolute left-3.5 top-3" />
                 <input
@@ -396,6 +480,93 @@ export default function LoginPage() {
                 </button>
               </div>
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* =====================================================================
+          FORGOT / SET ORIGINAL PASSWORD MODAL
+      ===================================================================== */}
+      {showForgotModal && (
+        <div className="fixed inset-0 z-50 bg-slate-950/60 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="bg-white rounded-2xl border border-slate-200 shadow-2xl w-full max-w-md overflow-hidden">
+            <div className="px-6 py-4 border-b border-slate-200 flex items-center justify-between bg-slate-900 text-white">
+              <div className="flex items-center gap-2.5">
+                <Lock className="w-5 h-5 text-teal-400" />
+                <div>
+                  <h3 className="text-sm font-bold">Set Your FillSync Password</h3>
+                  <p className="text-[11px] text-slate-400">Sync with your original preferred password</p>
+                </div>
+              </div>
+              <button
+                type="button"
+                onClick={() => setShowForgotModal(false)}
+                className="text-slate-400 hover:text-white"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            <form onSubmit={handleResetPasswordSubmit} className="p-6 space-y-4">
+              {resetError && (
+                <div className="p-3 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 text-xs font-semibold">
+                  {resetError}
+                </div>
+              )}
+              {resetSuccess && (
+                <div className="p-3 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-semibold">
+                  {resetSuccess}
+                </div>
+              )}
+
+              <div>
+                <label className="block text-xs font-bold text-slate-700 mb-1">
+                  Your Account Email
+                </label>
+                <input
+                  type="email"
+                  required
+                  value={resetEmail}
+                  onChange={(e) => setResetEmail(e.target.value)}
+                  placeholder="bhargaveshpandit@gmail.com"
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs focus:outline-none focus:border-teal-500"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold text-slate-700 mb-1">
+                  Enter Your Original / Desired Password
+                </label>
+                <input
+                  type="password"
+                  required
+                  value={newPassword}
+                  onChange={(e) => setNewPassword(e.target.value)}
+                  placeholder="Enter your original password here"
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs focus:outline-none focus:border-teal-500"
+                />
+                <p className="text-[11px] text-slate-500 mt-1">
+                  This will immediately become your permanent login password.
+                </p>
+              </div>
+
+              <div className="pt-2 flex items-center justify-end gap-2.5">
+                <button
+                  type="button"
+                  onClick={() => setShowForgotModal(false)}
+                  className="px-4 py-2.5 rounded-xl border border-slate-300 text-xs font-bold text-slate-600 hover:bg-slate-50"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  disabled={resetLoading}
+                  className="px-5 py-2.5 rounded-xl bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold shadow-sm transition-all"
+                >
+                  {resetLoading ? "Saving..." : "Save & Login Instantly"}
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       )}
