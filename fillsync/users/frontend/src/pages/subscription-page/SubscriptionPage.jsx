@@ -420,9 +420,10 @@ export default function SubscriptionPage() {
               <div className="p-3.5 rounded-xl bg-teal-50 border border-teal-200 text-xs text-teal-900 flex items-start gap-2.5">
                 <ShieldCheck className="w-5 h-5 text-teal-600 shrink-0 mt-0.5" />
                 <div>
-                  <p className="font-bold">Project Evaluation & Sandbox Mode</p>
+                  <p className="font-bold">Production & Localhost Ready</p>
                   <p className="text-[11px] text-teal-800 mt-0.5">
-                    Payments are running in safe sandbox simulation mode for project demonstration. Click below to activate the ₹99 Premium plan and test all features with zero risk!
+                    When deployed, your live Razorpay Keys route UPI/Card payments straight
+                    to your Indian bank account. In local mode, click below for instant upgrade!
                   </p>
                 </div>
               </div>
