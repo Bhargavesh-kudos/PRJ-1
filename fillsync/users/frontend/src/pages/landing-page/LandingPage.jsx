@@ -147,16 +147,15 @@ export default function LandingPage() {
               <ArrowRight className="w-4 h-4" />
             </Link>
 
-            <a
-              href="/fillsync-extension.zip"
-              download="fillsync-extension.zip"
+            <button
+              type="button"
               onClick={() => setIsInstallModalOpen(true)}
               className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-semibold shadow-sm transition-all group cursor-pointer"
             >
               <Chrome className="w-5 h-5 text-teal-400 group-hover:scale-110 transition-transform" />
-              <span>Download Chrome Extension (.zip)</span>
+              <span>Install Extension & Steps</span>
               <Download className="w-4 h-4 text-teal-400" />
-            </a>
+            </button>
 
             <Link
               to="/login"
@@ -173,7 +172,7 @@ export default function LandingPage() {
               <span>How to Install in Google Chrome (Takes 30 Seconds):</span>
             </div>
             <ol className="list-decimal list-inside space-y-0.5 text-slate-600 pl-1">
-              <li>Click <strong>Download Chrome Extension</strong> above and extract the downloaded <code>fillsync-extension.zip</code>.</li>
+              <li>Click <strong>Install Extension & Steps</strong> above to open setup guide and download <code>fillsync-extension.zip</code>.</li>
               <li>In Chrome, go to <code>chrome://extensions</code> and switch on <strong>Developer mode</strong> (top-right).</li>
               <li>Click <strong>Load unpacked</strong> and select the extracted folder. Done! ✅</li>
             </ol>

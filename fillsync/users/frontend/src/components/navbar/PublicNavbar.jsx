@@ -41,9 +41,13 @@ export default function PublicNavbar() {
           <a href="#how-it-works" className="hover:text-teal-600 transition-colors">
             How It Works
           </a>
-          <a href="#installation" className="hover:text-teal-600 transition-colors">
+          <button
+            type="button"
+            onClick={() => setIsInstallModalOpen(true)}
+            className="hover:text-teal-600 transition-colors cursor-pointer"
+          >
             Install Guide
-          </a>
+          </button>
           <a href="#pricing" className="hover:text-teal-600 transition-colors">
             Pricing
           </a>
@@ -54,16 +58,15 @@ export default function PublicNavbar() {
 
         {/* Right CTA Buttons */}
         <div className="flex items-center gap-3">
-          <a
-            href="/fillsync-extension.zip"
-            download="fillsync-extension.zip"
+          <button
+            type="button"
             onClick={handleDownloadClick}
-            className="hidden sm:inline-flex items-center gap-1.5 px-3 py-2 rounded-lg border border-teal-500/40 bg-teal-50 hover:bg-teal-100 text-teal-800 text-xs font-bold transition-all shadow-xs"
-            title="Download FillSync Chrome Extension ZIP & View Setup Guide"
+            className="hidden sm:inline-flex items-center gap-1.5 px-3 py-2 rounded-lg border border-teal-500/40 bg-teal-50 hover:bg-teal-100 text-teal-800 text-xs font-bold transition-all shadow-xs cursor-pointer"
+            title="View Setup Guide & Download Extension"
           >
             <Download className="w-3.5 h-3.5 text-teal-600" />
-            <span>Download Extension</span>
-          </a>
+            <span>Install Extension</span>
+          </button>
 
           {user ? (
             <Link

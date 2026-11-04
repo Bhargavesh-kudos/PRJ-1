@@ -23,11 +23,13 @@ import {
 } from "lucide-react";
 import { useAuth } from "../../context/AuthContext.jsx";
 import { apiRequest } from "../../services/api.js";
+import ExtensionInstallModal from "../../components/extension-install-modal/ExtensionInstallModal.jsx";
 
 export default function UserDashboard() {
   const { user } = useAuth();
   const [foldersCount, setFoldersCount] = useState(3);
   const [templatesCount, setTemplatesCount] = useState(3);
+  const [isInstallModalOpen, setIsInstallModalOpen] = useState(false);
 
   const isPremium = user?.role === "premium";
 
@@ -102,14 +104,14 @@ export default function UserDashboard() {
           </div>
         </div>
         <div className="flex items-center gap-2.5 shrink-0">
-          <a
-            href="/fillsync-extension.zip"
-            download="fillsync-extension.zip"
-            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-teal-500 hover:bg-teal-600 text-white text-xs font-bold shadow-sm transition-all"
+          <button
+            type="button"
+            onClick={() => setIsInstallModalOpen(true)}
+            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-teal-500 hover:bg-teal-600 text-white text-xs font-bold shadow-sm transition-all cursor-pointer"
           >
             <Download className="w-4 h-4" />
-            <span>Download Extension (.zip)</span>
-          </a>
+            <span>Install Extension & Steps</span>
+          </button>
         </div>
       </div>
 
@@ -339,6 +341,11 @@ export default function UserDashboard() {
           </table>
         </div>
       </div>
+
+      <ExtensionInstallModal
+        isOpen={isInstallModalOpen}
+        onClose={() => setIsInstallModalOpen(false)}
+      />
     </div>
   );
 }

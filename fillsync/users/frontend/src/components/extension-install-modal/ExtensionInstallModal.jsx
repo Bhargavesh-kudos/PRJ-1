@@ -333,19 +333,20 @@ export default function ExtensionInstallModal({ isOpen, onClose }) {
         {/* Scrollable Steps Content */}
         <div className="p-6 overflow-y-auto space-y-4">
           {/* Direct Download Action Button */}
-          <div className="p-4 rounded-2xl bg-teal-50 border border-teal-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div className="p-4 rounded-2xl bg-teal-50 border border-teal-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-xs">
             <div>
-              <p className="text-xs font-extrabold text-teal-950">
-                Step 0: Get the Extension Package
+              <p className="text-xs font-extrabold text-teal-950 flex items-center gap-1.5">
+                <Download className="w-4 h-4 text-teal-600" />
+                <span>Step 1: Download Extension File</span>
               </p>
               <p className="text-[11px] text-teal-800 mt-0.5">
-                Download the zip file if it hasn't already started automatically.
+                Click the button to download <code>fillsync-extension.zip</code> to your computer, then follow the setup steps below.
               </p>
             </div>
             <a
               href="/fillsync-extension.zip"
               download="fillsync-extension.zip"
-              className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold shadow-sm transition-all shrink-0"
+              className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold shadow-sm hover:shadow-md transition-all shrink-0 cursor-pointer"
             >
               <Download className="w-4 h-4" />
               <span>Download fillsync-extension.zip</span>
