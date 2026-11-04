@@ -19,8 +19,11 @@ dotenv.config();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Points to fillsync/shared-database/local_storage.json
-const DB_DIR = path.resolve(__dirname, "../../../shared-database");
+// Resolves database directory safely: uses root shared-database if available,
+// or falls back to self-contained shared-database for isolated cloud deployments.
+const candidateSharedDir = path.resolve(__dirname, "../../../shared-database");
+const internalSharedDir = path.resolve(__dirname, "../shared-database");
+const DB_DIR = fs.existsSync(candidateSharedDir) ? candidateSharedDir : internalSharedDir;
 const DB_FILE = path.join(DB_DIR, "local_storage.json");
 
 // Also check superadmin/backend/.env if present

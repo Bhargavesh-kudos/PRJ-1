@@ -21,8 +21,8 @@ import folderRoutes from "./routes/folderRoutes.js";
 import templateRoutes from "./routes/templateRoutes.js";
 import subscriptionRoutes from "./routes/subscriptionRoutes.js";
 
-// Import SuperAdmin routes from the dedicated superadmin/backend/ folder
-import adminRoutes from "../../superadmin/backend/routes/adminRoutes.js";
+// Import SuperAdmin routes (self-contained inside users/backend)
+import adminRoutes from "./routes/adminRoutes.js";
 
 dotenv.config();
 
