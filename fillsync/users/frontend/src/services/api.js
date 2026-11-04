@@ -7,9 +7,8 @@
  * ============================================================================
  */
 
-// Automatically uses VITE_API_URL (e.g. from Render or production env),
-// falling back to http://localhost:5000/api during local development.
-const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
+// Automatically uses VITE_API_URL, defaulting to your live deployed Render backend URL
+const API_BASE_URL = import.meta.env.VITE_API_URL || "https://fillsync-api.onrender.com/api";
 
 /**
  * Generic helper to send HTTP requests (GET, POST, PUT, DELETE) to the backend.

@@ -7,8 +7,8 @@
  * ============================================================================
  */
 
-// Dynamic API Base: Defaults to Localhost 5000, or uses saved Live Deployed Server URL
-let API_BASE = localStorage.getItem("fillsync_api_url") || "http://localhost:5000/api";
+// Dynamic API Base: Defaults to Live Deployed Backend on Render, or user-selected Localhost
+let API_BASE = localStorage.getItem("fillsync_api_url") || "https://fillsync-api.onrender.com/api";
 
 const loginSection = document.getElementById("loginSection");
 const controlsSection = document.getElementById("controlsSection");
