@@ -26,8 +26,8 @@ import SmartTemplatesPage from "./pages/smart-templates/SmartTemplatesPage.jsx";
 import SubscriptionPage from "./pages/subscription-page/SubscriptionPage.jsx";
 import SettingsPage from "./pages/settings-page/SettingsPage.jsx";
 
-// SuperAdmin Screen (imported from dedicated superadmin/frontend/ folder!)
-import AdminDashboard from "../../../superadmin/frontend/src/pages/admin-dashboard/AdminDashboard.jsx";
+// SuperAdmin Screen (100% self-contained inside users/frontend!)
+import AdminDashboard from "./admin/pages/admin-dashboard/AdminDashboard.jsx";
 
 // Interactive Extension Popup Simulator Modal
 import ExtensionSimulatorModal from "./components/extension-simulator/ExtensionSimulatorModal.jsx";
