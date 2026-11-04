@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>FillSync Extension</title>
+    <style>
+      body {
+        width: 350px;
+        margin: 0;
+        padding: 16px;
+        background: #0f172a;
+        color: #f8fafc;
+        font-family: system-ui, -apple-system, sans-serif;
+      }
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #1e293b;
+        padding-bottom: 10px;
+        margin-bottom: 12px;
+      }
+      .brand {
+        font-weight: 800;
+        font-size: 16px;
+        color: #2dd4bf;
+      }
+      .badge-free {
+        font-size: 10px;
+        font-weight: 700;
+        padding: 3px 8px;
+        border-radius: 999px;
+        background: #1e293b;
+        color: #94a3b8;
+        border: 1px solid #334155;
+      }
+      .badge-premium {
+        font-size: 10px;
+        font-weight: 800;
+        padding: 3px 8px;
+        border-radius: 999px;
+        background: rgba(245, 158, 11, 0.2);
+        color: #fcd34d;
+        border: 1px solid rgba(245, 158, 11, 0.5);
+      }
+      label {
+        display: block;
+        font-size: 11px;
+        color: #94a3b8;
+        margin-bottom: 4px;
+      }
+      input[type="email"],
+      input[type="password"],
+      input[type="text"],
+      select {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 8px 10px;
+        margin-bottom: 10px;
+        border-radius: 8px;
+        border: 1px solid #334155;
+        background: #1e293b;
+        color: #fff;
+        font-size: 12px;
+      }
+      button {
+        width: 100%;
+        padding: 10px;
+        border-radius: 8px;
+        border: none;
+        font-weight: 700;
+        font-size: 12px;
+        cursor: pointer;
+        margin-bottom: 8px;
+      }
+      .btn-primary {
+        background: #14b8a6;
+        color: #0f172a;
+      }
+      .btn-primary:hover {
+        background: #2dd4bf;
+      }
+      .btn-secondary {
+        background: #1e293b;
+        color: #e2e8f0;
+        border: 1px solid #334155;
+      }
+      .card-box {
+        background: #1e293b;
+        border: 1px solid #334155;
+        border-radius: 10px;
+        padding: 10px;
+        margin-bottom: 10px;
+        font-size: 11px;
+      }
+      .row-between {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 6px;
+      }
+      .locked-text {
+        color: #64748b;
+      }
+      .premium-tag {
+        font-size: 9px;
+        font-weight: 800;
+        color: #fbbf24;
+        background: rgba(245, 158, 11, 0.15);
+        padding: 2px 6px;
+        border-radius: 4px;
+      }
+      .upgrade-banner {
+        background: rgba(245, 158, 11, 0.12);
+        border: 1px solid rgba(245, 158, 11, 0.35);
+        color: #fde68a;
+        padding: 8px;
+        border-radius: 8px;
+        font-size: 11px;
+        text-align: center;
+        margin-bottom: 8px;
+      }
+      .msg {
+        font-size: 11px;
+        color: #38bdf8;
+        margin-top: 4px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <span class="brand">⚡ FillSync</span>
+      <span id="planBadge" class="badge-free">Not Signed In</span>
+    </div>
+
+    <!-- 1. Login View -->
+    <div id="loginSection">
+      <label>Email Address</label>
+      <input type="email" id="emailInput" placeholder="Enter your email" autocomplete="off" />
+      <label>Password</label>
+      <input type="password" id="passwordInput" placeholder="Enter your password" autocomplete="new-password" />
+      <button class="btn-primary" id="loginBtn">Sign In</button>
+    </div>
+
+    <!-- 2. Logged-In Controls (Adapts for Normal vs Premium User) -->
+    <div id="controlsSection" style="display: none">
+      <div class="row-between" style="margin-bottom: 10px">
+        <span id="userNameDisplay" style="font-size: 13px; font-weight: 700">User</span>
+        <span style="font-size: 11px; color: #4ade80">● Connected</span>
+      </div>
+
+      <!-- Folder Selector (Both Free & Premium) -->
+      <label>Select Data Folder</label>
+      <select id="folderSelect"></select>
+
+      <button class="btn-primary" id="fillFormBtn">✨ Fill This Form (1-Click)</button>
+
+      <!-- Template Selector & Injector (Both Free & Premium) -->
+      <label style="margin-top: 4px">Select Smart Template</label>
+      <select id="templateSelect"></select>
+      <button class="btn-secondary" id="injectTemplateBtn">📝 Inject Template into Textbox</button>
+
+      <!-- Premium Features Box (Locked for Free Users, Unlocked for Premium Users) -->
+      <div class="card-box">
+        <div class="row-between">
+          <span style="font-weight: 700; color: #cbd5e1">Automation Mode</span>
+          <span id="premiumBoxTag" class="premium-tag">★ PREMIUM</span>
+        </div>
+
+        <div class="row-between" style="margin-top: 6px">
+          <span id="aiMappingLabel">AI Smart Field Mapping</span>
+          <input type="checkbox" id="aiMappingToggle" />
+        </div>
+
+        <div class="row-between">
+          <span id="multiStepLabel">Multi-Step Form Auto-Next</span>
+          <input type="checkbox" id="multiStepToggle" />
+        </div>
+
+        <div class="row-between" style="margin-bottom: 0">
+          <span id="turboSpeedLabel">Instant Turbo Fill Speed</span>
+          <input type="checkbox" id="turboSpeedToggle" />
+        </div>
+      </div>
+
+      <!-- Shown only to Normal (Free) Users -->
+      <div id="freeUpgradeBanner" class="upgrade-banner" style="display: none">
+        🔒 AI Field Mapping &amp; Multi-Step Fill are locked on Free Plan. Upgrade on Dashboard!
+      </div>
+
+      <button class="btn-secondary" id="logoutBtn">Logout</button>
+    </div>
+
+    <div class="msg" id="statusMsg"></div>
+
+    <!-- API Server Switcher (Supports Localhost & Live Deployed Server) -->
+    <div style="margin-top: 12px; padding-top: 8px; border-top: 1px solid #1e293b; text-align: center;">
+      <span id="apiStatusText" style="font-size: 10px; color: #64748b; cursor: pointer; text-decoration: underline;">
+        🔗 Server: Localhost (Port 5000) • Switch
+      </span>
+      <div id="apiUrlBox" style="display: none; margin-top: 6px;">
+        <input type="text" id="customApiUrlInput" placeholder="https://fillsync-api.onrender.com/api" style="font-size: 11px; margin-bottom: 4px;" />
+        <button class="btn-secondary" id="saveApiUrlBtn" style="padding: 5px; font-size: 11px; margin-bottom: 2px;">Save Server URL</button>
+        <button class="btn-secondary" id="resetApiUrlBtn" style="padding: 5px; font-size: 10px; background: transparent; border: none; color: #94a3b8;">Reset to Localhost</button>
+      </div>
+    </div>
+
+    <script src="popup.js"></script>
+  </body>
+</html>
