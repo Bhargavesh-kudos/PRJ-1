@@ -171,6 +171,107 @@ export default function ExtensionInstallModal({ isOpen, onClose }) {
           desc: "FillSync will now appear in your Opera sidebar or top toolbar ready to fill any form!"
         }
       ]
+    },
+    firefox: {
+      name: "Mozilla Firefox",
+      icon: "🦊",
+      url: "about:debugging#/runtime/this-firefox",
+      badgeColor: "bg-amber-50 text-amber-700 border-amber-200",
+      accentBg: "bg-amber-600",
+      steps: [
+        {
+          num: "1",
+          title: "Download & Extract the ZIP",
+          desc: "Download fillsync-extension.zip and extract it to your computer."
+        },
+        {
+          num: "2",
+          title: "Open Firefox Debugging Page",
+          desc: "In Firefox, open a new tab and paste this URL into the address bar:",
+          hasCopyableUrl: true,
+          urlText: "about:debugging#/runtime/this-firefox"
+        },
+        {
+          num: "3",
+          title: "Click 'This Firefox'",
+          desc: "On the left sidebar, click 'This Firefox' to view local extensions."
+        },
+        {
+          num: "4",
+          title: "Click 'Load Temporary Add-on...'",
+          desc: "Click the blue 'Load Temporary Add-on...' button and select the manifest.json file inside your unzipped extension folder."
+        },
+        {
+          num: "5",
+          title: "Active on Firefox",
+          desc: "FillSync will appear in your Firefox extension bar and auto-fill forms instantly!"
+        }
+      ]
+    },
+    arc: {
+      name: "Arc Browser",
+      icon: "🎨",
+      url: "arc://extensions",
+      badgeColor: "bg-purple-50 text-purple-700 border-purple-200",
+      accentBg: "bg-purple-600",
+      steps: [
+        {
+          num: "1",
+          title: "Download & Extract the ZIP",
+          desc: "Download and extract fillsync-extension.zip onto your PC."
+        },
+        {
+          num: "2",
+          title: "Open Arc Extensions",
+          desc: "Press Ctrl+T, type this link in Arc's Command Bar, and press Enter:",
+          hasCopyableUrl: true,
+          urlText: "arc://extensions"
+        },
+        {
+          num: "3",
+          title: "Enable Developer Mode",
+          desc: "Switch the Developer Mode toggle ON in the top-right corner."
+        },
+        {
+          num: "4",
+          title: "Click 'Load unpacked'",
+          desc: "Click 'Load unpacked' and select the unzipped extension folder."
+        },
+        {
+          num: "5",
+          title: "Pinned to Arc",
+          desc: "FillSync will now appear in your Arc Site Control and toolbar!"
+        }
+      ]
+    },
+    duckduckgo: {
+      name: "DuckDuckGo & Others",
+      icon: "🦆",
+      url: "duckduckgo.com",
+      badgeColor: "bg-amber-50 text-amber-800 border-amber-200",
+      accentBg: "bg-amber-700",
+      steps: [
+        {
+          num: "1",
+          title: "DuckDuckGo Search Works 100%",
+          desc: "If you use DuckDuckGo as your search engine on Chrome, Brave, Edge, or Firefox, FillSync works 100% seamlessly on all forms and searches!"
+        },
+        {
+          num: "2",
+          title: "DuckDuckGo Standalone Desktop App Policy",
+          desc: "DuckDuckGo's standalone desktop app (Windows/Mac) intentionally disables all third-party browser extensions to ensure extreme tracker blocking."
+        },
+        {
+          num: "3",
+          title: "Best Privacy Alternative: Brave Browser",
+          desc: "For maximum privacy + full extension support, we recommend Brave Browser (brave://extensions) with DuckDuckGo set as the default search engine."
+        },
+        {
+          num: "4",
+          title: "All Other Chromium Browsers (Vivaldi, Kiwi, Thorium)",
+          desc: "Any Chromium-based browser supports FillSync! Just visit its extensions page, toggle Developer Mode ON, and click 'Load unpacked'."
+        }
+      ]
     }
   };
 

@@ -309,14 +309,17 @@ export default function LandingPage() {
               { id: "chrome", name: "Google Chrome", icon: "🌐" },
               { id: "edge", name: "Microsoft Edge", icon: "🔷" },
               { id: "brave", name: "Brave Browser", icon: "🦁" },
-              { id: "opera", name: "Opera / Opera GX", icon: "🔴" }
+              { id: "opera", name: "Opera / Opera GX", icon: "🔴" },
+              { id: "firefox", name: "Mozilla Firefox", icon: "🦊" },
+              { id: "arc", name: "Arc Browser", icon: "🎨" },
+              { id: "duckduckgo", name: "DuckDuckGo & Others", icon: "🦆" }
             ].map((tab) => {
               const active = activeBrowserTab === tab.id;
               return (
                 <button
                   key={tab.id}
                   onClick={() => setActiveBrowserTab(tab.id)}
-                  className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold transition-all ${
+                  className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold transition-all ${
                     active
                       ? "bg-teal-500 text-slate-950 shadow-lg shadow-teal-500/20"
                       : "bg-slate-800 border border-slate-700 text-slate-300 hover:border-slate-600 hover:text-white"
@@ -339,6 +342,9 @@ export default function LandingPage() {
                   {activeBrowserTab === "edge" && "🔷"}
                   {activeBrowserTab === "brave" && "🦁"}
                   {activeBrowserTab === "opera" && "🔴"}
+                  {activeBrowserTab === "firefox" && "🦊"}
+                  {activeBrowserTab === "arc" && "🎨"}
+                  {activeBrowserTab === "duckduckgo" && "🦆"}
                 </div>
                 <div>
                   <h3 className="text-base font-bold">
@@ -347,9 +353,12 @@ export default function LandingPage() {
                     {activeBrowserTab === "edge" && "Microsoft Edge"}
                     {activeBrowserTab === "brave" && "Brave Browser"}
                     {activeBrowserTab === "opera" && "Opera / Opera GX"}
+                    {activeBrowserTab === "firefox" && "Mozilla Firefox"}
+                    {activeBrowserTab === "arc" && "Arc Browser"}
+                    {activeBrowserTab === "duckduckgo" && "DuckDuckGo & Other Browsers"}
                   </h3>
                   <p className="text-xs text-slate-400">
-                    Takes 30 seconds &bull; 100% Free &bull; No Store Account Needed
+                    Takes 30 seconds &bull; 100% Free &bull; No Web Store Account Needed
                   </p>
                 </div>
               </div>
@@ -365,118 +374,188 @@ export default function LandingPage() {
             </div>
 
             {/* Steps list */}
-            <div className="space-y-3 pt-2">
-              {/* Step 1 */}
-              <div className="p-4 rounded-xl bg-slate-900/80 border border-slate-800/80 flex items-start gap-3.5">
-                <span className="w-6 h-6 rounded-lg bg-teal-500/20 text-teal-400 text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">
-                  1
-                </span>
-                <div>
-                  <h4 className="text-xs font-bold text-slate-200">
-                    Download &amp; Extract the ZIP
-                  </h4>
-                  <p className="text-xs text-slate-400 mt-0.5 leading-relaxed">
-                    Click <strong>Download Extension (.zip)</strong> and right-click the downloaded <code>fillsync-extension.zip</code> file to extract it.
-                  </p>
+            {activeBrowserTab === "duckduckgo" ? (
+              <div className="space-y-3 pt-2">
+                <div className="p-4 rounded-xl bg-slate-900/80 border border-slate-800/80 flex items-start gap-3.5">
+                  <span className="w-6 h-6 rounded-lg bg-teal-500/20 text-teal-400 text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">
+                    1
+                  </span>
+                  <div>
+                    <h4 className="text-xs font-bold text-slate-200">
+                      DuckDuckGo as a Search Engine (Works 100%)
+                    </h4>
+                    <p className="text-xs text-slate-400 mt-0.5 leading-relaxed">
+                      If you use DuckDuckGo search on Google Chrome, Brave, Edge, or Firefox, FillSync works 100% seamlessly on all forms and search fields!
+                    </p>
+                  </div>
                 </div>
-              </div>
 
-              {/* Step 2 */}
-              <div className="p-4 rounded-xl bg-slate-900/80 border border-slate-800/80 flex items-start gap-3.5">
-                <span className="w-6 h-6 rounded-lg bg-teal-500/20 text-teal-400 text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">
-                  2
-                </span>
-                <div className="flex-1">
-                  <h4 className="text-xs font-bold text-slate-200">
-                    Open the Extensions Page
-                  </h4>
-                  <p className="text-xs text-slate-400 mt-0.5 leading-relaxed">
-                    Open a new tab in your browser and paste the link below in the address bar:
-                  </p>
-                  <div className="mt-2 flex items-center gap-2 max-w-sm">
-                    <code className="px-3 py-1.5 rounded-lg bg-slate-950 border border-slate-700 text-teal-300 font-mono text-xs select-all flex-1">
-                      {activeBrowserTab === "chrome" && "chrome://extensions"}
-                      {activeBrowserTab === "edge" && "edge://extensions"}
-                      {activeBrowserTab === "brave" && "brave://extensions"}
-                      {activeBrowserTab === "opera" && "opera://extensions"}
-                    </code>
-                    <button
-                      onClick={() =>
-                        handleCopyUrl(
-                          activeBrowserTab === "chrome"
-                            ? "chrome://extensions"
-                            : activeBrowserTab === "edge"
-                            ? "edge://extensions"
-                            : activeBrowserTab === "brave"
-                            ? "brave://extensions"
-                            : "opera://extensions"
-                        )
-                      }
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold transition-all shrink-0"
-                    >
-                      {copiedUrl ? (
-                        <>
-                          <Check className="w-3.5 h-3.5 text-emerald-400" />
-                          <span className="text-emerald-400">Copied!</span>
-                        </>
-                      ) : (
-                        <>
-                          <Copy className="w-3.5 h-3.5" />
-                          <span>Copy</span>
-                        </>
-                      )}
-                    </button>
+                <div className="p-4 rounded-xl bg-slate-900/80 border border-slate-800/80 flex items-start gap-3.5">
+                  <span className="w-6 h-6 rounded-lg bg-teal-500/20 text-teal-400 text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">
+                    2
+                  </span>
+                  <div>
+                    <h4 className="text-xs font-bold text-slate-200">
+                      DuckDuckGo Desktop Browser App Policy
+                    </h4>
+                    <p className="text-xs text-slate-400 mt-0.5 leading-relaxed">
+                      The standalone DuckDuckGo desktop browser app for Windows/Mac intentionally blocks all third-party browser extensions to ensure extreme tracker isolation.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="p-4 rounded-xl bg-slate-900/80 border border-slate-800/80 flex items-start gap-3.5">
+                  <span className="w-6 h-6 rounded-lg bg-teal-500/20 text-teal-400 text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">
+                    3
+                  </span>
+                  <div>
+                    <h4 className="text-xs font-bold text-slate-200">
+                      Best Privacy Alternative: Brave Browser
+                    </h4>
+                    <p className="text-xs text-slate-400 mt-0.5 leading-relaxed">
+                      For ultra-private browsing with full FillSync form automation support, we recommend <strong>Brave Browser</strong> with DuckDuckGo set as the default search engine.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="p-4 rounded-xl bg-slate-900/80 border border-slate-800/80 flex items-start gap-3.5">
+                  <span className="w-6 h-6 rounded-lg bg-teal-500/20 text-teal-400 text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">
+                    4
+                  </span>
+                  <div>
+                    <h4 className="text-xs font-bold text-slate-200">
+                      All Other Chromium Browsers (Vivaldi, Kiwi, Thorium)
+                    </h4>
+                    <p className="text-xs text-slate-400 mt-0.5 leading-relaxed">
+                      Any Chromium-based browser supports FillSync! Simply visit its extensions page, switch ON Developer Mode, and click <strong>Load unpacked</strong>.
+                    </p>
                   </div>
                 </div>
               </div>
+            ) : (
+              <div className="space-y-3 pt-2">
+                {/* Step 1 */}
+                <div className="p-4 rounded-xl bg-slate-900/80 border border-slate-800/80 flex items-start gap-3.5">
+                  <span className="w-6 h-6 rounded-lg bg-teal-500/20 text-teal-400 text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">
+                    1
+                  </span>
+                  <div>
+                    <h4 className="text-xs font-bold text-slate-200">
+                      Download &amp; Extract the ZIP
+                    </h4>
+                    <p className="text-xs text-slate-400 mt-0.5 leading-relaxed">
+                      Click <strong>Download Extension (.zip)</strong> and extract the downloaded <code>fillsync-extension.zip</code> file to a folder.
+                    </p>
+                  </div>
+                </div>
 
-              {/* Step 3 */}
-              <div className="p-4 rounded-xl bg-slate-900/80 border border-slate-800/80 flex items-start gap-3.5">
-                <span className="w-6 h-6 rounded-lg bg-teal-500/20 text-teal-400 text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">
-                  3
-                </span>
-                <div>
-                  <h4 className="text-xs font-bold text-slate-200">
-                    Switch ON Developer Mode
-                  </h4>
-                  <p className="text-xs text-slate-400 mt-0.5 leading-relaxed">
-                    {activeBrowserTab === "edge"
-                      ? "In the left-hand menu, turn the 'Developer mode' toggle switch ON."
-                      : "In the top-right corner of the Extensions page, switch the 'Developer mode' toggle to ON."}
-                  </p>
+                {/* Step 2 */}
+                <div className="p-4 rounded-xl bg-slate-900/80 border border-slate-800/80 flex items-start gap-3.5">
+                  <span className="w-6 h-6 rounded-lg bg-teal-500/20 text-teal-400 text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">
+                    2
+                  </span>
+                  <div className="flex-1">
+                    <h4 className="text-xs font-bold text-slate-200">
+                      Open the Extensions Page
+                    </h4>
+                    <p className="text-xs text-slate-400 mt-0.5 leading-relaxed">
+                      Open a new tab in your browser and paste the link below in the address bar:
+                    </p>
+                    <div className="mt-2 flex items-center gap-2 max-w-sm">
+                      <code className="px-3 py-1.5 rounded-lg bg-slate-950 border border-slate-700 text-teal-300 font-mono text-xs select-all flex-1">
+                        {activeBrowserTab === "chrome" && "chrome://extensions"}
+                        {activeBrowserTab === "edge" && "edge://extensions"}
+                        {activeBrowserTab === "brave" && "brave://extensions"}
+                        {activeBrowserTab === "opera" && "opera://extensions"}
+                        {activeBrowserTab === "firefox" && "about:debugging#/runtime/this-firefox"}
+                        {activeBrowserTab === "arc" && "arc://extensions"}
+                      </code>
+                      <button
+                        onClick={() =>
+                          handleCopyUrl(
+                            activeBrowserTab === "chrome"
+                              ? "chrome://extensions"
+                              : activeBrowserTab === "edge"
+                              ? "edge://extensions"
+                              : activeBrowserTab === "brave"
+                              ? "brave://extensions"
+                              : activeBrowserTab === "opera"
+                              ? "opera://extensions"
+                              : activeBrowserTab === "firefox"
+                              ? "about:debugging#/runtime/this-firefox"
+                              : "arc://extensions"
+                          )
+                        }
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold transition-all shrink-0"
+                      >
+                        {copiedUrl ? (
+                          <>
+                            <Check className="w-3.5 h-3.5 text-emerald-400" />
+                            <span className="text-emerald-400">Copied!</span>
+                          </>
+                        ) : (
+                          <>
+                            <Copy className="w-3.5 h-3.5" />
+                            <span>Copy</span>
+                          </>
+                        )}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Step 3 */}
+                <div className="p-4 rounded-xl bg-slate-900/80 border border-slate-800/80 flex items-start gap-3.5">
+                  <span className="w-6 h-6 rounded-lg bg-teal-500/20 text-teal-400 text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">
+                    3
+                  </span>
+                  <div>
+                    <h4 className="text-xs font-bold text-slate-200">
+                      {activeBrowserTab === "firefox" ? "Click 'This Firefox' on Sidebar" : "Switch ON Developer Mode"}
+                    </h4>
+                    <p className="text-xs text-slate-400 mt-0.5 leading-relaxed">
+                      {activeBrowserTab === "edge"
+                        ? "In the left-hand menu, turn the 'Developer mode' toggle switch ON."
+                        : activeBrowserTab === "firefox"
+                        ? "On the left sidebar, click 'This Firefox' to view the temporary extension loader."
+                        : "In the top-right corner of the Extensions page, switch the 'Developer mode' toggle to ON."}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Step 4 */}
+                <div className="p-4 rounded-xl bg-slate-900/80 border border-slate-800/80 flex items-start gap-3.5">
+                  <span className="w-6 h-6 rounded-lg bg-teal-500/20 text-teal-400 text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">
+                    4
+                  </span>
+                  <div>
+                    <h4 className="text-xs font-bold text-slate-200">
+                      {activeBrowserTab === "firefox" ? "Click 'Load Temporary Add-on...'" : "Click 'Load unpacked' & Select Folder"}
+                    </h4>
+                    <p className="text-xs text-slate-400 mt-0.5 leading-relaxed">
+                      {activeBrowserTab === "firefox"
+                        ? "Click 'Load Temporary Add-on...' and select the manifest.json file inside your unzipped extension folder."
+                        : "Click the 'Load unpacked' button and pick the extracted extension folder. FillSync will appear in your browser immediately!"}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Step 5 */}
+                <div className="p-4 rounded-xl bg-slate-900/80 border border-slate-800/80 flex items-start gap-3.5">
+                  <span className="w-6 h-6 rounded-lg bg-teal-500/20 text-teal-400 text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">
+                    5
+                  </span>
+                  <div>
+                    <h4 className="text-xs font-bold text-slate-200">
+                      Pin to Toolbar &amp; Enjoy 1-Click Form Filling
+                    </h4>
+                    <p className="text-xs text-slate-400 mt-0.5 leading-relaxed">
+                      Click the puzzle icon 🧩 in your browser toolbar and pin FillSync. Now open any form on IRCTC, Google Forms, or college portals and fill it in 1 click!
+                    </p>
+                  </div>
                 </div>
               </div>
-
-              {/* Step 4 */}
-              <div className="p-4 rounded-xl bg-slate-900/80 border border-slate-800/80 flex items-start gap-3.5">
-                <span className="w-6 h-6 rounded-lg bg-teal-500/20 text-teal-400 text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">
-                  4
-                </span>
-                <div>
-                  <h4 className="text-xs font-bold text-slate-200">
-                    Click "Load unpacked" &amp; Select Folder
-                  </h4>
-                  <p className="text-xs text-slate-400 mt-0.5 leading-relaxed">
-                    Click the <strong>Load unpacked</strong> button and pick the extracted <code>extension</code> folder. FillSync will appear in your browser immediately!
-                  </p>
-                </div>
-              </div>
-
-              {/* Step 5 */}
-              <div className="p-4 rounded-xl bg-slate-900/80 border border-slate-800/80 flex items-start gap-3.5">
-                <span className="w-6 h-6 rounded-lg bg-teal-500/20 text-teal-400 text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">
-                  5
-                </span>
-                <div>
-                  <h4 className="text-xs font-bold text-slate-200">
-                    Pin to Toolbar &amp; Enjoy 1-Click Form Filling
-                  </h4>
-                  <p className="text-xs text-slate-400 mt-0.5 leading-relaxed">
-                    Click the puzzle icon 🧩 in your browser toolbar and pin FillSync. Now open any form on IRCTC, Google Forms, or college portals and fill it in 1 click!
-                  </p>
-                </div>
-              </div>
-            </div>
+            )}
 
             {/* Why Developer Mode explanation */}
             <div className="p-4 rounded-2xl bg-teal-950/40 border border-teal-500/30 text-xs text-teal-200 flex items-start gap-3 mt-4">
