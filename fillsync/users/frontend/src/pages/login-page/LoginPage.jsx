@@ -30,6 +30,7 @@ export default function LoginPage() {
   const [showGoogleModal, setShowGoogleModal] = useState(false);
   const [googleEmail, setGoogleEmail] = useState("");
   const [googleName, setGoogleName] = useState("");
+  const [googleError, setGoogleError] = useState("");
 
   // Forgot / Reset Password state
   const [showForgotModal, setShowForgotModal] = useState(false);
@@ -132,11 +133,13 @@ export default function LoginPage() {
     const targetName = (selectedName || googleName).trim();
 
     if (!targetEmail) {
+      setGoogleError("Please enter your Gmail address.");
       setError("Please enter your Gmail address.");
       return;
     }
 
     setError("");
+    setGoogleError("");
     setLoading(true);
 
     try {
@@ -150,6 +153,7 @@ export default function LoginPage() {
       setShowGoogleModal(false);
       navigate("/dashboard");
     } catch (err) {
+      setGoogleError(err.message);
       setError(err.message);
     } finally {
       setLoading(false);
@@ -426,6 +430,12 @@ export default function LoginPage() {
             </div>
 
             <div className="p-6 space-y-4">
+              {googleError && (
+                <div className="p-3 rounded-xl bg-red-50 border border-red-200 text-red-600 text-xs font-medium leading-relaxed">
+                  {googleError}
+                </div>
+              )}
+
               {/* Show Saved Gmail Accounts to Click in 1 Tap */}
               {knownAccounts.length > 0 && (
                 <div className="space-y-2">

@@ -7,8 +7,13 @@
  * ============================================================================
  */
 
-// Automatically uses VITE_API_URL, defaulting to your live deployed Render backend URL
-const API_BASE_URL = import.meta.env.VITE_API_URL || "https://fillsync-api.onrender.com/api";
+// Automatically uses VITE_API_URL, or defaults to localhost if testing locally, otherwise live Render API
+const API_BASE_URL =
+  import.meta.env.VITE_API_URL ||
+  (typeof window !== "undefined" &&
+  (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1")
+    ? "http://localhost:5000/api"
+    : "https://fillsync-api.onrender.com/api");
 
 /**
  * Generic helper to send HTTP requests (GET, POST, PUT, DELETE) to the backend.
@@ -26,16 +31,33 @@ export async function apiRequest(endpoint, options = {}) {
     ...(options.headers || {})
   };
 
-  const response = await fetch(`${API_BASE_URL}${endpoint}`, {
-    ...options,
-    headers
-  });
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 25000); // 25s timeout
 
-  const data = await response.json();
+  try {
+    const response = await fetch(`${API_BASE_URL}${endpoint}`, {
+      ...options,
+      headers,
+      signal: controller.signal
+    });
 
-  if (!response.ok) {
-    throw new Error(data.message || "Something went wrong with the request.");
+    clearTimeout(timeoutId);
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.message || "Something went wrong with the request.");
+    }
+
+    return data;
+  } catch (err) {
+    clearTimeout(timeoutId);
+    if (err.name === "AbortError") {
+      throw new Error("Server request timed out. The backend might still be waking up on Render. Please try again in a few seconds.");
+    }
+    if (err.message === "Failed to fetch" || err.message.includes("NetworkError")) {
+      throw new Error("Cannot connect to server. If running locally, please ensure 'node server.js' is running on port 5000.");
+    }
+    throw err;
   }
-
-  return data;
 }
