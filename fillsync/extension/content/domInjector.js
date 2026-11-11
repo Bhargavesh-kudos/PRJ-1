@@ -295,6 +295,168 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   let sequentialBerthIdx = 0;
   let sequentialFoodIdx = 0;
 
+  /**
+   * Smartly selects the matching option (or closest nearest option) in a <select> dropdown.
+   * Handles:
+   * 1. Exact value/text match
+   * 2. Common synonyms & shortcodes (e.g. "Male" -> "M", "General" -> "GEN" / "UR", "Sleeper" -> "SL")
+   * 3. Substring inclusion
+   * 4. Fuzzy word overlap & similarity ("ya uske aas paas wala")
+   */
+  function smartSelectOption(selectEl, rawTargetValue) {
+    if (!selectEl || !rawTargetValue) return false;
+    const target = String(rawTargetValue).trim().toLowerCase();
+    const options = Array.from(selectEl.options || []);
+    if (options.length === 0) return false;
+
+    // 1. Direct exact match on value or visible text
+    let bestIndex = options.findIndex((opt) => {
+      const val = (opt.value || "").trim().toLowerCase();
+      const txt = (opt.text || "").trim().toLowerCase();
+      return val === target || txt === target;
+    });
+
+    // 2. Comprehensive synonyms & Indian portal codes
+    if (bestIndex === -1) {
+      const synonymMap = {
+        male: ["m", "male", "men", "boy", "purush", "1"],
+        female: ["f", "female", "women", "girl", "mahila", "stri", "2"],
+        other: ["o", "other", "transgender", "tg", "3"],
+        general: ["gen", "ur", "unreserved", "general", "open"],
+        obc: ["obc", "obc-ncl", "other backward class", "bca", "bcb", "bc"],
+        sc: ["sc", "scheduled caste", "dalit"],
+        st: ["st", "scheduled tribe", "adivasi"],
+        ews: ["ews", "economically weaker section", "economically weaker"],
+        indian: ["ind", "india", "indian", "bharat", "citizen of india"],
+        yes: ["y", "yes", "true", "haan", "1"],
+        no: ["n", "no", "false", "nahi", "0"],
+        single: ["unmarried", "single", "never married"],
+        married: ["married", "vivahit"],
+        lower: ["lower", "lb", "lower berth"],
+        middle: ["middle", "mb", "middle berth"],
+        upper: ["upper", "ub", "upper berth"],
+        "side lower": ["side lower", "slb", "sl"],
+        "side upper": ["side upper", "sub", "su"],
+        window: ["window", "ws", "window seat"],
+        sleeper: ["sl", "sleeper", "sleeper class", "s/l"],
+        "ac 3 tier": ["3a", "3e", "ac 3 tier", "third ac", "ac 3"],
+        "ac 2 tier": ["2a", "ac 2 tier", "second ac", "ac 2"],
+        "ac 1st class": ["1a", "first ac", "ac 1", "ac first"],
+        "executive chair car": ["ec", "exec", "executive"],
+        "ac chair car": ["cc", "chair car"],
+        second: ["2s", "second sitting"]
+      };
+
+      const synKey = Object.keys(synonymMap).find(
+        (k) => k === target || target.includes(k) || k.includes(target)
+      );
+      if (synKey) {
+        const allowed = synonymMap[synKey];
+        bestIndex = options.findIndex((opt) => {
+          const val = (opt.value || "").trim().toLowerCase();
+          const txt = (opt.text || "").trim().toLowerCase();
+          return allowed.some(
+            (w) => val === w || txt === w || val.includes(w) || txt.includes(w)
+          );
+        });
+      }
+    }
+
+    // 3. Substring / partial match
+    if (bestIndex === -1) {
+      bestIndex = options.findIndex((opt) => {
+        const val = (opt.value || "").trim().toLowerCase();
+        const txt = (opt.text || "").trim().toLowerCase();
+        if (!val && !txt) return false;
+        return (
+          (val && (target.includes(val) || val.includes(target))) ||
+          (txt && (target.includes(txt) || txt.includes(target)))
+        );
+      });
+    }
+
+    // 4. Closest / Similarity Match ("ya uske aas paas wala")
+    if (bestIndex === -1) {
+      let highestScore = 0;
+      let fallbackIndex = -1;
+
+      options.forEach((opt, idx) => {
+        const txt = (opt.text || "").trim().toLowerCase();
+        const val = (opt.value || "").trim().toLowerCase();
+        if (idx === 0 && (txt.includes("select") || txt.includes("choose") || txt === "")) return;
+
+        const combined = `${val} ${txt}`;
+        const targetWords = target.split(/\s+/).filter(Boolean);
+        let score = 0;
+
+        targetWords.forEach((tw) => {
+          if (combined.includes(tw)) score += tw.length * 2;
+        });
+
+        let charMatches = 0;
+        for (let ch of target) {
+          if (combined.includes(ch)) charMatches++;
+        }
+        score += charMatches / Math.max(target.length, combined.length || 1);
+
+        if (score > highestScore) {
+          highestScore = score;
+          fallbackIndex = idx;
+        }
+      });
+
+      if (highestScore > 1.2 && fallbackIndex !== -1) {
+        bestIndex = fallbackIndex;
+      }
+    }
+
+    // 5. Apply Selection
+    if (bestIndex !== -1) {
+      selectEl.selectedIndex = bestIndex;
+      const chosenOpt = options[bestIndex];
+      selectEl.value = chosenOpt.value;
+      selectEl.dispatchEvent(new Event("input", { bubbles: true }));
+      selectEl.dispatchEvent(new Event("change", { bubbles: true }));
+      return true;
+    }
+
+    return false;
+  }
+
+  /**
+   * Smartly selects the matching radio button in a radio group.
+   */
+  function smartCheckRadio(radioEl, rawTargetValue) {
+    if (!radioEl || !rawTargetValue) return false;
+    const target = String(rawTargetValue).trim().toLowerCase();
+
+    let labelText = "";
+    if (radioEl.id) {
+      const lbl = document.querySelector(`label[for="${radioEl.id}"]`);
+      if (lbl) labelText = lbl.innerText;
+    }
+    const parentText = radioEl.closest("label, div, td, p")?.innerText || "";
+    const radioVal = (radioEl.value || "").trim().toLowerCase();
+    const radioDescriptor = `${radioVal} ${labelText} ${parentText}`.trim().toLowerCase();
+
+    const isMatch =
+      radioDescriptor.includes(target) ||
+      target.includes(radioVal) ||
+      (target === "male" && (radioDescriptor.includes("male") || radioDescriptor.includes("men") || radioVal === "m")) ||
+      (target === "female" && (radioDescriptor.includes("female") || radioDescriptor.includes("women") || radioVal === "f")) ||
+      (target === "yes" && (radioDescriptor.includes("yes") || radioVal === "1" || radioVal === "y")) ||
+      (target === "no" && (radioDescriptor.includes("no") || radioVal === "0" || radioVal === "n"));
+
+    if (isMatch) {
+      radioEl.checked = true;
+      radioEl.dispatchEvent(new Event("input", { bubbles: true }));
+      radioEl.dispatchEvent(new Event("change", { bubbles: true }));
+      radioEl.dispatchEvent(new Event("click", { bubbles: true }));
+      return true;
+    }
+    return false;
+  }
+
   // 3. Scan DOM Inputs
   const inputs = Array.from(
     document.querySelectorAll(
@@ -364,9 +526,23 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       filledCount++;
       setTimeout(() => {
         inputEl.focus();
-        inputEl.value = valueToInject;
-        inputEl.dispatchEvent(new Event("input", { bubbles: true }));
-        inputEl.dispatchEvent(new Event("change", { bubbles: true }));
+
+        if (inputEl.tagName === "SELECT") {
+          smartSelectOption(inputEl, valueToInject);
+        } else if (inputEl.type === "radio") {
+          smartCheckRadio(inputEl, valueToInject);
+        } else if (inputEl.type === "checkbox") {
+          const valLower = String(valueToInject).toLowerCase();
+          const shouldCheck = ["yes", "true", "1", "agree", "opt", "checked"].some((w) => valLower.includes(w));
+          if (shouldCheck) {
+            inputEl.checked = true;
+            inputEl.dispatchEvent(new Event("change", { bubbles: true }));
+          }
+        } else {
+          inputEl.value = valueToInject;
+          inputEl.dispatchEvent(new Event("input", { bubbles: true }));
+          inputEl.dispatchEvent(new Event("change", { bubbles: true }));
+        }
       }, idx * delayPerField);
     }
   });
