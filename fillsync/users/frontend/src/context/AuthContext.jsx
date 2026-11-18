@@ -35,10 +35,24 @@ export function AuthProvider({ children }) {
           localStorage.setItem("fillsync_user", JSON.stringify(res.user));
         }
       } catch (err) {
-        // Token expired or invalid -> clear session
-        localStorage.removeItem("fillsync_token");
-        localStorage.removeItem("fillsync_user");
-        setUser(null);
+        // Only clear session if backend explicitly rejected the token as unauthorized or expired
+        const msg = (err.message || "").toLowerCase();
+        const isAuthError =
+          msg.includes("unauthorized") ||
+          msg.includes("invalid token") ||
+          msg.includes("jwt expired") ||
+          msg.includes("no token") ||
+          err.status === 401 ||
+          err.status === 403;
+
+        if (isAuthError) {
+          localStorage.removeItem("fillsync_token");
+          localStorage.removeItem("fillsync_user");
+          setUser(null);
+        } else {
+          // If server is waking up (Render cold boot) or offline, PRESERVE saved session!
+          console.warn("Server unavailable or waking up, retaining offline session:", err.message);
+        }
       } finally {
         setLoading(false);
       }

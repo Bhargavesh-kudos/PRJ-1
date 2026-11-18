@@ -46,7 +46,9 @@ export async function apiRequest(endpoint, options = {}) {
     const data = await response.json();
 
     if (!response.ok) {
-      throw new Error(data.message || "Something went wrong with the request.");
+      const err = new Error(data.message || "Something went wrong with the request.");
+      err.status = response.status;
+      throw err;
     }
 
     return data;

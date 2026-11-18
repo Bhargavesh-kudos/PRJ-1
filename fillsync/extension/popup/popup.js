@@ -73,7 +73,113 @@ let cachedTemplates = [];
 const savedToken = localStorage.getItem("fillsync_ext_token");
 if (savedToken) {
   loadUserData(savedToken);
+} else {
+  // Auto-attempt silent sync from active dashboard tab on open
+  attemptSilentDashboardSync();
 }
+
+async function attemptSilentDashboardSync() {
+  try {
+    const tabs = await chrome.tabs.query({});
+    const dashboardTab = tabs.find(
+      (t) =>
+        t.url &&
+        (t.url.includes("localhost:5173") ||
+          t.url.includes("localhost:5000") ||
+          t.url.includes("fillsync") ||
+          t.url.includes("vercel.app"))
+    );
+
+    if (dashboardTab) {
+      const results = await chrome.scripting.executeScript({
+        target: { tabId: dashboardTab.id },
+        func: () => ({
+          token: localStorage.getItem("fillsync_token"),
+          user: localStorage.getItem("fillsync_user")
+        })
+      });
+
+      if (results && results[0] && results[0].result && results[0].result.token) {
+        const { token } = results[0].result;
+        localStorage.setItem("fillsync_ext_token", token);
+        await loadUserData(token);
+      }
+    }
+  } catch (e) {
+    // Silent failover to standard login view
+  }
+}
+
+// 1-Click Sync Login from Active Browser Tab (Dashboard)
+const syncDashboardBtn = document.getElementById("syncDashboardBtn");
+syncDashboardBtn?.addEventListener("click", async () => {
+  statusMsg.textContent = "Scanning browser for open FillSync dashboard...";
+  try {
+    const tabs = await chrome.tabs.query({});
+    const dashboardTab = tabs.find(
+      (t) =>
+        t.url &&
+        (t.url.includes("localhost:5173") ||
+          t.url.includes("localhost:5000") ||
+          t.url.includes("fillsync") ||
+          t.url.includes("vercel.app"))
+    );
+
+    if (!dashboardTab) {
+      statusMsg.textContent = "⚠️ No open FillSync tab found. Please open your dashboard in Chrome first, or use Google / Password login below.";
+      return;
+    }
+
+    const results = await chrome.scripting.executeScript({
+      target: { tabId: dashboardTab.id },
+      func: () => ({
+        token: localStorage.getItem("fillsync_token"),
+        user: localStorage.getItem("fillsync_user")
+      })
+    });
+
+    if (results && results[0] && results[0].result && results[0].result.token) {
+      const { token } = results[0].result;
+      localStorage.setItem("fillsync_ext_token", token);
+      statusMsg.textContent = "✓ Synced session from Dashboard! Loading your data...";
+      await loadUserData(token);
+    } else {
+      statusMsg.textContent = "Dashboard tab is open, but you are not logged in there. Please sign in below.";
+    }
+  } catch (err) {
+    statusMsg.textContent = "Sync note: " + err.message;
+  }
+});
+
+// 1-Click Google / Gmail Sign-In
+const googleLoginBtn = document.getElementById("googleLoginBtn");
+googleLoginBtn?.addEventListener("click", async () => {
+  const emailInput = document.getElementById("emailInput");
+  const targetEmail = (emailInput?.value || "bhargaveshpandit@gmail.com").trim();
+
+  statusMsg.textContent = `Signing in with Google (${targetEmail})...`;
+
+  try {
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), 20000);
+
+    const res = await fetch(`${API_BASE}/auth/google`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email: targetEmail, name: "Bhargavesh" }),
+      signal: ctrl.signal
+    });
+    clearTimeout(timer);
+
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.message || "Google sign-in failed.");
+
+    localStorage.setItem("fillsync_ext_token", data.token);
+    await loadUserData(data.token);
+  } catch (err) {
+    statusMsg.textContent = "Google Sign-In: " + err.message;
+  }
+});
 
 document.getElementById("loginBtn").addEventListener("click", async () => {
   const email = document.getElementById("emailInput").value.trim();

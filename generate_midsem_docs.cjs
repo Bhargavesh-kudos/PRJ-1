@@ -1,10 +1,14 @@
 /**
  * ============================================================================
  * SCRIPT: generate_midsem_docs.cjs
- * PURPOSE: Generates both:
+ * PURPOSE: Generates clean, normal, human-like student deliverables for PRJ-1:
  *          1. FillSync_PRJ1_Mid_Sem_Report.docx (Word Document)
  *          2. FillSync_PRJ1_Mid_Sem_Presentation.pptx (PowerPoint Presentation)
- * Strictly adhering to the PRJ1 Mid-Term Evaluation Rubrics:
+ *
+ * Style: Clean academic student style (White background, simple standard fonts,
+ *        normal readable bullet points, zero artificial over-decoration).
+ *
+ * Rubrics Strictly Covered:
  * - Expected Deliverables for PRJ1 Mid Term Evaluation
  * - Literature Review (Comprehensiveness: 10 Marks | Research Gap: 5 Marks)
  * - Methodology (Objective/Problem Definition: 5 Marks | Proposed Methodology: 5 Marks)
@@ -31,31 +35,28 @@ const {
   ShadingType
 } = docx;
 
-// ----------------------------------------------------------------------------
-// COLOR PALETTE & STYLES (Professional Minimalist Academic Palette)
-// ----------------------------------------------------------------------------
-const TEAL_COLOR = "0D9488";
-const DARK_SLATE = "0F172A";
-const MUTED_GRAY = "64748B";
-const LIGHT_BG = "F8FAFC";
-const BORDER_COLOR = "CBD5E1";
+// Simple, standard student color styling
+const COLOR_TITLE = "1E3A8A"; // Classic Navy Blue
+const COLOR_BODY = "111827";  // Standard Dark Slate/Black
+const COLOR_MUTED = "4B5563"; // Standard Gray
+const BORDER_GRAY = "9CA3AF"; // Normal Gray Border
 
 // ============================================================================
 // PART 1: WORD DOCUMENT GENERATION (.docx)
 // ============================================================================
 function createWordDocument() {
-  const thinBorder = {
-    top: { style: BorderStyle.SINGLE, size: 4, color: BORDER_COLOR },
-    bottom: { style: BorderStyle.SINGLE, size: 4, color: BORDER_COLOR },
-    left: { style: BorderStyle.SINGLE, size: 4, color: BORDER_COLOR },
-    right: { style: BorderStyle.SINGLE, size: 4, color: BORDER_COLOR }
+  const normalBorder = {
+    top: { style: BorderStyle.SINGLE, size: 4, color: BORDER_GRAY },
+    bottom: { style: BorderStyle.SINGLE, size: 4, color: BORDER_GRAY },
+    left: { style: BorderStyle.SINGLE, size: 4, color: BORDER_GRAY },
+    right: { style: BorderStyle.SINGLE, size: 4, color: BORDER_GRAY }
   };
 
   const doc = new Document({
     styles: {
       default: {
         document: {
-          run: { font: "Calibri", size: 22, color: DARK_SLATE } // 11pt
+          run: { font: "Calibri", size: 24, color: COLOR_BODY } // 12pt standard
         }
       }
     },
@@ -67,16 +68,16 @@ function createWordDocument() {
           }
         },
         children: [
-          // TITLE HEADER
+          // Header / Title
           new Paragraph({
             alignment: AlignmentType.CENTER,
             spacing: { after: 120 },
             children: [
               new TextRun({
-                text: "PROJECT - 1 (PRJ-1) : MID-TERM EVALUATION REPORT",
+                text: "PROJECT-1 (PRJ-1) MID TERM EVALUATION REPORT",
                 bold: true,
-                size: 28,
-                color: TEAL_COLOR
+                size: 32, // 16pt
+                color: COLOR_TITLE
               })
             ]
           }),
@@ -85,74 +86,74 @@ function createWordDocument() {
             spacing: { after: 300 },
             children: [
               new TextRun({
-                text: "FillSync — Smart Multi-Domain Form Automation & Profile Vault",
+                text: "FillSync: Multi-Domain Web Form Automation & Profile Management System",
                 bold: true,
-                size: 24,
-                color: DARK_SLATE
+                size: 26, // 13pt
+                color: COLOR_BODY
               })
             ]
           }),
 
-          // STUDENT & COURSE METADATA TABLE
+          // Metadata Table
           new Table({
             width: { size: 100, type: WidthType.PERCENTAGE },
             rows: [
               new TableRow({
                 children: [
                   new TableCell({
-                    borders: thinBorder,
-                    shading: { fill: "F1F5F9", type: ShadingType.CLEAR },
-                    width: { size: 30, type: WidthType.PERCENTAGE },
-                    children: [new Paragraph({ children: [new TextRun({ text: "Project Title", bold: true })] })]
+                    borders: normalBorder,
+                    shading: { fill: "F3F4F6", type: ShadingType.CLEAR },
+                    width: { size: 28, type: WidthType.PERCENTAGE },
+                    children: [new Paragraph({ children: [new TextRun({ text: "Project Title", bold: true, size: 22 })] })]
                   }),
                   new TableCell({
-                    borders: thinBorder,
-                    width: { size: 70, type: WidthType.PERCENTAGE },
-                    children: [new Paragraph({ children: [new TextRun("FillSync: Smart Multi-Domain Form Automation & Profile Vault")] })]
+                    borders: normalBorder,
+                    width: { size: 72, type: WidthType.PERCENTAGE },
+                    children: [new Paragraph({ children: [new TextRun({ text: "FillSync — Smart Multi-Domain Form Autofill & Profile Vault", size: 22 })] })]
                   })
                 ]
               }),
               new TableRow({
                 children: [
                   new TableCell({
-                    borders: thinBorder,
-                    shading: { fill: "F1F5F9", type: ShadingType.CLEAR },
-                    children: [new Paragraph({ children: [new TextRun({ text: "Course & Semester", bold: true })] })]
+                    borders: normalBorder,
+                    shading: { fill: "F3F4F6", type: ShadingType.CLEAR },
+                    children: [new Paragraph({ children: [new TextRun({ text: "Course & Semester", bold: true, size: 22 })] })]
                   }),
                   new TableCell({
-                    borders: thinBorder,
-                    children: [new Paragraph({ children: [new TextRun("B.Tech Computer Science & Engineering — 5th Semester (PRJ-1)")] })]
+                    borders: normalBorder,
+                    children: [new Paragraph({ children: [new TextRun({ text: "B.Tech Computer Science & Engineering — 5th Semester (PRJ-1)", size: 22 })] })]
                   })
                 ]
               }),
               new TableRow({
                 children: [
                   new TableCell({
-                    borders: thinBorder,
-                    shading: { fill: "F1F5F9", type: ShadingType.CLEAR },
-                    children: [new Paragraph({ children: [new TextRun({ text: "Evaluation Type", bold: true })] })]
+                    borders: normalBorder,
+                    shading: { fill: "F3F4F6", type: ShadingType.CLEAR },
+                    children: [new Paragraph({ children: [new TextRun({ text: "Evaluation Type", bold: true, size: 22 })] })]
                   }),
                   new TableCell({
-                    borders: thinBorder,
-                    children: [new Paragraph({ children: [new TextRun("Mid-Term Evaluation (Deliverables, Literature Review, Methodology)")] })]
+                    borders: normalBorder,
+                    children: [new Paragraph({ children: [new TextRun({ text: "Mid-Term Evaluation (Deliverables, Literature Review, Methodology)", size: 22 })] })]
                   })
                 ]
               }),
               new TableRow({
                 children: [
                   new TableCell({
-                    borders: thinBorder,
-                    shading: { fill: "F1F5F9", type: ShadingType.CLEAR },
-                    children: [new Paragraph({ children: [new TextRun({ text: "Live Deployments", bold: true })] })]
+                    borders: normalBorder,
+                    shading: { fill: "F3F4F6", type: ShadingType.CLEAR },
+                    children: [new Paragraph({ children: [new TextRun({ text: "Project Links", bold: true, size: 22 })] })]
                   }),
                   new TableCell({
-                    borders: thinBorder,
+                    borders: normalBorder,
                     children: [
                       new Paragraph({
                         children: [
-                          new TextRun("Web Application: https://fillsync-web-mocha.vercel.app\n"),
-                          new TextRun("Live API: https://fillsync-api.onrender.com/api\n"),
-                          new TextRun("Testing Sandbox: https://fillsync-web-mocha.vercel.app/test-form.html")
+                          new TextRun({ text: "Web Portal: https://fillsync-web-mocha.vercel.app\n", size: 22 }),
+                          new TextRun({ text: "Live API: https://fillsync-api.onrender.com/api\n", size: 22 }),
+                          new TextRun({ text: "Test Sandbox: https://fillsync-web-mocha.vercel.app/test-form.html", size: 22 })
                         ]
                       })
                     ]
@@ -167,12 +168,13 @@ function createWordDocument() {
           // SECTION 1: EXPECTED DELIVERABLES
           new Paragraph({
             heading: HeadingLevel.HEADING_1,
-            spacing: { before: 200, after: 120 },
+            spacing: { before: 240, after: 120 },
             children: [
               new TextRun({
-                text: "1. Expected Deliverables for PRJ1 Mid-Term Evaluation",
+                text: "1. Expected Deliverables for PRJ-1 Mid Term Evaluation",
                 bold: true,
-                color: TEAL_COLOR
+                color: COLOR_TITLE,
+                size: 28
               })
             ]
           }),
@@ -180,29 +182,30 @@ function createWordDocument() {
             spacing: { after: 120 },
             children: [
               new TextRun(
-                "As per the course guidelines, the mid-term evaluation focuses on problem definition, existing literature analysis, research gaps, architectural design, and an initial functional prototype. The expected deliverables achieved are:"
+                "As required for the mid-term stage of PRJ-1, the project has focused on setting up clear requirements, studying existing tools, identifying research gaps, designing the system architecture, and creating a working prototype. Below are the key deliverables completed so far:"
               )
             ]
           }),
 
-          // Bullet points of deliverables
-          createBulletPoint("Deliverable 1: Comprehensive Literature Review & Gap Analysis", "Systematic review of existing web autofill solutions, password managers, RPA tools, and domain-specific scripts."),
-          createBulletPoint("Deliverable 2: Complete Software Architecture & System Design", "Layered full-stack architecture comprising a React client, Node/Express REST API, and Chrome Manifest V3 content script."),
-          createBulletPoint("Deliverable 3: Data Vault & AES-256 Field Encryption Scheme", "Categorized profile storage (Personal, Professional, Travel) with bank-grade AES-256-CBC encryption for sensitive PII (Aadhaar, PAN, phone)."),
-          createBulletPoint("Deliverable 4: Working Chrome Extension & DOM Injection Prototype", "Functional browser extension that detects web form elements and injects data with human-like delays."),
-          createBulletPoint("Deliverable 5: Live Cloud Deployment & Testing Sandbox", "Frontend hosted on Vercel, API backend hosted on Render, and an interactive test sandbox (test-form.html) for live demonstration."),
+          createDocBullet("Literature Review and Comparison", "Studied existing web autofill tools, browser built-ins, and password managers, and identified what features they lack."),
+          createDocBullet("Research Gap Identification", "Documented the core problems where traditional tools fail, specifically multi-domain profile storage, multi-passenger booking tables, and dropdown selection."),
+          createDocBullet("System Architecture and Database Design", "Designed a 3-tier architecture with a React frontend, Node/Express REST API backend, and a Chrome Extension (Manifest V3)."),
+          createDocBullet("AES-256 Data Encryption Scheme", "Implemented bank-grade field-level encryption (AES-256-CBC) to protect sensitive user details like Aadhaar, PAN, and phone numbers."),
+          createDocBullet("Working Extension & Auto-Injection Prototype", "Built a functional browser extension that inspects web pages and fills input boxes, text areas, and dropdowns in 1 click."),
+          createDocBullet("Live Web Deployment and Testing Page", "Deployed the web dashboard on Vercel, backend on Render, and built an interactive test form (test-form.html) for easy demonstration."),
 
           new Paragraph({ spacing: { after: 200 } }),
 
           // SECTION 2: LITERATURE REVIEW
           new Paragraph({
             heading: HeadingLevel.HEADING_1,
-            spacing: { before: 200, after: 120 },
+            spacing: { before: 240, after: 120 },
             children: [
               new TextRun({
                 text: "2. Literature Review",
                 bold: true,
-                color: TEAL_COLOR
+                color: COLOR_TITLE,
+                size: 28
               })
             ]
           }),
@@ -210,12 +213,13 @@ function createWordDocument() {
           // SUB-SECTION 2.1: COMPREHENSIVENESS (10 MARKS)
           new Paragraph({
             heading: HeadingLevel.HEADING_2,
-            spacing: { before: 120, after: 100 },
+            spacing: { before: 140, after: 100 },
             children: [
               new TextRun({
                 text: "2.1 Comprehensiveness of the Literature Review (10 Marks)",
                 bold: true,
-                color: DARK_SLATE
+                color: COLOR_BODY,
+                size: 26
               })
             ]
           }),
@@ -223,56 +227,56 @@ function createWordDocument() {
             spacing: { after: 120 },
             children: [
               new TextRun(
-                "We examined four major classes of systems currently used by individuals and businesses to fill online forms. Each system was evaluated based on data flexibility, multi-passenger handling, dropdown matching, and data security:"
+                "To understand the current state of form autofill technology, we reviewed four major types of tools that people currently use to fill online forms:"
               )
             ]
           }),
 
-          createSubHeading("Class A: Native Browser Autofill (Google Chrome, MS Edge, Apple Safari)"),
+          createDocSubHeading("1. Native Browser Autofill (Google Chrome, Microsoft Edge, Safari)"),
           new Paragraph({
-            spacing: { after: 80 },
+            spacing: { after: 100 },
             children: [
               new TextRun(
-                "Browsers include built-in address and credit card autofill. They rely on standard HTML autocomplete attributes (e.g., autocomplete='email'). While fast and convenient, they have severe limitations: they only support a single personal identity (cannot maintain separate profiles for travel vs. jobs), cannot fill complex multi-row tables (e.g. 4 passengers in train/flight booking), and fail when websites use custom names or non-standard form fields."
+                "Modern browsers have built-in autofill for basic contact details (name, email, phone) and saved credit cards. They depend heavily on standard HTML attributes (like autocomplete='email'). While they work well for standard online shopping checkouts, they have major limitations: they only store a single flat profile, cannot handle specialized Indian application forms (which ask for 10th/12th marks, roll numbers, caste categories, and father's name), and cannot fill repeating tables like booking train tickets for multiple family members."
               )
             ]
           }),
 
-          createSubHeading("Class B: Commercial Password Managers (Bitwarden, 1Password, LastPass)"),
+          createDocSubHeading("2. Commercial Password Managers (Bitwarden, 1Password, LastPass)"),
           new Paragraph({
-            spacing: { after: 80 },
+            spacing: { after: 100 },
             children: [
               new TextRun(
-                "Password managers store login credentials, identity cards, and credit cards in an encrypted vault. While security is strong, their form-filling capability is strictly designed for login pages and basic checkout screens. They do not handle Indian academic/government application forms (which require 10th/12th roll numbers, father's name, caste categories, APAAR/ABC IDs) and cannot handle multi-step portals."
+                "Password managers store login passwords, identity documents, and payment cards in an encrypted vault. While their security is strong, their form-filling feature is limited to login screens and basic checkout pages. They do not support custom domain-specific data sets (such as travel preferences, academic histories, or job application data) and cannot handle multi-step government or college admission portals."
               )
             ]
           }),
 
-          createSubHeading("Class C: Robotic Process Automation & Headless Bots (Selenium, Puppeteer, UiPath)"),
+          createDocSubHeading("3. Robotic Process Automation & Browser Automation (Selenium, Puppeteer, UiPath)"),
           new Paragraph({
-            spacing: { after: 80 },
+            spacing: { after: 100 },
             children: [
               new TextRun(
-                "RPA systems automate web interactions via headless browsers or desktop agents. While powerful for enterprise batch processing, they are completely unsuited for everyday consumers: they require programming scripts, break whenever website HTML changes, and get immediately blocked by anti-bot web application firewalls (WAFs) and CAPTCHAs."
+                "RPA software and headless browser scripts can automate almost any web form by writing custom code. However, they are meant for automated back-office tasks, not everyday students or consumers. They require technical programming knowledge, break whenever a website updates its HTML structure, and are frequently blocked by website anti-bot protections and CAPTCHAs."
               )
             ]
           }),
 
-          createSubHeading("Class D: Niche Script Extensions (IRCTC Tatkal Scripts, Exam Extension Tools)"),
+          createDocSubHeading("4. Specialized Booking Scripts (IRCTC Tatkal Helper Extensions)"),
           new Paragraph({
             spacing: { after: 120 },
             children: [
               new TextRun(
-                "Independent developers have built small scripts for specific portals like IRCTC train booking. However, these tools are hard-coded to a single website URL, store raw user credentials in plain text in the browser without encryption, and become completely useless as soon as the target website updates its DOM structure."
+                "Some developers have published small browser extensions designed solely for specific sites like IRCTC train booking. However, these tools are hardcoded to a single website, store raw user credentials in plain text without proper encryption, and stop working as soon as the target website changes its form layout."
               )
             ]
           }),
 
-          // COMPARATIVE ANALYSIS TABLE
+          // Table Comparison
           new Paragraph({
-            spacing: { before: 100, after: 80 },
+            spacing: { before: 120, after: 80 },
             children: [
-              new TextRun({ text: "Table 1: Comprehensive Comparison of Existing Solutions vs. FillSync", bold: true })
+              new TextRun({ text: "Table 1: Comparison of Existing Solutions with FillSync", bold: true, size: 24 })
             ]
           }),
 
@@ -281,19 +285,19 @@ function createWordDocument() {
             rows: [
               new TableRow({
                 children: [
-                  createTableHeaderCell("Feature / Metric", 24),
-                  createTableHeaderCell("Browser Autofill", 19),
-                  createTableHeaderCell("Password Managers", 19),
-                  createTableHeaderCell("RPA (Selenium/UiPath)", 19),
-                  createTableHeaderCell("FillSync (Proposed)", 19)
+                  createDocHeaderCell("Features", 25),
+                  createDocHeaderCell("Browser Autofill", 18),
+                  createDocHeaderCell("Password Managers", 19),
+                  createDocHeaderCell("RPA (Selenium)", 19),
+                  createDocHeaderCell("FillSync (Our System)", 19)
                 ]
               }),
-              createTableRow("Multi-Domain Profiles", "No (Flat single profile)", "Limited to 1 identity", "Requires code changes", "Yes (Travel, Job, Personal)"),
-              createTableRow("Multi-Passenger Tables", "No (1 person only)", "No", "Scripted per portal", "Yes (1 to 6 Passengers)"),
-              createTableRow("Smart Dropdown Select", "Exact match only", "Basic matching", "Rigid XPaths", "Fuzzy + Synonym Matching"),
-              createTableRow("Sensitive Data Encryption", "OS Keystore only", "Encrypted Vault", "Plaintext in config files", "AES-256-CBC Field Encryption"),
-              createTableRow("Anti-Bot Human Delays", "None (Instant dump)", "None", "Detected as headless", "Simulated Human Typing"),
-              createTableRow("Dynamic Smart Templates", "No", "No", "Custom template engines", "Yes (With prompt variables)")
+              createDocRow("Multiple Profiles", "No (Only 1 profile)", "Limited to 1 identity", "Requires code change", "Yes (Travel, Job, Personal)"),
+              createDocRow("Multi-Person Forms", "No (1 person only)", "No", "Custom scripts needed", "Yes (1 to 6 Passengers)"),
+              createDocRow("Dropdown Matching", "Exact match only", "Basic matching", "Rigid XPaths", "Fuzzy + Synonym Matching"),
+              createDocRow("Sensitive Data Security", "Browser vault only", "Encrypted Vault", "Plaintext in scripts", "AES-256-CBC Encryption"),
+              createDocRow("Ease of Use", "Easy", "Moderate", "Hard (Needs coding)", "Very Easy (1-Click)"),
+              createDocRow("Dynamic Templates", "No", "No", "Custom scripts", "Yes (Variable Templates)")
             ]
           }),
 
@@ -307,7 +311,8 @@ function createWordDocument() {
               new TextRun({
                 text: "2.2 Research Gap (5 Marks)",
                 bold: true,
-                color: DARK_SLATE
+                color: COLOR_BODY,
+                size: 26
               })
             ]
           }),
@@ -315,28 +320,29 @@ function createWordDocument() {
             spacing: { after: 100 },
             children: [
               new TextRun(
-                "From our literature review, we identified five critical research and technical gaps in existing form-filling technologies:"
+                "Based on the literature review, we identified five clear gaps where current solutions fail:"
               )
             ]
           }),
 
-          createGapPoint("1. Flat Storage vs. Multi-Domain Real-Life Needs", "Current autofills store only one flat name, phone, and address. In reality, a user needs completely different data sets depending on the context: a Job Application requires academic roll numbers and CGPA; an IRCTC booking requires boarding station and berth choices; a Govt Exam requires caste category and parent names."),
-          createGapPoint("2. Complete Failure on Multi-Row Passenger Tables", "No general-purpose autofill tool can populate repeating tables (e.g. Passenger 1 Name/Age/Gender, Passenger 2 Name/Age/Gender) in travel booking sites. Users are forced to manually type family details during fast-expiring Tatkal ticket windows."),
-          createGapPoint("3. Dropdown Rigidness (<select> & Radio Options)", "Existing tools only match exact string values. If a form uses 'UR' instead of 'General', or 'SL' instead of 'Sleeper Class', traditional tools fail completely. There is a lack of synonym dictionaries and closest-neighbor fuzzy matching."),
-          createGapPoint("4. Security & Privacy vs. Cloud Convenience Dilemma", "Users must choose between convenient browser extensions that store data unencrypted or rigid password managers that cannot fill local Indian forms. A secure system with field-level transparent AES-256 encryption is missing."),
-          createGapPoint("5. Lack of Dynamic Smart Templates with Variables", "When applying to jobs or networking, users constantly rewrite boilerplate emails. No autofill solution integrates variable-injected text templates (e.g. {Company}, {Role}, {Skill}) that can be populated on the fly into any web text area."),
+          createDocGapItem("Gap 1: Single Profile vs. Multiple Real-World Roles", "Users need different sets of data in different situations. A job portal needs college roll numbers and CGPA; a train ticket needs berth preferences and station codes; a government form needs caste categories and parent names. Existing autofills force all this into one flat, messy profile."),
+          createDocGapItem("Gap 2: Inability to Handle Repeating Tables (Multiple Passengers)", "When booking travel for a family (like on IRCTC), users must enter details for 2 to 6 passengers into repeating table rows. No popular autofill tool can populate multiple passenger rows automatically, forcing slow manual typing during fast-expiring booking windows."),
+          createDocGapItem("Gap 3: Rigid Dropdown (<select>) Selection", "Existing tools only match dropdown options if the website's text matches word-for-word. If an exam form uses 'UR' instead of 'General', or a travel site uses 'SL' instead of 'Sleeper', traditional autofill fails completely. Smart synonym matching is missing."),
+          createDocGapItem("Gap 4: Lack of Integrated Text Templates with Variables", "When applying for jobs or emailing professors, users repeatedly copy-paste boilerplate text and manually change names and roles. Autofill tools focus only on short form inputs and completely ignore multi-line template injection with dynamic variables."),
+          createDocGapItem("Gap 5: Security vs. Usability Trade-off", "Tools either offer zero encryption (saving plaintext data in browser extensions) or are too rigid (like enterprise password managers that don't support custom fields). A simple, transparently encrypted vault tailored for students and everyday users does not exist."),
 
           new Paragraph({ spacing: { after: 200 } }),
 
           // SECTION 3: METHODOLOGY
           new Paragraph({
             heading: HeadingLevel.HEADING_1,
-            spacing: { before: 200, after: 120 },
+            spacing: { before: 240, after: 120 },
             children: [
               new TextRun({
                 text: "3. Methodology",
                 bold: true,
-                color: TEAL_COLOR
+                color: COLOR_TITLE,
+                size: 28
               })
             ]
           }),
@@ -344,92 +350,95 @@ function createWordDocument() {
           // SUB-SECTION 3.1: OBJECTIVES & PROBLEM DEFINITION (5 MARKS)
           new Paragraph({
             heading: HeadingLevel.HEADING_2,
-            spacing: { before: 120, after: 100 },
+            spacing: { before: 140, after: 100 },
             children: [
               new TextRun({
                 text: "3.1 Objective / Problem Definition (5 Marks)",
                 bold: true,
-                color: DARK_SLATE
+                color: COLOR_BODY,
+                size: 26
               })
             ]
           }),
 
-          createSubHeading("A. Problem Definition"),
+          createDocSubHeading("A. Problem Definition"),
           new Paragraph({
             spacing: { after: 100 },
             children: [
               new TextRun(
-                "Students and professionals in India repeatedly type the same 20 to 50 personal, academic, and identification details across dozens of web portals every month (college placements, UPSC/SSC registration, CUET/JEE admissions, visa forms, and IRCTC train bookings). This repetitive manual typing leads to high typing fatigue, data entry errors (e.g., mistyped roll numbers or Aadhaar numbers), missed application deadlines, and lost tickets during Tatkal booking windows. Existing autofill tools fail on complex Indian portals due to custom field names, multi-passenger tables, and dropdown selection boxes."
+                "Students and working professionals frequently apply for internships, government exams (UPSC, SSC, State PSC), university admissions, and book train/flight tickets. Each form requires typing 20 to 50 personal, academic, and identification details repeatedly. This repetitive manual work causes high typing fatigue, leads to mistakes in critical numbers (like Aadhaar or Board roll numbers), and causes users to lose seats during time-critical windows like IRCTC Tatkal booking. Existing browser autofills fail on these portals because Indian portals use non-standard field names, complex dropdowns, and multi-row tables."
               )
             ]
           }),
 
-          createSubHeading("B. Project Objectives"),
-          createBulletPoint("Objective 1: Multi-Domain Categorized Profile Vault", "Design and implement a structured vault organizing 220+ fields into domain-specific profiles (Personal, Professional, Travel) plus unlimited custom folders."),
-          createBulletPoint("Objective 2: Intelligent DOM Injection Engine", "Build a lightweight Chrome Extension (Manifest V3) that inspects web pages, maps synonyms, and fills inputs, textareas, and radio buttons in one click."),
-          createBulletPoint("Objective 3: Fuzzy Dropdown (<select>) Matcher", "Develop an algorithm that matches and selects the exact or closest matching option in dropdown menus using synonym maps and string similarity."),
-          createBulletPoint("Objective 4: Multi-Passenger Tatkal Roster Automation", "Support automated filling of up to 6 passengers simultaneously into repeating table rows for train and flight booking platforms."),
-          createBulletPoint("Objective 5: Bank-Grade Data Security (AES-256)", "Enforce AES-256-CBC encryption for all sensitive user data at rest with random IVs and zero-knowledge admin masking."),
+          createDocSubHeading("B. Project Objectives"),
+          createDocBullet("Objective 1: Multi-Domain Profile Vault", "Create an organized vault separating user data into 3 clear domains: Personal (contact & IDs), Professional (10th/12th/College marks), and Travel (stations & berth preferences), plus custom folders."),
+          createDocBullet("Objective 2: 1-Click Chrome Extension Automation", "Develop a lightweight browser extension that automatically scans web pages and fills input boxes, text areas, and checkboxes in one click."),
+          createDocBullet("Objective 3: Smart Synonym & Fuzzy Dropdown Matcher", "Build a matching algorithm that maps common variations (e.g., 'UR' -> 'General', 'DOB' -> 'Date of Birth') and selects the closest matching option in dropdown lists."),
+          createDocBullet("Objective 4: Multi-Passenger Table Filling", "Support automated filling of up to 6 passengers into repeating table rows for travel booking sites."),
+          createDocBullet("Objective 5: Bank-Grade Data Security", "Protect all sensitive identification data using AES-256-CBC encryption at rest, ensuring that confidential numbers are never stored in plain text."),
 
-          new Paragraph({ spacing: { after: 160 } }),
+          new Paragraph({ spacing: { after: 180 } }),
 
           // SUB-SECTION 3.2: PROPOSED METHODOLOGY (5 MARKS)
           new Paragraph({
             heading: HeadingLevel.HEADING_2,
-            spacing: { before: 120, after: 100 },
+            spacing: { before: 140, after: 100 },
             children: [
               new TextRun({
                 text: "3.2 Proposed Methodology (Tools / Techniques / Methods / Data Set) (5 Marks)",
                 bold: true,
-                color: DARK_SLATE
+                color: COLOR_BODY,
+                size: 26
               })
             ]
           }),
 
-          createSubHeading("A. Tools & Technology Stack"),
-          createBulletPoint("Frontend Web Portal", "React.js, Tailwind CSS, Vite. Deployed globally on Vercel with responsive mobile/desktop UI."),
-          createBulletPoint("Backend API Server", "Node.js, Express.js. RESTful API architecture deployed on Render with JWT token authentication."),
-          createBulletPoint("Browser Extension", "Chrome Extension Manifest V3. Content script (domInjector.js) for DOM access and popup UI (popup.js) for profile selection."),
-          createBulletPoint("Security & Encryption", "Node.js Crypto module: AES-256-CBC with SHA-256 key derivation and random 16-byte IVs; bcrypt for password hashing."),
+          createDocSubHeading("A. Tools & Technology Stack"),
+          createDocBullet("Frontend Portal", "Built using React.js and Tailwind CSS with Vite for fast performance. Deployed on Vercel."),
+          createDocBullet("Backend API Server", "Built with Node.js and Express.js providing REST APIs with JSON Web Token (JWT) session security. Deployed on Render."),
+          createDocBullet("Browser Extension", "Chrome Extension using Manifest V3 standards. Uses a content script (domInjector.js) to inspect the DOM and a popup UI (popup.js) for user interaction."),
+          createDocBullet("Security & Encryption", "Node.js Crypto module using AES-256-CBC with SHA-256 key hashing and 16-byte initialization vectors (IVs) for data security."),
 
-          createSubHeading("B. Techniques & Methods"),
-          createBulletPoint("1. Smart Synonym Matching Dictionary", "The extension tokenizes input descriptors (name, id, placeholder, label) and matches them against an extensive keyword dictionary covering 50+ common form field variants (e.g., father_name, fathername, candidate_father)."),
-          createBulletPoint("2. Closest Nearest Option Algorithm for Dropdowns", "When encountering an HTML <select> dropdown, the algorithm first checks exact text/value, then checks standard Indian synonym maps (e.g., UR -> General, SL -> Sleeper), and finally applies character overlap similarity to choose the nearest matching option."),
-          createBulletPoint("3. Sequential & Indexed Multi-Row Table Injection", "For passenger booking forms, the engine maps both indexed forms (passengerName[0], passengerAge[0]) and sequential table rows, allowing all passengers (1 to 6) to be filled in order."),
-          createBulletPoint("4. Human-Like Keystroke Delays & Native Event Dispatch", "Rather than setting raw DOM values instantly, FillSync triggers native 'input' and 'change' events with 120ms delays (or 15ms Turbo mode) to ensure modern frameworks (React/Angular) detect state changes."),
+          createDocSubHeading("B. Techniques & Methods"),
+          createDocBullet("1. Synonym Mapping Dictionary", "The extension tokenizes field names, labels, IDs, and placeholders, comparing them against a dictionary of 50+ common Indian form variations (e.g., 'father_name', 'fatherName', 'father', 'parent_name')."),
+          createDocBullet("2. Dropdown Matching Algorithm", "For HTML <select> elements, the system tests 3 levels: (1) exact text/value match, (2) synonym lookup (e.g. 'UR' matches 'General'), and (3) fuzzy substring similarity to pick the closest valid option."),
+          createDocBullet("3. Multi-Row Table Mapping", "For passenger booking forms, the injector handles both array-indexed field names (passenger[0].name, passenger[1].name) and sequential rows in an HTML table, filling up to 6 passengers in order."),
+          createDocBullet("4. Human-Like Keystroke Delays & Native Events", "Instead of dumping values instantaneously (which triggers bot detectors or gets ignored by modern React/Angular forms), the extension dispatches native 'input' and 'change' events with realistic delays (120ms standard, 15ms turbo)."),
 
-          createSubHeading("C. Data Set & Schema Design"),
+          createDocSubHeading("C. Data Set & Schema Design"),
           new Paragraph({
             spacing: { after: 100 },
             children: [
               new TextRun(
-                "FillSync is grounded in an exhaustive schema of 220+ verified real-world fields derived from analyzing active Indian application portals:"
+                "Rather than arbitrary test data, FillSync is based on a real-world schema of 220+ verified fields collected by analyzing active Indian portals (UPSC, SSC, JEE, NTA, IRCTC, and redBus):"
               )
             ]
           }),
-          createBulletPoint("Personal Profile Schema (65+ Fields)", "Candidate Name, DOB, Gender, Blood Group, Father/Mother Name, Category/Caste, Full Address, Pin Code, Aadhaar, PAN, Passport, Voter ID, Driving License."),
-          createBulletPoint("Professional & Academic Schema (80+ Fields)", "10th/12th Board Roll Numbers, Passing Years, College Name, Degree, CGPA, Percentage, APAAR/ABC ID, DigiLocker ID, Portfolio Link, Skills."),
-          createBulletPoint("Travel & IRCTC Schema (75+ Fields)", "Origin Station, Destination, Boarding Point, IRCTC User ID, Quota, Class, Passenger 1-6 details (Full Name, Age, Gender, Berth Preference, Meal Preference)."),
+          createDocBullet("Personal Schema (65+ Fields)", "Full Name, DOB, Gender, Blood Group, Father/Mother Name, Caste/Category, Address, Aadhaar, PAN, Passport, Voter ID, Driving License."),
+          createDocBullet("Professional Schema (80+ Fields)", "10th/12th Board Roll Numbers, Passing Years, College Name, Degree, Branch, CGPA, Percentage, DigiLocker ID, Portfolio Link, Skills."),
+          createDocBullet("Travel Schema (75+ Fields)", "Origin Station, Destination, Boarding Station, IRCTC Username, Quota, Class, and Passengers 1 to 6 (Name, Age, Gender, Berth, Meal)."),
 
           new Paragraph({ spacing: { after: 200 } }),
 
-          // SECTION 4: CONCLUSION & PROGRESS SUMMARY
+          // SECTION 4: CONCLUSION
           new Paragraph({
             heading: HeadingLevel.HEADING_1,
-            spacing: { before: 200, after: 120 },
+            spacing: { before: 240, after: 120 },
             children: [
               new TextRun({
-                text: "4. Current Status & Deliverables Summary",
+                text: "4. Current Status & Summary",
                 bold: true,
-                color: TEAL_COLOR
+                color: COLOR_TITLE,
+                size: 28
               })
             ]
           }),
           new Paragraph({
-            spacing: { after: 100 },
+            spacing: { after: 120 },
             children: [
               new TextRun(
-                "All planned mid-term deliverables have been completed, verified, and deployed live:"
+                "All planned deliverables for the mid-term stage have been completed. The system is functional and deployed live for demonstration:"
               )
             ]
           }),
@@ -439,28 +448,27 @@ function createWordDocument() {
             rows: [
               new TableRow({
                 children: [
-                  createTableHeaderCell("Mid-Term Milestone", 35),
-                  createTableHeaderCell("Implementation Status", 25),
-                  createTableHeaderCell("Verification Method", 40)
+                  createDocHeaderCell("Milestone / Deliverable", 35),
+                  createDocHeaderCell("Current Status", 25),
+                  createDocHeaderCell("Verification / Result", 40)
                 ]
               }),
-              createTableRow("Literature Review & Gap Analysis", "100% Completed", "Documented in report & presentation"),
-              createTableRow("Core Architecture & Encrypted DB", "100% Completed", "AES-256-CBC with SHA-256 keys active"),
-              createTableRow("Chrome Extension (Manifest V3)", "100% Completed", "domInjector.js with smart select & fuzzy match"),
-              createTableRow("Live Web Application", "100% Completed", "Deployed on Vercel: fillsync-web-mocha.vercel.app"),
-              createTableRow("Testing & Validation Sandbox", "100% Completed", "Deployed at /test-form.html with real-world forms")
+              createDocRow("Literature Review & Gap Analysis", "Completed", "Documented in report & slides"),
+              createDocRow("System Architecture & Database", "Completed", "Full-stack system running on Vercel & Render"),
+              createDocRow("Chrome Extension (Manifest V3)", "Completed", "Working popup & domInjector.js"),
+              createDocRow("Smart Dropdown & Table Autofill", "Completed", "Tested on test-form.html sandbox"),
+              createDocRow("AES-256 Field Encryption", "Completed", "Active in backend for all sensitive IDs")
             ]
           }),
 
-          new Paragraph({ spacing: { after: 200 } }),
+          new Paragraph({ spacing: { before: 200, after: 100 } }),
           new Paragraph({
             alignment: AlignmentType.CENTER,
-            spacing: { before: 200 },
             children: [
               new TextRun({
-                text: "— End of PRJ-1 Mid-Term Evaluation Report —",
+                text: "— End of PRJ-1 Mid-Term Report —",
                 bold: true,
-                color: MUTED_GRAY,
+                color: COLOR_MUTED,
                 size: 20
               })
             ]
@@ -473,74 +481,74 @@ function createWordDocument() {
   return doc;
 }
 
-// Helper functions for Word Doc
-function createBulletPoint(title, text) {
+// Helpers for Word Doc
+function createDocBullet(title, text) {
   return new Paragraph({
     spacing: { after: 80 },
     bullet: { level: 0 },
     children: [
-      new TextRun({ text: `${title}: `, bold: true, color: DARK_SLATE }),
-      new TextRun({ text })
+      new TextRun({ text: `${title}: `, bold: true, color: COLOR_BODY, size: 24 }),
+      new TextRun({ text, size: 24 })
     ]
   });
 }
 
-function createGapPoint(title, text) {
+function createDocGapItem(title, text) {
   return new Paragraph({
     spacing: { after: 80 },
     bullet: { level: 0 },
     children: [
-      new TextRun({ text: `${title}: `, bold: true, color: TEAL_COLOR }),
-      new TextRun({ text })
+      new TextRun({ text: `${title}: `, bold: true, color: COLOR_TITLE, size: 24 }),
+      new TextRun({ text, size: 24 })
     ]
   });
 }
 
-function createSubHeading(title) {
+function createDocSubHeading(title) {
   return new Paragraph({
-    spacing: { before: 100, after: 60 },
+    spacing: { before: 120, after: 60 },
     children: [
-      new TextRun({ text: title, bold: true, size: 22, color: DARK_SLATE })
+      new TextRun({ text: title, bold: true, size: 24, color: COLOR_BODY })
     ]
   });
 }
 
-function createTableHeaderCell(text, widthPercent) {
+function createDocHeaderCell(text, widthPercent) {
   return new TableCell({
     borders: {
-      top: { style: BorderStyle.SINGLE, size: 6, color: TEAL_COLOR },
-      bottom: { style: BorderStyle.SINGLE, size: 6, color: TEAL_COLOR },
-      left: { style: BorderStyle.SINGLE, size: 4, color: BORDER_COLOR },
-      right: { style: BorderStyle.SINGLE, size: 4, color: BORDER_COLOR }
+      top: { style: BorderStyle.SINGLE, size: 6, color: COLOR_TITLE },
+      bottom: { style: BorderStyle.SINGLE, size: 6, color: COLOR_TITLE },
+      left: { style: BorderStyle.SINGLE, size: 4, color: BORDER_GRAY },
+      right: { style: BorderStyle.SINGLE, size: 4, color: BORDER_GRAY }
     },
-    shading: { fill: "0F172A", type: ShadingType.CLEAR },
+    shading: { fill: "F3F4F6", type: ShadingType.CLEAR },
     width: { size: widthPercent, type: WidthType.PERCENTAGE },
     children: [
       new Paragraph({
         alignment: AlignmentType.CENTER,
-        children: [new TextRun({ text, bold: true, color: "FFFFFF", size: 20 })]
+        children: [new TextRun({ text, bold: true, color: COLOR_TITLE, size: 22 })]
       })
     ]
   });
 }
 
-function createTableRow(col1, col2, col3, col4, col5) {
+function createDocRow(col1, col2, col3, col4, col5) {
   const border = {
-    top: { style: BorderStyle.SINGLE, size: 4, color: BORDER_COLOR },
-    bottom: { style: BorderStyle.SINGLE, size: 4, color: BORDER_COLOR },
-    left: { style: BorderStyle.SINGLE, size: 4, color: BORDER_COLOR },
-    right: { style: BorderStyle.SINGLE, size: 4, color: BORDER_COLOR }
+    top: { style: BorderStyle.SINGLE, size: 4, color: BORDER_GRAY },
+    bottom: { style: BorderStyle.SINGLE, size: 4, color: BORDER_GRAY },
+    left: { style: BorderStyle.SINGLE, size: 4, color: BORDER_GRAY },
+    right: { style: BorderStyle.SINGLE, size: 4, color: BORDER_GRAY }
   };
   return new TableRow({
     children: [
-      new TableCell({ borders: border, children: [new Paragraph({ children: [new TextRun({ text: col1, bold: true, size: 19 })] })] }),
-      new TableCell({ borders: border, children: [new Paragraph({ children: [new TextRun({ text: col2, size: 19 })] })] }),
-      new TableCell({ borders: border, children: [new Paragraph({ children: [new TextRun({ text: col3, size: 19 })] })] }),
-      new TableCell({ borders: border, children: [new Paragraph({ children: [new TextRun({ text: col4, size: 19 })] })] }),
+      new TableCell({ borders: border, children: [new Paragraph({ children: [new TextRun({ text: col1, bold: true, size: 20 })] })] }),
+      new TableCell({ borders: border, children: [new Paragraph({ children: [new TextRun({ text: col2, size: 20 })] })] }),
+      new TableCell({ borders: border, children: [new Paragraph({ children: [new TextRun({ text: col3, size: 20 })] })] }),
+      new TableCell({ borders: border, children: [new Paragraph({ children: [new TextRun({ text: col4, size: 20 })] })] }),
       new TableCell({
         borders: border,
-        shading: { fill: "F0FDFA", type: ShadingType.CLEAR },
-        children: [new Paragraph({ children: [new TextRun({ text: col5, bold: true, color: TEAL_COLOR, size: 19 })] })]
+        shading: { fill: "EFF6FF", type: ShadingType.CLEAR },
+        children: [new Paragraph({ children: [new TextRun({ text: col5, bold: true, color: COLOR_TITLE, size: 20 })] })]
       })
     ]
   });
@@ -555,29 +563,29 @@ function createPowerPointPresentation() {
   pptx.author = "Bhargavesh";
   pptx.title = "FillSync — PRJ-1 Mid Term Presentation";
 
-  // Common Header Template for Content Slides
-  function addHeader(slide, title, category) {
-    // Top Bar
+  // Standard Clean Student Header (White background, Navy header bar)
+  function addSlideHeader(slide, title, category) {
+    // Header Bar
     slide.addShape(pptx.ShapeType.rect, {
       x: 0,
       y: 0,
       w: "100%",
       h: 0.9,
-      fill: { color: "0F172A" }
+      fill: { color: "1E3A8A" } // Classic Navy
     });
 
     slide.addText(category ? `${category.toUpperCase()} — PRJ-1 MID-TERM` : "PRJ-1 MID-TERM EVALUATION", {
-      x: 0.6,
+      x: 0.8,
       y: 0.15,
       w: 8.5,
       h: 0.25,
       fontSize: 10,
       bold: true,
-      color: "0D9488"
+      color: "93C5FD" // Light Blue
     });
 
     slide.addText(title, {
-      x: 0.6,
+      x: 0.8,
       y: 0.38,
       w: 11.5,
       h: 0.45,
@@ -585,712 +593,796 @@ function createPowerPointPresentation() {
       bold: true,
       color: "FFFFFF"
     });
-
-    // Subtle bottom rule
-    slide.addShape(pptx.ShapeType.line, {
-      x: 0,
-      y: 0.9,
-      w: "100%",
-      h: 0,
-      line: { color: "0D9488", width: 2.5 }
-    });
   }
 
-  // SLIDE 1: TITLE SLIDE (Dark Premium Theme)
+  // SLIDE 1: TITLE SLIDE (Clean White Academic Style)
   {
-    const s1 = pptx.addSlide();
-    s1.background = { color: "0F172A" };
+    const slide = pptx.addSlide();
+    slide.background = { color: "FFFFFF" };
 
-    s1.addShape(pptx.ShapeType.rect, {
-      x: 0.8,
+    // Navy Accent Band on Left
+    slide.addShape(pptx.ShapeType.rect, {
+      x: 0,
+      y: 0,
+      w: 0.4,
+      h: "100%",
+      fill: { color: "1E3A8A" }
+    });
+
+    slide.addText("PROJECT-1 (PRJ-1) : MID-TERM EVALUATION", {
+      x: 1.0,
       y: 1.2,
-      w: 1.8,
-      h: 0.35,
-      fill: { color: "0D9488" },
-      radius: 4
-    });
-    s1.addText("PRJ-1 MID-TERM EVALUATION", {
-      x: 0.8,
-      y: 1.2,
-      w: 1.8,
-      h: 0.35,
-      fontSize: 9,
+      w: 11.0,
+      h: 0.4,
+      fontSize: 14,
       bold: true,
-      color: "FFFFFF",
-      align: "center"
+      color: "1E3A8A"
     });
 
-    s1.addText("FillSync: Smart Multi-Domain Form Automation\n& Categorized Profile Vault", {
-      x: 0.8,
-      y: 1.8,
-      w: 11.5,
-      h: 1.8,
-      fontSize: 32,
+    slide.addText("FillSync: Multi-Domain Web Form Automation & Profile Vault", {
+      x: 1.0,
+      y: 1.7,
+      w: 11.2,
+      h: 1.2,
+      fontSize: 26,
       bold: true,
-      color: "FFFFFF"
+      color: "111827"
     });
 
-    s1.addText("Automating College Admissions, Job Placements, UPSC/Govt Exams, and IRCTC Tatkal Bookings", {
-      x: 0.8,
-      y: 3.7,
-      w: 11.5,
-      h: 0.5,
-      fontSize: 15,
-      color: "94A3B8"
+    slide.addText("A smart browser extension and secure profile vault to eliminate repetitive manual form typing across college, job, government, and travel portals.", {
+      x: 1.0,
+      y: 3.0,
+      w: 10.5,
+      h: 0.8,
+      fontSize: 14,
+      color: "4B5563"
     });
 
-    // Metadata Card
-    s1.addShape(pptx.ShapeType.rect, {
-      x: 0.8,
-      y: 4.6,
-      w: 11.5,
+    // Student Info Box
+    slide.addShape(pptx.ShapeType.rect, {
+      x: 1.0,
+      y: 4.2,
+      w: 11.0,
+      h: 2.2,
+      fill: { color: "F3F4F6" },
+      line: { color: "CBD5E1", width: 1 }
+    });
+
+    slide.addText([
+      { text: "Course: ", options: { bold: true, color: "111827" } },
+      { text: "B.Tech Computer Science & Engineering (5th Semester)\n", options: { color: "374151" } },
+      { text: "Student Name: ", options: { bold: true, color: "111827" } },
+      { text: "Bhargavesh\n", options: { color: "374151" } },
+      { text: "Project Guide: ", options: { bold: true, color: "111827" } },
+      { text: "Faculty Mentor (PRJ-1)\n", options: { color: "374151" } },
+      { text: "Live Deployments: ", options: { bold: true, color: "111827" } },
+      { text: "Web: fillsync-web-mocha.vercel.app  |  API: fillsync-api.onrender.com", options: { color: "1E3A8A" } }
+    ], {
+      x: 1.3,
+      y: 4.4,
+      w: 10.4,
       h: 1.8,
-      fill: { color: "1E293B" },
-      line: { color: "334155", width: 1 },
-      radius: 6
+      fontSize: 13,
+      lineSpacing: 24
     });
-
-    s1.addText(
-      "Student: Bhargavesh  |  Degree: B.Tech Computer Science & Engineering (5th Semester)\n" +
-      "Course: Project - 1 (PRJ-1)  |  Live App: fillsync-web-mocha.vercel.app  |  Status: 100% Deployed",
-      {
-        x: 1.1,
-        y: 4.9,
-        w: 11.0,
-        h: 1.2,
-        fontSize: 13,
-        color: "E2E8F0"
-      }
-    );
   }
 
   // SLIDE 2: EXPECTED DELIVERABLES FOR PRJ-1 MID TERM
   {
-    const s2 = pptx.addSlide();
-    addHeader(s2, "Expected Deliverables for PRJ-1 Mid-Term Evaluation", "Deliverables Overview");
+    const slide = pptx.addSlide();
+    slide.background = { color: "FFFFFF" };
+    addSlideHeader(slide, "Expected Deliverables for PRJ-1 Mid Term Evaluation", "Deliverables");
+
+    slide.addText("As per course requirements, all planned mid-term deliverables have been completed:", {
+      x: 0.8,
+      y: 1.2,
+      w: 11.5,
+      h: 0.4,
+      fontSize: 13,
+      color: "4B5563"
+    });
 
     const deliverables = [
-      { num: "01", title: "Comprehensive Literature Review", desc: "Detailed analysis of 4 classes of existing autofill systems with a comparative feature matrix and 5 documented research gaps." },
-      { num: "02", title: "System Architecture & Security Model", desc: "Three-tier architecture (Client Web Portal, Node.js REST API, Chrome Extension) with AES-256-CBC field encryption for PII." },
-      { num: "03", title: "Working Manifest V3 Chrome Extension", desc: "Functional browser extension with DOM injector, smart synonym dictionary, and multi-passenger sequential table filler." },
-      { num: "04", title: "Fuzzy Dropdown & Radio Button Matcher", desc: "Algorithmic selection of closest matching options in HTML <select> dropdowns and radio buttons using token similarity." },
-      { num: "05", title: "Live Deployments & Interactive Sandbox", desc: "Vercel frontend (fillsync-web-mocha.vercel.app), Render API backend, and an interactive test form (test-form.html) for live viva testing." }
+      { num: "1", title: "Comprehensive Literature Review", desc: "Systematic analysis of browser autofills, password managers, and RPA scripts with a comparison matrix." },
+      { num: "2", title: "Research Gap Identification", desc: "Detailed breakdown of where current tools fail (multi-passenger tables, dropdowns, and multi-domain vaults)." },
+      { num: "3", title: "Full System Architecture & Database Design", desc: "Layered architecture: React frontend on Vercel, Node.js REST API on Render, Chrome Extension (Manifest V3)." },
+      { num: "4", title: "AES-256 Field Encryption Scheme", desc: "Bank-grade field-level encryption for sensitive user data (Aadhaar, PAN, phone) with random IVs." },
+      { num: "5", title: "Working Chrome Extension Prototype", desc: "Functional browser extension with smart synonym detection, fuzzy dropdown selection, and 1-click form fill." }
     ];
 
-    deliverables.forEach((d, i) => {
-      const yPos = 1.2 + i * 1.05;
-      s2.addShape(pptx.ShapeType.rect, {
+    deliverables.forEach((item, idx) => {
+      const yPos = 1.7 + idx * 0.95;
+      slide.addShape(pptx.ShapeType.rect, {
         x: 0.8,
         y: yPos,
         w: 11.5,
-        h: 0.9,
-        fill: { color: "F8FAFC" },
-        line: { color: "E2E8F0", width: 1 },
-        radius: 6
+        h: 0.82,
+        fill: { color: "F9FAFB" },
+        line: { color: "E5E7EB", width: 1 }
       });
 
-      s2.addShape(pptx.ShapeType.rect, {
+      slide.addShape(pptx.shapes.OVAL, {
         x: 1.0,
-        y: yPos + 0.15,
-        w: 0.6,
-        h: 0.6,
-        fill: { color: "0D9488" },
-        radius: 4
+        y: yPos + 0.16,
+        w: 0.5,
+        h: 0.5,
+        fill: { color: "1E3A8A" }
       });
-      s2.addText(d.num, {
+
+      slide.addText(item.num, {
         x: 1.0,
-        y: yPos + 0.15,
-        w: 0.6,
-        h: 0.6,
+        y: yPos + 0.16,
+        w: 0.5,
+        h: 0.5,
         fontSize: 12,
         bold: true,
         color: "FFFFFF",
-        align: "center"
+        align: "center",
+        valign: "middle"
       });
 
-      s2.addText(d.title, {
-        x: 1.8,
-        y: yPos + 0.12,
-        w: 10.0,
-        h: 0.3,
-        fontSize: 13,
-        bold: true,
-        color: "0F172A"
-      });
-      s2.addText(d.desc, {
-        x: 1.8,
-        y: yPos + 0.42,
-        w: 10.0,
-        h: 0.4,
-        fontSize: 11,
-        color: "64748B"
+      slide.addText([
+        { text: item.title + " : ", options: { bold: true, color: "111827", fontSize: 13 } },
+        { text: item.desc, options: { color: "4B5563", fontSize: 12 } }
+      ], {
+        x: 1.7,
+        y: yPos + 0.1,
+        w: 10.4,
+        h: 0.62,
+        valign: "middle"
       });
     });
   }
 
-  // SLIDE 3: LITERATURE REVIEW — COMPREHENSIVENESS (10 MARKS)
+  // SLIDE 3: LITERATURE REVIEW - COMPREHENSIVENESS (10 MARKS)
   {
-    const s3 = pptx.addSlide();
-    addHeader(s3, "Comprehensiveness of Literature Review (10 Marks)", "Literature Review");
+    const slide = pptx.addSlide();
+    slide.background = { color: "FFFFFF" };
+    addSlideHeader(slide, "Literature Review — Comprehensiveness (10 Marks)", "Literature Review");
 
-    const categories = [
+    slide.addText("We evaluated the 4 major existing approaches to form automation:", {
+      x: 0.8,
+      y: 1.1,
+      w: 11.5,
+      h: 0.35,
+      fontSize: 13,
+      color: "4B5563"
+    });
+
+    const reviews = [
       {
-        title: "1. Browser Built-In Autofill (Chrome, Edge, Safari)",
-        points: ["Relies strictly on standard HTML autocomplete tags", "Single flat identity (cannot separate Job vs. Travel profiles)", "Fails completely on multi-row tables & custom form names"]
+        title: "1. Native Browser Autofill (Chrome, Edge, Safari)",
+        points: "• Stores only basic contact and card info using standard HTML autocomplete tags.\n• Limitation: Flat single profile. Cannot handle complex Indian application forms or multiple passengers."
       },
       {
-        title: "2. Password Managers (Bitwarden, 1Password, LastPass)",
-        points: ["Designed for login credentials and credit cards", "Cannot store Indian academic/govt fields (Roll No., Caste, APAAR)", "No support for multi-step application journeys"]
+        title: "2. Password Managers (Bitwarden, 1Password)",
+        points: "• Strong encrypted vault for logins and credit cards.\n• Limitation: Designed only for login forms and basic checkouts; no support for academic marks, roll numbers, or multi-step portals."
       },
       {
-        title: "3. Robotic Process Automation (Selenium, Puppeteer)",
-        points: ["Requires writing code and custom XPath scripts", "Fragile: breaks immediately when website UI updates", "Blocked by Anti-Bot Firewalls & CAPTCHA mechanisms"]
+        title: "3. Robotic Process Automation (Selenium, UiPath)",
+        points: "• Powerful headless browser scripting for business automation.\n• Limitation: Requires programming knowledge, breaks whenever website HTML changes, and blocked by anti-bot firewalls."
       },
       {
-        title: "4. Niche Tatkal Scripts & Single-Portal Extensions",
-        points: ["Hard-coded to single websites (e.g. IRCTC only)", "Stores user passwords and cards unencrypted in plaintext", "Zero adaptability across university or job portals"]
+        title: "4. Specialized IRCTC Tatkal Extensions",
+        points: "• Niche browser scripts built only for a single portal.\n• Limitation: Stores user passwords in plain text in the browser; completely useless on any other website."
       }
     ];
 
-    categories.forEach((c, idx) => {
+    reviews.forEach((r, idx) => {
       const col = idx % 2;
       const row = Math.floor(idx / 2);
       const xPos = 0.8 + col * 5.9;
-      const yPos = 1.3 + row * 2.6;
+      const yPos = 1.55 + row * 2.5;
 
-      s3.addShape(pptx.ShapeType.rect, {
+      slide.addShape(pptx.ShapeType.rect, {
         x: xPos,
         y: yPos,
         w: 5.6,
         h: 2.3,
-        fill: { color: "F8FAFC" },
-        line: { color: "CBD5E1", width: 1 },
-        radius: 6
+        fill: { color: "F9FAFB" },
+        line: { color: "CBD5E1", width: 1 }
       });
 
-      s3.addText(c.title, {
-        x: xPos + 0.3,
+      slide.addText(r.title, {
+        x: xPos + 0.2,
         y: yPos + 0.15,
-        w: 5.0,
-        h: 0.5,
+        w: 5.2,
+        h: 0.4,
         fontSize: 12,
         bold: true,
-        color: "0F766E"
+        color: "1E3A8A"
       });
 
-      const bulletText = c.points.map((p) => `• ${p}`).join("\n");
-      s3.addText(bulletText, {
-        x: xPos + 0.3,
-        y: yPos + 0.7,
-        w: 5.0,
-        h: 1.4,
+      slide.addText(r.points, {
+        x: xPos + 0.2,
+        y: yPos + 0.6,
+        w: 5.2,
+        h: 1.5,
         fontSize: 11,
-        color: "334155",
+        color: "374151",
         lineSpacing: 18
       });
     });
   }
 
-  // SLIDE 4: LITERATURE REVIEW — COMPARISON MATRIX (10 MARKS)
+  // SLIDE 4: COMPARISON MATRIX (10 MARKS)
   {
-    const s4 = pptx.addSlide();
-    addHeader(s4, "Comparative Matrix: Existing Systems vs. FillSync (10 Marks)", "Literature Review");
+    const slide = pptx.addSlide();
+    slide.background = { color: "FFFFFF" };
+    addSlideHeader(slide, "Literature Review — Comparison Matrix", "Literature Review");
 
-    const tableHeaders = [
-      { text: "Evaluation Criteria", options: { bold: true, fill: "0F172A", color: "FFFFFF" } },
-      { text: "Browser Autofill", options: { bold: true, fill: "0F172A", color: "FFFFFF" } },
-      { text: "Password Managers", options: { bold: true, fill: "0F172A", color: "FFFFFF" } },
-      { text: "RPA Automation", options: { bold: true, fill: "0F172A", color: "FFFFFF" } },
-      { text: "FillSync (Proposed)", options: { bold: true, fill: "0D9488", color: "FFFFFF" } }
+    const rows = [
+      [
+        { text: "Feature", options: { bold: true, fill: "1E3A8A", color: "FFFFFF", fontSize: 11 } },
+        { text: "Browser Autofill", options: { bold: true, fill: "F3F4F6", color: "111827", fontSize: 11 } },
+        { text: "Password Mgrs", options: { bold: true, fill: "F3F4F6", color: "111827", fontSize: 11 } },
+        { text: "RPA (Selenium)", options: { bold: true, fill: "F3F4F6", color: "111827", fontSize: 11 } },
+        { text: "FillSync (Proposed)", options: { bold: true, fill: "EFF6FF", color: "1E3A8A", fontSize: 11 } }
+      ],
+      [
+        { text: "Domain Profiles", options: { bold: true, fontSize: 10 } },
+        { text: "No (Flat profile)", options: { fontSize: 10 } },
+        { text: "Single identity", options: { fontSize: 10 } },
+        { text: "Needs scripting", options: { fontSize: 10 } },
+        { text: "Yes (Personal, Job, Travel)", options: { bold: true, color: "1E3A8A", fontSize: 10 } }
+      ],
+      [
+        { text: "Multi-Passenger Tables", options: { bold: true, fontSize: 10 } },
+        { text: "No (1 person only)", options: { fontSize: 10 } },
+        { text: "No", options: { fontSize: 10 } },
+        { text: "Custom code per site", options: { fontSize: 10 } },
+        { text: "Yes (1 to 6 Passengers)", options: { bold: true, color: "1E3A8A", fontSize: 10 } }
+      ],
+      [
+        { text: "Smart Dropdown Select", options: { bold: true, fontSize: 10 } },
+        { text: "Exact match only", options: { fontSize: 10 } },
+        { text: "Basic match", options: { fontSize: 10 } },
+        { text: "Rigid XPaths", options: { fontSize: 10 } },
+        { text: "Fuzzy + Synonym Matching", options: { bold: true, color: "1E3A8A", fontSize: 10 } }
+      ],
+      [
+        { text: "Sensitive Data Security", options: { bold: true, fontSize: 10 } },
+        { text: "Browser keystore", options: { fontSize: 10 } },
+        { text: "Encrypted Vault", options: { fontSize: 10 } },
+        { text: "Plaintext config files", options: { fontSize: 10 } },
+        { text: "AES-256-CBC Field Encryption", options: { bold: true, color: "1E3A8A", fontSize: 10 } }
+      ],
+      [
+        { text: "Variable Templates", options: { bold: true, fontSize: 10 } },
+        { text: "No", options: { fontSize: 10 } },
+        { text: "No", options: { fontSize: 10 } },
+        { text: "Requires custom setup", options: { fontSize: 10 } },
+        { text: "Yes ({Company}, {Role})", options: { bold: true, color: "1E3A8A", fontSize: 10 } }
+      ]
     ];
 
-    const tableRows = [
-      tableHeaders,
-      ["Profile Architecture", "Single flat identity", "Limited 1-person card", "Scripted per site", "Categorized (Job, Travel, Personal)"],
-      ["Multi-Passenger Tables", "Unsupported", "Unsupported", "Requires custom code", "1 to 6 Passengers Automated"],
-      ["Smart Dropdown Selection", "Exact value match only", "Basic field mapping", "Rigid XPaths", "Fuzzy + Synonym Nearest Match"],
-      ["Data Encryption at Rest", "OS Protected storage", "Encrypted Cloud Vault", "Plaintext configs", "AES-256-CBC Field Encryption"],
-      ["Anti-Bot Detection", "Instant dump (flagged)", "Instant dump", "Detected as headless", "Simulated Human Typing Delays"],
-      ["Dynamic Smart Templates", "No", "No", "External script engine", "Built-in with Variable Prompts"]
-    ];
-
-    s4.addTable(tableRows, {
+    slide.addTable(rows, {
       x: 0.8,
-      y: 1.3,
+      y: 1.4,
       w: 11.5,
-      h: 5.0,
-      colW: [2.5, 2.2, 2.2, 2.2, 2.4],
-      fontSize: 11,
+      h: 4.8,
       border: { color: "CBD5E1", pt: 1 },
-      align: "left",
+      align: "center",
       valign: "middle"
     });
   }
 
   // SLIDE 5: RESEARCH GAP (5 MARKS)
   {
-    const s5 = pptx.addSlide();
-    addHeader(s5, "Research Gaps Identified in Existing Literature (5 Marks)", "Research Gap");
+    const slide = pptx.addSlide();
+    slide.background = { color: "FFFFFF" };
+    addSlideHeader(slide, "Research Gap Analysis (5 Marks)", "Research Gap");
+
+    slide.addText("Key research and technical gaps identified in existing literature:", {
+      x: 0.8,
+      y: 1.15,
+      w: 11.5,
+      h: 0.35,
+      fontSize: 13,
+      color: "4B5563"
+    });
 
     const gaps = [
-      {
-        num: "Gap 1",
-        title: "Flat Storage vs. Multi-Domain Context",
-        desc: "Current tools lack domain awareness: they cannot maintain separate profiles for Job Search, University Admissions, and Travel Booking under one user."
-      },
-      {
-        num: "Gap 2",
-        title: "Absence of Multi-Passenger Table Handling",
-        desc: "No consumer autofill can handle multi-row tabular forms (IRCTC Tatkal / flight bookings) for 1 to 6 passengers simultaneously."
-      },
-      {
-        num: "Gap 3",
-        title: "Rigid Dropdown Selection (<select> & Radio)",
-        desc: "Existing autofill fails when websites use acronyms or non-standard options (e.g. 'UR' for 'General', 'SL' for 'Sleeper', 'M' for 'Male')."
-      },
-      {
-        num: "Gap 4",
-        title: "Security vs. Usability Trade-Off",
-        desc: "Browser extensions either store plaintext data or rely on closed proprietary password managers that do not transparently encrypt PII fields."
-      },
-      {
-        num: "Gap 5",
-        title: "Lack of Dynamic Prompt-Driven Templates",
-        desc: "Users must repeatedly re-type cover letters and outreach emails because existing tools lack dynamic variable-injected templates."
-      }
+      { title: "Gap 1: Single Flat Profile vs. Multi-Domain Realities", desc: "Existing autofills cram all data into one flat profile. A user needs completely different data sets for a job form (CGPA, Roll No) vs a travel booking (Berth preference, Boarding station)." },
+      { title: "Gap 2: Complete Failure on Repeating Tables (Multiple Passengers)", desc: "No popular tool can automatically fill details for 2 to 6 passengers into repeating table rows on travel sites like IRCTC, forcing frantic manual typing during Tatkal hours." },
+      { title: "Gap 3: Rigid Dropdown (<select>) Matching", desc: "Traditional tools fail when websites use acronyms or synonyms in dropdowns (e.g., 'UR' instead of 'General', or 'SL' instead of 'Sleeper Class'). Synonym mapping is missing." },
+      { title: "Gap 4: No Dynamic Template Injection with Variables", desc: "Job applicants repeatedly type cover letter and outreach emails. Current autofill solutions only fill short inputs and completely ignore multi-line template injection with dynamic variables." },
+      { title: "Gap 5: Security vs. Usability Trade-off", desc: "Users are forced to choose between extensions that store data unencrypted in plain text, or complex password managers that do not support custom Indian application fields." }
     ];
 
-    gaps.forEach((g, i) => {
-      const yPos = 1.25 + i * 1.05;
-      s5.addShape(pptx.ShapeType.rect, {
+    gaps.forEach((g, idx) => {
+      const yPos = 1.6 + idx * 0.98;
+      slide.addShape(pptx.ShapeType.rect, {
         x: 0.8,
         y: yPos,
         w: 11.5,
-        h: 0.9,
-        fill: { color: "F8FAFC" },
-        line: { color: "0D9488", width: 1.5 },
-        radius: 6
+        h: 0.85,
+        fill: { color: "F9FAFB" },
+        line: { color: "E5E7EB", width: 1 }
       });
 
-      s5.addText(g.num, {
-        x: 1.1,
-        y: yPos + 0.15,
-        w: 1.2,
-        h: 0.6,
-        fontSize: 14,
+      slide.addText(g.title, {
+        x: 1.0,
+        y: yPos + 0.08,
+        w: 11.0,
+        h: 0.32,
+        fontSize: 12,
         bold: true,
-        color: "0F766E"
+        color: "1E3A8A"
       });
 
-      s5.addText(g.title, {
-        x: 2.4,
-        y: yPos + 0.12,
-        w: 9.6,
-        h: 0.3,
-        fontSize: 13,
-        bold: true,
-        color: "0F172A"
-      });
-
-      s5.addText(g.desc, {
-        x: 2.4,
-        y: yPos + 0.42,
-        w: 9.6,
-        h: 0.4,
+      slide.addText(g.desc, {
+        x: 1.0,
+        y: yPos + 0.38,
+        w: 11.0,
+        h: 0.42,
         fontSize: 11,
-        color: "475569"
+        color: "374151"
       });
     });
   }
 
   // SLIDE 6: OBJECTIVE & PROBLEM DEFINITION (5 MARKS)
   {
-    const s6 = pptx.addSlide();
-    addHeader(s6, "Objective & Problem Definition (5 Marks)", "Methodology");
+    const slide = pptx.addSlide();
+    slide.background = { color: "FFFFFF" };
+    addSlideHeader(slide, "Objective / Problem Definition (5 Marks)", "Methodology");
 
-    // Problem Definition Box
-    s6.addShape(pptx.ShapeType.rect, {
+    // Left Column: Problem Definition
+    slide.addShape(pptx.ShapeType.rect, {
       x: 0.8,
       y: 1.3,
-      w: 11.5,
-      h: 1.6,
-      fill: { color: "FEF2F2" },
-      line: { color: "FECACA", width: 1 },
-      radius: 6
+      w: 5.5,
+      h: 5.1,
+      fill: { color: "FEF2F2" }, // Soft Red Accent
+      line: { color: "FECACA", width: 1 }
     });
-    s6.addText("PROBLEM DEFINITION", {
+
+    slide.addText("Problem Definition", {
       x: 1.1,
-      y: 1.45,
-      w: 10.8,
-      h: 0.3,
-      fontSize: 11,
+      y: 1.5,
+      w: 4.9,
+      h: 0.4,
+      fontSize: 15,
       bold: true,
-      color: "DC2626"
+      color: "991B1B"
     });
-    s6.addText(
-      "Filling online application forms in India (UPSC, SSC, college admissions, job applications, and IRCTC train tickets) is repetitive, time-consuming, and error-prone. Users must repeatedly type 30+ personal and academic details across dozens of portals under strict time deadlines. Existing autofills break on custom fields, fail on multi-passenger rows, and lack localized Indian synonym awareness.",
-      {
-        x: 1.1,
-        y: 1.75,
-        w: 10.8,
-        h: 0.95,
-        fontSize: 11.5,
-        color: "7F1D1D"
-      }
-    );
 
-    // Objectives Box
-    s6.addShape(pptx.ShapeType.rect, {
-      x: 0.8,
-      y: 3.1,
-      w: 11.5,
-      h: 3.3,
-      fill: { color: "F0FDFA" },
-      line: { color: "CCFBF1", width: 1 },
-      radius: 6
-    });
-    s6.addText("PROJECT OBJECTIVES", {
+    slide.addText([
+      { text: "• Repetitive Manual Typing: ", options: { bold: true } },
+      { text: "Students and professionals type the same 20 to 50 details repeatedly across placement portals, exam registrations, and travel booking forms.\n\n" },
+      { text: "• High Fatigue & Costly Errors: ", options: { bold: true } },
+      { text: "Manual entry leads to mistyped roll numbers, Aadhaar digits, and missed deadlines during high-pressure windows.\n\n" },
+      { text: "• Failure of Existing Tools: ", options: { bold: true } },
+      { text: "Standard autofills fail on Indian portals due to custom field names, non-standard dropdowns, and repeating passenger tables." }
+    ], {
       x: 1.1,
-      y: 3.25,
-      w: 10.8,
-      h: 0.3,
-      fontSize: 11,
+      y: 2.1,
+      w: 4.9,
+      h: 4.1,
+      fontSize: 12,
+      color: "374151",
+      lineSpacing: 18
+    });
+
+    // Right Column: Objectives
+    slide.addShape(pptx.ShapeType.rect, {
+      x: 6.8,
+      y: 1.3,
+      w: 5.5,
+      h: 5.1,
+      fill: { color: "EFF6FF" }, // Soft Blue Accent
+      line: { color: "BFDBFE", width: 1 }
+    });
+
+    slide.addText("Project Objectives", {
+      x: 7.1,
+      y: 1.5,
+      w: 4.9,
+      h: 0.4,
+      fontSize: 15,
       bold: true,
-      color: "0F766E"
+      color: "1E3A8A"
     });
 
-    const objectives = [
-      "1. Build a Categorized Profile Vault organizing 220+ real-world fields into domain-specific profiles (Travel, Job, Personal).",
-      "2. Develop a Manifest V3 Chrome Extension with an intelligent DOM injection engine for automated 1-click form population.",
-      "3. Implement Smart Synonym & Fuzzy Dropdown (<select>) Matching to automatically select the nearest option on non-standard forms.",
-      "4. Support Multi-Passenger Tatkal Roster Automation (Passengers 1 to 6) for repeating table rows in railway & flight booking.",
-      "5. Enforce Bank-Grade AES-256-CBC Field Encryption at rest with zero-knowledge admin masking to protect user PII."
-    ];
-
-    s6.addText(objectives.join("\n\n"), {
-      x: 1.1,
-      y: 3.65,
-      w: 10.8,
-      h: 2.6,
-      fontSize: 11.5,
-      color: "115E59"
+    slide.addText([
+      { text: "1. Multi-Domain Profile Vault: ", options: { bold: true } },
+      { text: "Organize 220+ verified fields into Personal, Professional, and Travel domains.\n\n" },
+      { text: "2. 1-Click Form Filling: ", options: { bold: true } },
+      { text: "Chrome Extension to scan web pages and populate inputs, dropdowns, and checkboxes.\n\n" },
+      { text: "3. Smart Dropdown & Table Support: ", options: { bold: true } },
+      { text: "Synonym matching for dropdowns and multi-passenger row filling for booking forms.\n\n" },
+      { text: "4. AES-256 Field Encryption: ", options: { bold: true } },
+      { text: "Protect all sensitive identification data at rest." }
+    ], {
+      x: 7.1,
+      y: 2.1,
+      w: 4.9,
+      h: 4.1,
+      fontSize: 12,
+      color: "374151",
+      lineSpacing: 18
     });
   }
 
-  // SLIDE 7: PROPOSED METHODOLOGY — ARCHITECTURE & TOOLS (5 MARKS)
+  // SLIDE 7: PROPOSED METHODOLOGY - ARCHITECTURE & TOOLS (5 MARKS)
   {
-    const s7 = pptx.addSlide();
-    addHeader(s7, "Proposed Methodology — System Architecture & Tools (5 Marks)", "Methodology");
+    const slide = pptx.addSlide();
+    slide.background = { color: "FFFFFF" };
+    addSlideHeader(slide, "Proposed Methodology — Architecture & Tools (5 Marks)", "Methodology");
 
-    const layers = [
+    const components = [
       {
-        title: "Tier 1: Frontend Client Portal",
-        tools: "React 18 • Vite • Tailwind CSS",
-        host: "Hosted on Vercel Production",
-        points: ["Master Profile management (220+ fields)", "Categorized Data Folders (Travel, Professional, Personal)", "Extension simulator and 1-click installer"]
+        title: "Frontend Web Application",
+        tech: "React.js • Tailwind CSS • Vite",
+        points: "• Responsive dashboard for managing Personal, Academic, and Travel profiles.\n• Full-featured Data Folder manager and Smart Template creator.\n• Hosted globally on Vercel: fillsync-web-mocha.vercel.app"
       },
       {
-        title: "Tier 2: Backend REST API Server",
-        tools: "Node.js • Express.js • JWT Auth",
-        host: "Hosted on Render Cloud API",
-        points: ["RESTful endpoints for auth, profiles, folders, templates", "Stateless JWT token verification (7-day validity)", "Encrypted persistent database management"]
+        title: "Backend API Server",
+        tech: "Node.js • Express.js • JWT",
+        points: "• RESTful API architecture with JWT authentication.\n• Handles secure profile CRUD, custom folders, and activity logging.\n• Hosted live on Render: fillsync-api.onrender.com"
       },
       {
-        title: "Tier 3: Browser Automation Extension",
-        tools: "Chrome Manifest V3 • domInjector.js",
-        host: "Runs in Isolated Browser Context",
-        points: ["Active Tab DOM scanner (inputs, textareas, selects, radios)", "Human-like typing simulator (120ms delay / 15ms turbo)", "Automatic halt at CAPTCHAs & payment gateways"]
+        title: "Chrome Extension (Manifest V3)",
+        tech: "JavaScript • Chrome Extension API",
+        points: "• Popup UI with 1-click sync from open dashboard.\n• domInjector.js content script detects web inputs and simulates human-like typing.\n• Seamless integration with live API and local development."
+      },
+      {
+        title: "Security & Encryption Engine",
+        tech: "Node.js Crypto • AES-256-CBC • bcrypt",
+        points: "• Bank-grade AES-256-CBC field encryption with random 16-byte IVs for sensitive IDs.\n• Passwords hashed with bcrypt (salt factor 10).\n• Zero-knowledge admin masking."
       }
     ];
 
-    layers.forEach((l, i) => {
-      const xPos = 0.8 + i * 3.95;
-      s7.addShape(pptx.ShapeType.rect, {
+    components.forEach((c, idx) => {
+      const col = idx % 2;
+      const row = Math.floor(idx / 2);
+      const xPos = 0.8 + col * 5.9;
+      const yPos = 1.35 + row * 2.65;
+
+      slide.addShape(pptx.ShapeType.rect, {
         x: xPos,
-        y: 1.3,
-        w: 3.7,
-        h: 5.1,
-        fill: { color: "F8FAFC" },
-        line: { color: "CBD5E1", width: 1 },
-        radius: 6
+        y: yPos,
+        w: 5.6,
+        h: 2.45,
+        fill: { color: "F9FAFB" },
+        line: { color: "CBD5E1", width: 1 }
       });
 
-      s7.addText(l.title, {
-        x: xPos + 0.25,
-        y: 1.5,
-        w: 3.2,
-        h: 0.6,
+      slide.addText(c.title, {
+        x: xPos + 0.2,
+        y: yPos + 0.12,
+        w: 5.2,
+        h: 0.35,
         fontSize: 13,
         bold: true,
-        color: "0F766E"
+        color: "1E3A8A"
       });
 
-      s7.addText(l.tools, {
-        x: xPos + 0.25,
-        y: 2.1,
-        w: 3.2,
-        h: 0.35,
-        fontSize: 11,
-        bold: true,
-        color: "0F172A"
-      });
-
-      s7.addText(l.host, {
-        x: xPos + 0.25,
-        y: 2.45,
-        w: 3.2,
-        h: 0.35,
+      slide.addText(c.tech, {
+        x: xPos + 0.2,
+        y: yPos + 0.45,
+        w: 5.2,
+        h: 0.25,
         fontSize: 10,
+        bold: true,
         color: "0D9488"
       });
 
-      const bullets = l.points.map((p) => `• ${p}`).join("\n\n");
-      s7.addText(bullets, {
-        x: xPos + 0.25,
-        y: 2.9,
-        w: 3.2,
-        h: 3.2,
+      slide.addText(c.points, {
+        x: xPos + 0.2,
+        y: yPos + 0.75,
+        w: 5.2,
+        h: 1.6,
         fontSize: 11,
-        color: "475569"
+        color: "374151",
+        lineSpacing: 17
       });
     });
   }
 
-  // SLIDE 8: PROPOSED METHODOLOGY — CORE ALGORITHMS & TECHNIQUES (5 MARKS)
+  // SLIDE 8: CORE TECHNIQUES & ALGORITHMS (5 MARKS)
   {
-    const s8 = pptx.addSlide();
-    addHeader(s8, "Proposed Methodology — Core Techniques & Algorithms (5 Marks)", "Methodology");
+    const slide = pptx.addSlide();
+    slide.background = { color: "FFFFFF" };
+    addSlideHeader(slide, "Proposed Methodology — Techniques & Algorithms (5 Marks)", "Methodology");
 
     const techniques = [
       {
-        title: "1. Smart Synonym Resolution Engine",
-        desc: "Tokenizes input name, ID, and placeholder into stems and evaluates against a dictionary of 50+ localized variations (e.g., father_name -> fathername, candidate_father, fathers_name)."
+        num: "1",
+        title: "Smart Synonym Matching Dictionary",
+        desc: "Websites use different labels for the same field (e.g., father_name, fatherName, candidate_father, parent_name). FillSync tokenizes field names and matches them against an extensive keyword dictionary covering 50+ common Indian form variations."
       },
       {
-        title: "2. Closest Nearest Option Matching (<select> Dropdowns)",
-        desc: "Evaluates dropdown options through a 4-stage pipeline: (1) Exact match, (2) Synonym dictionary (UR -> General, SL -> Sleeper), (3) Substring inclusion, and (4) Character overlap ratio to pick the closest match."
+        num: "2",
+        title: "3-Tier Dropdown Selection Algorithm",
+        desc: "When encountering an HTML <select> dropdown, the algorithm executes 3 levels:\nLevel 1: Exact string or option value match.\nLevel 2: Synonym mapping (e.g. 'UR' matches 'General', 'SL' matches 'Sleeper Class').\nLevel 3: Fuzzy character overlap to pick the closest matching option."
       },
       {
-        title: "3. Sequential & Indexed Multi-Passenger Roster",
-        desc: "Handles travel portals using both indexed arrays (passengerName[0], passengerAge[0]) and unindexed repeating rows, allowing Passengers 1 through 6 to be filled in order without collisions."
+        num: "3",
+        title: "Sequential & Indexed Multi-Passenger Table Injection",
+        desc: "For travel booking forms, the engine supports both indexed input names (passengerName[0], passengerAge[0]) and sequential table rows, allowing all passengers (1 to 6) to be filled in order automatically."
       },
       {
-        title: "4. Military-Grade AES-256-CBC Field Encryption",
-        desc: "Encrypts sensitive PII (Aadhaar, PAN, phone, address) before saving to disk using AES-256-CBC with SHA-256 derived keys and random 16-byte IVs; masks details on the admin dashboard."
+        num: "4",
+        title: "Human-Like Event Delays & Dispatch",
+        desc: "Modern frameworks (React/Angular) ignore raw DOM value assignments. FillSync simulates real typing by firing native 'input' and 'change' events with 120ms delays (or 15ms Turbo mode) so website forms detect the change."
       }
     ];
 
-    techniques.forEach((t, i) => {
-      const yPos = 1.25 + i * 1.32;
-      s8.addShape(pptx.ShapeType.rect, {
+    techniques.forEach((t, idx) => {
+      const yPos = 1.35 + idx * 1.3;
+      slide.addShape(pptx.ShapeType.rect, {
         x: 0.8,
         y: yPos,
         w: 11.5,
         h: 1.15,
-        fill: { color: "F8FAFC" },
-        line: { color: "0D9488", width: 1.5 },
-        radius: 6
+        fill: { color: "F9FAFB" },
+        line: { color: "E5E7EB", width: 1 }
       });
 
-      s8.addText(t.title, {
-        x: 1.1,
-        y: yPos + 0.15,
-        w: 10.8,
-        h: 0.35,
-        fontSize: 13,
-        bold: true,
-        color: "0F766E"
-      });
-
-      s8.addText(t.desc, {
-        x: 1.1,
-        y: yPos + 0.48,
-        w: 10.8,
-        h: 0.55,
-        fontSize: 11,
-        color: "334155"
-      });
-    });
-  }
-
-  // SLIDE 9: DATA SET & REAL-WORLD SCHEMAS (5 MARKS)
-  {
-    const s9 = pptx.addSlide();
-    addHeader(s9, "Proposed Methodology — Data Sets & Schema Design (5 Marks)", "Methodology");
-
-    const datasets = [
-      {
-        name: "Personal Profile (65+ Fields)",
-        desc: "Identity, Demographic & Contact Data",
-        fields: "Full Name, Email, Phone (AES-256), DOB, Gender, Category (UR/OBC/SC/ST), Father's Name, Mother's Name, Blood Group, Permanent Address, Street, City, State, PIN Code, Aadhaar No. (Encrypted), PAN Card, Passport No., Voter ID, Driving License."
-      },
-      {
-        name: "Professional & Academic (80+ Fields)",
-        desc: "College Placements & Govt Exam Records",
-        fields: "10th Roll No., 10th Passing Year, 12th Roll No., 12th Passing Year, College Name, Degree/Stream, Current CGPA, Percentage, Year of Graduation, APAAR / ABC ID, DigiLocker ID, Domicile State, Exam Centre Preferences, Skills, Portfolio URL."
-      },
-      {
-        name: "Travel & IRCTC Profile (75+ Fields)",
-        desc: "Train & Flight Tatkal Booking Roster",
-        fields: "IRCTC Username, Origin Station (NDLS), Destination Station, Boarding Station, Travel Class (SL/3A/2A), Quota (General/Tatkal), Passenger 1 to 6 Details (Full Name, Age, Gender, Berth Preference, Meal Preference, Travel Insurance)."
-      }
-    ];
-
-    datasets.forEach((ds, i) => {
-      const xPos = 0.8 + i * 3.95;
-      s9.addShape(pptx.ShapeType.rect, {
-        x: xPos,
-        y: 1.3,
-        w: 3.7,
-        h: 5.1,
-        fill: { color: "F8FAFC" },
-        line: { color: "CBD5E1", width: 1 },
-        radius: 6
-      });
-
-      s9.addText(ds.name, {
-        x: xPos + 0.25,
-        y: 1.5,
-        w: 3.2,
+      slide.addShape(pptx.shapes.OVAL, {
+        x: 1.0,
+        y: yPos + 0.2,
+        w: 0.5,
         h: 0.5,
-        fontSize: 13,
-        bold: true,
-        color: "0F766E"
+        fill: { color: "1E3A8A" }
       });
 
-      s9.addText(ds.desc, {
-        x: xPos + 0.25,
-        y: 2.05,
-        w: 3.2,
-        h: 0.4,
-        fontSize: 10.5,
-        color: "64748B"
-      });
-
-      s9.addShape(pptx.ShapeType.line, {
-        x: xPos + 0.25,
-        y: 2.5,
-        w: 3.2,
-        h: 0,
-        line: { color: "E2E8F0", width: 1 }
-      });
-
-      s9.addText("Exemplary Fields Included:", {
-        x: xPos + 0.25,
-        y: 2.65,
-        w: 3.2,
-        h: 0.3,
-        fontSize: 10,
-        bold: true,
-        color: "0F172A"
-      });
-
-      s9.addText(ds.fields, {
-        x: xPos + 0.25,
-        y: 3.0,
-        w: 3.2,
-        h: 3.1,
-        fontSize: 10.5,
-        color: "334155"
-      });
-    });
-  }
-
-  // SLIDE 10: CURRENT WORKING STATUS & LIVE DEMO
-  {
-    const s10 = pptx.addSlide();
-    addHeader(s10, "Current Working Status & Live Deployment (Ready for Viva Demo)", "Implementation Status");
-
-    const links = [
-      { label: "Production Web Portal", val: "https://fillsync-web-mocha.vercel.app", note: "Live on Vercel: Responsive Dashboard, Profile Editor & Folder Manager" },
-      { label: "Backend REST API", val: "https://fillsync-api.onrender.com/api", note: "Live on Render: JWT Authentication & AES-256 Encrypted Persistent DB" },
-      { label: "Testing & Validation Sandbox", val: "https://fillsync-web-mocha.vercel.app/test-form.html", note: "Ready-to-test multi-domain web forms (Placement, Govt Exam, IRCTC)" },
-      { label: "Chrome Extension (Manifest V3)", val: "1-Click Download (.zip) from Navbar", note: "Fully packaged with smart select dropdown & radio auto-filling" }
-    ];
-
-    links.forEach((l, i) => {
-      const yPos = 1.3 + i * 1.3;
-      s10.addShape(pptx.ShapeType.rect, {
-        x: 0.8,
-        y: yPos,
-        w: 11.5,
-        h: 1.15,
-        fill: { color: "F8FAFC" },
-        line: { color: "0D9488", width: 1.5 },
-        radius: 6
-      });
-
-      s10.addText(l.label, {
-        x: 1.1,
-        y: yPos + 0.12,
-        w: 3.5,
-        h: 0.35,
-        fontSize: 13,
-        bold: true,
-        color: "0F766E"
-      });
-
-      s10.addText(l.val, {
-        x: 4.8,
-        y: yPos + 0.12,
-        w: 7.0,
-        h: 0.35,
+      slide.addText(t.num, {
+        x: 1.0,
+        y: yPos + 0.2,
+        w: 0.5,
+        h: 0.5,
         fontSize: 12,
         bold: true,
-        color: "0284C7"
+        color: "FFFFFF",
+        align: "center",
+        valign: "middle"
       });
 
-      s10.addText(l.note, {
-        x: 1.1,
-        y: yPos + 0.5,
-        w: 10.8,
-        h: 0.45,
+      slide.addText(t.title, {
+        x: 1.7,
+        y: yPos + 0.1,
+        w: 10.4,
+        h: 0.3,
+        fontSize: 13,
+        bold: true,
+        color: "1E3A8A"
+      });
+
+      slide.addText(t.desc, {
+        x: 1.7,
+        y: yPos + 0.4,
+        w: 10.4,
+        h: 0.7,
         fontSize: 11,
-        color: "475569"
+        color: "374151"
+      });
+    });
+  }
+
+  // SLIDE 9: DATA SET & SCHEMAS (5 MARKS)
+  {
+    const slide = pptx.addSlide();
+    slide.background = { color: "FFFFFF" };
+    addSlideHeader(slide, "Data Set & Real-World Schema Design (5 Marks)", "Methodology");
+
+    slide.addText("FillSync uses an exhaustive schema of 220+ verified fields based on active Indian portals:", {
+      x: 0.8,
+      y: 1.15,
+      w: 11.5,
+      h: 0.35,
+      fontSize: 13,
+      color: "4B5563"
+    });
+
+    const domains = [
+      {
+        title: "Personal Profile (65+ Fields)",
+        iconColor: "1E3A8A",
+        desc: "• Candidate Name, DOB, Gender, Blood Group\n• Father / Mother Name, Caste / Category\n• Permanent & Present Address, Pin Code\n• Sensitive IDs (AES-256): Aadhaar, PAN, Passport, Voter ID, Driving License"
+      },
+      {
+        title: "Professional & Academic (80+ Fields)",
+        iconColor: "0D9488",
+        desc: "• 10th & 12th Board Roll Numbers, Passing Years\n• College Name, Degree, Branch, CGPA, %\n• DigiLocker ID, APAAR / ABC ID\n• GitHub / LinkedIn / Portfolio URLs & Skill tags"
+      },
+      {
+        title: "Travel & IRCTC Profile (75+ Fields)",
+        iconColor: "D97706",
+        desc: "• Origin & Destination Stations, Boarding Point\n• IRCTC User ID, Preferred Class & Quota\n• Passengers 1 to 6 Details: Full Name, Age, Gender, Berth Preference, Meal Choice"
+      }
+    ];
+
+    domains.forEach((d, idx) => {
+      const xPos = 0.8 + idx * 3.95;
+      slide.addShape(pptx.ShapeType.rect, {
+        x: xPos,
+        y: 1.6,
+        w: 3.7,
+        h: 4.8,
+        fill: { color: "F9FAFB" },
+        line: { color: "CBD5E1", width: 1 }
+      });
+
+      slide.addShape(pptx.ShapeType.rect, {
+        x: xPos,
+        y: 1.6,
+        w: 3.7,
+        h: 0.6,
+        fill: { color: d.iconColor }
+      });
+
+      slide.addText(d.title, {
+        x: xPos + 0.1,
+        y: 1.7,
+        w: 3.5,
+        h: 0.4,
+        fontSize: 12,
+        bold: true,
+        color: "FFFFFF",
+        align: "center"
+      });
+
+      slide.addText(d.desc, {
+        x: xPos + 0.2,
+        y: 2.35,
+        w: 3.3,
+        h: 3.9,
+        fontSize: 11,
+        color: "374151",
+        lineSpacing: 20
+      });
+    });
+  }
+
+  // SLIDE 10: CURRENT WORKING STATUS & DEMO
+  {
+    const slide = pptx.addSlide();
+    slide.background = { color: "FFFFFF" };
+    addSlideHeader(slide, "Current Working Status & Live Deployment", "Project Status");
+
+    slide.addText("Live working status of all project components:", {
+      x: 0.8,
+      y: 1.2,
+      w: 11.5,
+      h: 0.35,
+      fontSize: 13,
+      color: "4B5563"
+    });
+
+    const statusList = [
+      { name: "Web Application", url: "https://fillsync-web-mocha.vercel.app", status: "Active (Vercel)" },
+      { name: "REST API Backend", url: "https://fillsync-api.onrender.com/api", status: "Active (Render)" },
+      { name: "Testing Sandbox", url: "https://fillsync-web-mocha.vercel.app/test-form.html", status: "Active (1-Click Test)" },
+      { name: "Chrome Extension", url: "Manifest V3 with 1-click sync & popup", status: "Active (Locally Packaged)" }
+    ];
+
+    statusList.forEach((s, idx) => {
+      const yPos = 1.7 + idx * 1.15;
+      slide.addShape(pptx.ShapeType.rect, {
+        x: 0.8,
+        y: yPos,
+        w: 11.5,
+        h: 0.95,
+        fill: { color: "F9FAFB" },
+        line: { color: "E5E7EB", width: 1 }
+      });
+
+      slide.addText(s.name, {
+        x: 1.1,
+        y: yPos + 0.15,
+        w: 3.0,
+        h: 0.3,
+        fontSize: 13,
+        bold: true,
+        color: "1E3A8A"
+      });
+
+      slide.addText(s.url, {
+        x: 1.1,
+        y: yPos + 0.45,
+        w: 7.5,
+        h: 0.35,
+        fontSize: 11,
+        color: "4B5563"
+      });
+
+      slide.addShape(pptx.ShapeType.rect, {
+        x: 9.8,
+        y: yPos + 0.25,
+        w: 2.2,
+        h: 0.45,
+        fill: { color: "DEF7EC" },
+        line: { color: "31C48D", width: 1 }
+      });
+
+      slide.addText(s.status, {
+        x: 9.8,
+        y: yPos + 0.25,
+        w: 2.2,
+        h: 0.45,
+        fontSize: 10,
+        bold: true,
+        color: "03543F",
+        align: "center",
+        valign: "middle"
       });
     });
   }
 
   // SLIDE 11: CONCLUSION & NEXT STEPS
   {
-    const s11 = pptx.addSlide();
-    s11.background = { color: "0F172A" };
+    const slide = pptx.addSlide();
+    slide.background = { color: "FFFFFF" };
+    addSlideHeader(slide, "Conclusion & Next Steps for Final Evaluation", "Conclusion");
 
-    s11.addText("PRJ-1 MID-TERM EVALUATION", {
-      x: 0.8,
-      y: 1.0,
-      w: 11.5,
-      h: 0.3,
-      fontSize: 11,
-      bold: true,
-      color: "0D9488"
-    });
-
-    s11.addText("Conclusion & Road to End-Term Deliverables", {
+    slide.addShape(pptx.ShapeType.rect, {
       x: 0.8,
       y: 1.4,
       w: 11.5,
-      h: 0.8,
-      fontSize: 26,
-      bold: true,
-      color: "FFFFFF"
+      h: 2.3,
+      fill: { color: "EFF6FF" },
+      line: { color: "BFDBFE", width: 1 }
     });
 
-    const nextSteps = [
-      "✓ Mid-Term Milestone Met: Literature review completed, research gaps identified, architecture designed, and prototype deployed.",
-      "✓ Core Innovation: Multi-domain categorized profiles, 1-click 6-passenger roster filling, and closest-neighbor dropdown selection.",
-      "✓ Bank-Grade Security: Transparent AES-256 field encryption for sensitive PII at rest with zero-knowledge admin masking.",
-      "→ Next Milestone (End-Term): Integration of Google Gemini API for zero-shot dynamic semantic mapping across unforeseen portals.",
-      "→ Next Milestone (End-Term): Multi-step automated page advancement and document upload vault for PDFs and signature photos."
-    ];
+    slide.addText("Mid-Term Summary", {
+      x: 1.1,
+      y: 1.55,
+      w: 10.9,
+      h: 0.35,
+      fontSize: 14,
+      bold: true,
+      color: "1E3A8A"
+    });
 
-    s11.addText(nextSteps.join("\n\n"), {
+    slide.addText("The literature review and research gap analysis are fully complete. The core system architecture, bank-grade AES-256 encrypted database, full-stack REST API, and working Chrome Extension (Manifest V3) have all been implemented, verified, and deployed live.", {
+      x: 1.1,
+      y: 1.95,
+      w: 10.9,
+      h: 1.5,
+      fontSize: 12,
+      color: "374151",
+      lineSpacing: 20
+    });
+
+    slide.addShape(pptx.ShapeType.rect, {
       x: 0.8,
-      y: 2.5,
+      y: 3.9,
       w: 11.5,
-      h: 3.6,
-      fontSize: 13,
-      color: "CBD5E1"
+      h: 2.6,
+      fill: { color: "F9FAFB" },
+      line: { color: "E5E7EB", width: 1 }
+    });
+
+    slide.addText("Next Steps for Final Evaluation", {
+      x: 1.1,
+      y: 4.05,
+      w: 10.9,
+      h: 0.35,
+      fontSize: 14,
+      bold: true,
+      color: "111827"
+    });
+
+    slide.addText([
+      { text: "1. Expanded Website Support: ", options: { bold: true } },
+      { text: "Conduct automated compatibility tests on 20+ additional government and state exam portals.\n" },
+      { text: "2. Chrome Web Store Packaging: ", options: { bold: true } },
+      { text: "Publish extension to the Chrome Web Store with automatic background updates.\n" },
+      { text: "3. User Usability Testing: ", options: { bold: true } },
+      { text: "Conduct timed tests measuring minutes saved during college application filling.\n" },
+      { text: "4. Final Report & Code Documentation: ", options: { bold: true } },
+      { text: "Complete final project documentation with API swagger specs and user manual." }
+    ], {
+      x: 1.1,
+      y: 4.45,
+      w: 10.9,
+      h: 1.9,
+      fontSize: 11,
+      color: "374151",
+      lineSpacing: 18
     });
   }
 
@@ -1298,29 +1390,52 @@ function createPowerPointPresentation() {
 }
 
 // ============================================================================
-// MAIN GENERATOR EXECUTION
+// MAIN EXECUTION
 // ============================================================================
-async function run() {
-  const outputDocxPath = path.resolve(__dirname, "FillSync_PRJ1_Mid_Sem_Report.docx");
-  const outputPptxPath = path.resolve(__dirname, "FillSync_PRJ1_Mid_Sem_Presentation.pptx");
+async function main() {
+  const rootDir = __dirname;
 
-  console.log("Generating Word Document...");
-  const doc = createWordDocument();
-  const buffer = await Packer.toBuffer(doc);
-  fs.writeFileSync(outputDocxPath, buffer);
-  console.log("✓ Saved Word Document:", outputDocxPath);
+  // 1. Generate Word Document
+  console.log("Generating Word Document (Clean Student Format)...");
+  const wordDoc = createWordDocument();
+  const wordBuffer = await Packer.toBuffer(wordDoc);
+  const wordPath = path.join(rootDir, "FillSync_PRJ1_Mid_Sem_Report.docx");
+  const wordSimplePath = path.join(rootDir, "FillSync_PRJ1_Mid_Sem_Report_Simple.docx");
 
-  console.log("Generating PowerPoint Presentation...");
+  try {
+    fs.writeFileSync(wordPath, wordBuffer);
+    console.log("✓ Saved Word Document:", wordPath);
+  } catch (err) {
+    if (err.code === "EBUSY") {
+      console.warn("Notice: Original docx is currently open in Word. Writing to:", wordSimplePath);
+      fs.writeFileSync(wordSimplePath, wordBuffer);
+      console.log("✓ Saved Word Document (Simple):", wordSimplePath);
+    } else {
+      throw err;
+    }
+  }
+
+  // 2. Generate PowerPoint Presentation
+  console.log("Generating PowerPoint Presentation (Clean White Academic Theme)...");
   const pptx = createPowerPointPresentation();
-  await pptx.writeFile({ fileName: outputPptxPath });
-  console.log("✓ Saved PowerPoint Presentation:", outputPptxPath);
+  const pptxPath = path.join(rootDir, "FillSync_PRJ1_Mid_Sem_Presentation.pptx");
+  const pptxSimplePath = path.join(rootDir, "FillSync_PRJ1_Mid_Sem_Presentation_Simple.pptx");
+
+  try {
+    await pptx.writeFile({ fileName: pptxPath });
+    console.log("✓ Saved PowerPoint Presentation:", pptxPath);
+  } catch (err) {
+    console.warn("Notice: Writing to simple presentation path:", pptxSimplePath);
+    await pptx.writeFile({ fileName: pptxSimplePath });
+    console.log("✓ Saved PowerPoint Presentation (Simple):", pptxSimplePath);
+  }
 
   console.log("==========================================================");
-  console.log("Both files generated successfully with rubrics alignment!");
+  console.log("Both files generated successfully with clean student style!");
   console.log("==========================================================");
 }
 
-run().catch((err) => {
-  console.error("Error generating files:", err);
+main().catch((err) => {
+  console.error("Error generating documents:", err);
   process.exit(1);
 });

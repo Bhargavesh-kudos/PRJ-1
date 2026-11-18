@@ -120,6 +120,49 @@
         text-align: center;
         margin-bottom: 8px;
       }
+      .btn-sync {
+        background: #0d9488;
+        color: #ffffff;
+        border: 1px solid #14b8a6;
+        box-shadow: 0 2px 8px rgba(13, 148, 136, 0.25);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+      }
+      .btn-sync:hover {
+        background: #14b8a6;
+      }
+      .btn-google {
+        background: #ffffff;
+        color: #0f172a;
+        border: 1px solid #cbd5e1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+      }
+      .btn-google:hover {
+        background: #f1f5f9;
+      }
+      .divider {
+        display: flex;
+        align-items: center;
+        text-align: center;
+        margin: 10px 0;
+        color: #64748b;
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+      }
+      .divider::before, .divider::after {
+        content: '';
+        flex: 1;
+        border-bottom: 1px solid #334155;
+      }
+      .divider span {
+        padding: 0 8px;
+      }
       .msg {
         font-size: 11px;
         color: #38bdf8;
@@ -135,11 +178,29 @@
 
     <!-- 1. Login View -->
     <div id="loginSection">
+      <!-- 1-Click Sync from Open Dashboard Tab -->
+      <button class="btn-sync" id="syncDashboardBtn" type="button" title="Grab your login session directly from open FillSync dashboard">
+        ⚡ 1-Click Sync from Dashboard
+      </button>
+
+      <!-- 1-Click Google Sign-In -->
+      <button class="btn-google" id="googleLoginBtn" type="button">
+        <svg width="14" height="14" viewBox="0 0 24 24" style="flex-shrink:0;">
+          <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17z"/>
+          <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.36 24 12 24z"/>
+          <path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.18 0 9.99 0 12s.45 3.82 1.25 5.42l4.03-3.15z"/>
+          <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.36 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/>
+        </svg>
+        Sign in with Google (Gmail)
+      </button>
+
+      <div class="divider"><span>OR SIGN IN WITH PASSWORD</span></div>
+
       <label>Email Address</label>
-      <input type="email" id="emailInput" placeholder="Enter your email" autocomplete="off" />
+      <input type="email" id="emailInput" placeholder="Enter your email" autocomplete="off" value="bhargaveshpandit@gmail.com" />
       <label>Password</label>
       <input type="password" id="passwordInput" placeholder="Enter your password" autocomplete="new-password" />
-      <button class="btn-primary" id="loginBtn">Sign In</button>
+      <button class="btn-primary" id="loginBtn" type="button">Sign In</button>
     </div>
 
     <!-- 2. Logged-In Controls (Adapts for Normal vs Premium User) -->
